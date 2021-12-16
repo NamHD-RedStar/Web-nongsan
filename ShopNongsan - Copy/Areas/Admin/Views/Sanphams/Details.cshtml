@@ -1,0 +1,79 @@
+﻿@model ShopNongsan.Models.Sanpham
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div>
+    @*@Html.ActionLink("Quay lại", "Index")*@
+    <a href='@Url.Action("Index", "Sanphams")'>
+        <i class="fas fa-backward"> Quay lại</i>
+    </a>
+</div>
+<div class="chia-khoi">
+    <div><h2>Chi tiết sản phẩm</h2></div>
+    <div>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Nội dung</th>
+                    <th scope="col">Chi tiết</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Tên sản phẩm</th>
+                    <td>@Html.DisplayFor(model => model.tensanpham)</td>
+
+                </tr>
+                <tr>
+                    <th scope="row">Ảnh sản phẩm</th>
+                    <td>  <img src="data:image/jpg;base64,@Html.DisplayFor(model => model.img_sanpham)" width="50" height="50" /></td>
+                </tr>
+                <tr>
+                    <th scope="row">  Giá tiền</th>
+                    <td>   @Html.DisplayFor(model => model.giatien)</td>
+
+                </tr>
+                <tr>
+                    <th scope="row"> List ảnh</th>
+                    <td>  @Html.DisplayFor(model => model.list_img)</td>
+
+                </tr>
+                <tr>
+                    <th scope="row"> Mô tả</th>
+                    <td> @Html.DisplayFor(model => model.mota)</td>
+
+                </tr>
+                <tr>
+                    <th scope="row">  Số lượng</th>
+                    <td>  @Html.DisplayFor(model => model.soluong)</td>
+
+                <tr>
+                    <th scope="row">Số lượt mua</th>
+                    <td>   @Html.DisplayFor(model => model.soluotmua)</td>
+
+                </tr>
+                <tr>
+                    <th scope="row">Ngày thêm</th>
+                    <td>   @Html.DisplayFor(model => model.ngay_them)</td>
+
+                </tr>
+                <tr>
+                    <th scope="row">Trạng thái</th>
+                    <td>   @Html.DisplayFor(model => model.trangthai)</td>
+
+                </tr>
+                <tr>
+                    <th scope="row">Tên danh mục</th>
+                    <td>   @Html.DisplayFor(model => model.DanhmucSanpham.tendanhmuc)</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <p>
+        @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.id_sanpham }, new { @class = "btn btn-primary btn-lg btn-block" })
+        @*@Html.ActionLink("Back to List", "Index")*@
+    </p>
+</div>

@@ -1,0 +1,136 @@
+/*****************************
+35 - Layout - Table
+*****************************/
+
+table{
+    border: 1px solid $color-gray-1;
+    width: 100%;
+
+    // Table Header
+    thead > tr {
+        background-color: $color-gray-1;
+        border: 1px solid $color-gray-1;
+    }
+
+    thead > tr > th {
+        color: #1d1d1d;
+        font-size: 14px;
+        font-weight: 500;
+        padding: 21px 45px 22px;
+        text-align: center;
+        text-transform: uppercase;
+        vertical-align: middle;
+        white-space: nowrap;
+    }
+
+    // Table Body
+    tbody > tr {
+        border-bottom: 1px solid $color-gray-1;
+    }
+
+    tbody > tr td {
+        color: #666;
+        font-size: 15px;
+        padding: 30px 15px;
+        text-align: center;
+        
+    }
+
+    tbody > tr td a{
+        color: #666;
+        text-decoration: none !important;
+        display: inline-block;
+        &:hover{color: #666;}
+    }
+
+}
+
+// Cart Page Table:: Style
+.product-thumbnail {
+    width: 150px;
+}
+
+.product-name {
+    width: 435px;
+}
+
+.product-price-cart {
+    width: 435px;
+}
+
+.product-quantities {
+    width: 435px;
+}
+
+.product-subtotal{
+    width: 435px;
+}
+
+.product-remove {
+    width: 100px;
+
+    a{
+        color: #666;
+        font-size: 16px;
+        margin: 0 10px; 
+    }
+}
+
+// Compare Page Table:: Style
+.compare-table .table tbody tr td {
+    text-align: center;
+    border: none;
+    padding: 25px 30px;
+    vertical-align: middle;
+    border-bottom: 1px solid $color-gray-1;
+    border-left: 1px solid $color-gray-1;
+}
+.first-column {
+    min-width: 160px;
+    font-size: 18px;
+    font-weight: 500;
+    color: $color-black-1;
+    margin: 0;
+    line-height: 1;
+}
+
+.product-image-title {
+    min-width: 300px;
+    vertical-align: bottom;
+    padding-top: 70px;
+}
+
+.image {
+    clear: both;
+    width: 100%;
+    margin-bottom: 40px;
+    display: block;
+}
+
+.category {
+    float: left;
+    clear: both;
+    font-size: 13px;
+    line-height: 15px;
+    color: $color-black-1;
+    text-transform: capitalize;
+    letter-spacing: .5px;
+}
+
+.pro-stock {
+    font-size: 16px;
+    font-weight: 600;
+    color: $color-black-1;
+}
+
+.pro-remove button:hover {
+    color: $color-youtube;
+}
+
+//Login Page Table:: Style
+.login-form-container {
+    background: transparent none repeat scroll 0 0;
+    box-shadow: 0 0 6px rgba(0,0,0,.1);
+    padding: 80px;
+    text-align: left;
+}

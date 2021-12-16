@@ -1,0 +1,712 @@
+﻿@{
+    var nguoi = Session["nguoidung"] as ShopNongsan.Models.Nguoidung;
+    ShopNongsan.Models.ShopNongsanEntities db = new ShopNongsan.Models.ShopNongsanEntities();
+ 
+    var tt = "";
+    if (Session["timkiem"] != null)
+    {
+        tt = Session["timkiem"].ToString();
+    }
+    else
+    {
+        tt = "";
+    }
+}
+<style>
+    .fixed-form{
+        display:block;
+    }
+</style>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="https://tokyolife.vn/media/favicon/stores/1/App_Logo_2362px-01-01.png">
+    <link rel="stylesheet" href="~/Theme_shop/Theme_trangchu/font/fontawesome-free-5.15.4-web/css/all.min.css">
+    <link rel="stylesheet" href="~/Theme_shop/Theme_trangchu/css/grid.css">
+    <link rel="stylesheet" href="~/Theme_shop/Theme_trangchu/css/style.css">
+    <link rel="stylesheet" href="~/Theme_shop/Theme_trangchu/css/base.css">
+    <link rel="stylesheet" href="~/Theme_shop/Theme_trangchu/css/responsive.css">
+    <link href="~/Theme_shop/assets/css/main.min.css" rel="stylesheet" />
+    <link href="~/Theme_shop/assets/css/Style-Nam.css" rel="stylesheet" />
+    <link href="~/Theme_shop/assets/css/Giohang.css" rel="stylesheet" />
+    <style>
+        .th-hover:hover {
+            background-color: #f3ced5;
+        }
+    </style>
+
+
+
+    <title>Trang chủ</title>
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+            <!-- header-info -->
+            <div class="grid wide">
+                <div id="top" class="header-info">
+                    <p class="header-info_phone">Hotline : 099-320-0854</p>
+                    <div class="header-info_about">
+                        <a href="#" class="header-info_about-content header-location-js">Chọn điểm mua hàng <i class="fas fa-chevron-down"></i></a>
+                        <div class="header-info_about-content">
+                            @{
+                                if (Session["nguoidung"] != null)
+                                {
+                                    @*@Session["User_Ten"]*@
+
+                                    <img class="boder-avatar" src="data:image/jpg;base64,@nguoi.anh_daidien" alt="Alternate Text" /><p>&nbsp;</p>@nguoi.ho <p>&nbsp;</p>@nguoi.ten
+                                }
+                                else
+                                {
+                                    <p>Đăng nhập</p>
+                                }
+                            }
+                            <ul class="header-info_about-list">
+                                <li class="header-info_about-item">
+                                    <a href="~/Profile/Index">Tài khoản của tôi</a>
+                                </li>
+                                <li class="header-info_about-item">
+                                    <a href="~/DonhangUser/Index">Đơn hàng của tôi</a>
+                                </li>
+                                <li class="header-info_about-item">
+                                    @{
+                                        if (Session["User_Ten"] != null)
+                                        {
+                                            <a href="~/Nguoidungs/Logout">Đăng xuất</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="~/Nguoidungs/Index">Đăng nhập</a>
+                                        }
+
+
+                                    }
+                                </li>
+                                @{
+                                    if (Session["nguoidung"] != null)
+                                    {
+                                        if (nguoi.quyen == "Admin")
+                                        {
+                                            <li class="header-info_about-item">
+                                                <a href="~/Admin/Nguoidungs/Index">Quản trị</a>
+                                            </li>
+                                        }
+                                    }
+                                }
+                            </ul>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- header-baner -->
+            <div class="grid">
+                <img class="header-baner" src="https://tokyolife.vn/media/wysiwyg/home-page-image/home-1/t_ch_i_m_1_.jpg" alt="">
+            </div>
+
+            <!-- header-bottom -->
+
+            <div class="grid wide">
+                <div class="header-bottom">
+                    <div class="header-bottom_logo">
+                        @*<img src="https://tokyolife.vn/media/logo/stores/1/LOGO-TKL-01.png" alt="">*@
+                        <a href="/SanphamShop" style="text-decoration: none; color: red;"><h3 style=" font-size: 19px; font-weight: bold;">SHOP NGUYỄN VĂN NAM</h3></a>
+                    </div>
+                    <form action="/SanphamShop/Timkiem_sanpham" method="post" style="width:56%">
+                        <div class="header-bottom_search">
+                            <div class="header-bottom_menu">
+                                <div class="header-bottom_menu-icon">
+                                    <i class="fas fa-bars"></i>
+                                </div>
+                                <div class="header-bottom_menu-list">
+                                    <ul class="nav-list_responsive">
+                                        <div class="nav-list_responsive-icon">
+                                            <i class="fas fa-times"></i>
+                                        </div>
+                                        <li class="nav-itemRespponsive">
+                                            TRANG CHỦ
+                                        </li>
+                                        <li class="nav-itemRespponsive header-info_about-item">
+
+                                            <a href="#">Rau</a>
+                                        </li>
+                                        <li class="nav-itemRespponsive header-info_about-item">
+                                            <a href="#">  Hoa quả theo mùa</a>
+                                        </li>
+                                        <li class="nav-itemRespponsive header-info_about-item">
+                                            <a href="#"> Thịt các loại</a>
+                                        </li>
+                                        <li class="nav-itemRespponsive header-info_about-item">
+                                            <a href="#"> Lương thực</a>
+                                        </li>
+                                        <li class="nav-itemRespponsive header-info_about-item">
+                                            <a href="#">Hàng nhập khẩu</a>
+                                        </li>
+                                        <li class="nav-itemRespponsive header-info_about-item">
+                                            <a href="#"> Đặc sản Hải Dương</a>
+                                        </li>
+                                        <li class="nav-itemRespponsive header-info_about-item">
+                                            <a href="#">  Dụng cụ khác</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <input class="header-bottom_search-input" name="timkiem" id="timkiem" type="text" placeholder="Tìm kiếm..." value="@tt">
+                            <button type="submit" class="header-bottom_search-btn"><i class="fas fa-search"></i></button>
+                            <div class="header-bottom_cart reponsive">
+                                <button class="header-bottom_cart-icon header-bottom_cart-icon2">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <div class="header-bottom_cart-select header-bottom_cart-select2">
+                                        Bạn không có sản phẩm nào trong giỏ hàng của bạn.
+                                    </div>
+                                </button>
+                                <p class="header-bottom_cart-info header-bottom_cart-info2">
+                                    @ViewBag.soluong_giohang
+                                <p>sản phẩm</p>
+                                <br> <span>@ViewBag.tongtien ₫</span>
+                                </p>
+
+                            </div>
+                        </div>
+                    </form>
+                    @*  <a href="~/Views/GiahangUsers/Index.cshtml">~/Views/GiahangUsers/Index.cshtml</a>*@
+                    <div class="header-bottom_cart pc">
+                        <a href="~/GiahangUsers/Index">
+                            <button class="header-bottom_cart-icon header-bottom_cart-icon1">
+                                <i class="fas fa-shopping-cart"></i>
+                                <!--<div class="header-bottom_cart-select header-bottom_cart-select1">
+                                Bạn không có sản phẩm nào trong giỏ hàng của bạn.
+                                </div>-->
+                            </button>
+                        </a>
+
+                        <p class="header-bottom_cart-info header-bottom_cart-info1">
+                            @*@ViewBag.soluong_giohang sản phẩm
+                                <br> <span>@ViewBag.tongtien ₫</span>*@
+
+                            @Session["soluong_giohang"] sản phẩm
+                            <br> <span>@Session["tongtien"] ₫</span>
+                        </p>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        @RenderBody()
+
+        <div class="footer">
+            <div class="footer-top">
+                <div class="grid wide">
+                    <a href="#top" class="btn1 btn-footer"><i class="fas fa-chevron-up"></i></a>
+                    @*  <img src="https://tokyolife.vn/media/wysiwyg/footer/logo_166x21.png" alt="tokyolife" class="footer-top_logo">*@
+                    <p class="footer-top_sub">
+                        Shop Nguyễn Văn Nam là shop bán nông sản lớn tại Hải Dương <br />
+                        Với đầy đủ các mặt hàng, sản phẩm với mẫu mã và chủng loại đa dạng <br />
+                        Chúng tôi mong rằng có thể đáp ứng được nhu cầu mua sắm online tại nhà của các bạn
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer-center">
+                <div class="grid wide">
+                    <div class="row">
+                        <div class="col l-3 m-6 c-12">
+                            <div class="footer-center_about">
+                                <h3 class="footer-center_title">INTELLIFE JOINT STOCK COMPANY</h3>
+                                <div class="footer-center_line"></div>
+                                <p class="footer-center_text">
+                                    Địa chỉ: Xóm Cầu-thôn An Liệt-xã Thanh Hải-huyện Thanh Hà-tỉnh Hải Dương-Việt Nam. <br />
+                                    Người đại diện: Nguyễn Văn Nam <br />
+                                    Mã số thuế: 0108120341, ngày cấp ĐKKD 5/1/2021. <br />
+                                    Nơi cấp: Sở kế hoạch và đầu tư Hải Dương.<br />
+                                    Điện thoại:1800-6926 <br />
+                                    Email:shopnongsan_nvn@gmail.com
+                                </p>
+                                <a href="http://online.gov.vn/Home/WebDetails/57002"><img src="	https://tokyolife.vn/media/wysiwyg/home-page-image/20150827110756-dathongbao.png" alt="" class="footer-center_logo"></a>
+                            </div>
+                        </div>
+
+                        <div class="col l-3 m-6 c-12">
+
+                            <div class="footer-center_about">
+                                <h3 class="footer-center_title">TÀI KHOẢN CỦA TÔI</h3>
+                                <div class="footer-center_line"></div>
+                                <ul class="footer-center_list">
+                                    <li class="footer-center_item">Tài khoản của tôi</li>
+                                    <li class="footer-center_item">Đăng nhập</li>
+                                    <li class="footer-center_item">Giỏ hàng của tôi</li>
+                                    <li class="footer-center_item">Sản phẩm yêu thích</li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col l-3 m-6 c-12">
+                            <div class="footer-center_about">
+                                <h3 class="footer-center_title">HỖ TRỢ</h3>
+                                <div class="footer-center_line"></div>
+                                <ul class="footer-center_list">
+                                    <li class="footer-center_item">Chính sách vận chuyển</li>
+                                    <li class="footer-center_item">Quy định đổi hàng</li>
+                                    <li class="footer-center_item">Hình thức thanh toán</li>
+                                    <li class="footer-center_item">Chính sách tích và tiêu điểm</li>
+                                    <li class="footer-center_item">Hướng dẫn chọn size</li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col l-3 m-6 c-12">
+                            <div class="footer-center_about">
+                                <h3 class="footer-center_title">KẾT NỐI</h3>
+                                <div class="footer-center_line"></div>
+                                <div class="footer-center_down">
+                                    <div class="footer-center_down-connect">
+                                        <a href="https://apps.apple.com/vn/app/tokyolife/id1255809177?l=vi"> <img src="https://tokyolife.vn/media/wysiwyg/home-page-image/icon/ios_2019.png" alt=""></a>
+                                        <a href="https://play.google.com/store/apps/details?id=com.format.tokyolife"><img src="https://tokyolife.vn/media/wysiwyg/home-page-image/icon/android_2019.png" alt=""></a>
+                                    </div>
+                                    <img src="https://tokyolife.vn/media/wysiwyg/footer/iphone2020.png" alt="" class="footer-center_down-phone">
+                                </div>
+                                <div class="footer-center_social">
+                                    <a href="https://www.facebook.com/TokyoLifeNow/"><img src="https://tokyolife.vn/media/wysiwyg/home-page-image/icon/fb-01.png" alt="fb"></a>
+                                    <a href="https://www.youtube.com/channel/UCEoTu7uvB7wVgM1xP9uHe7g?view_as=subscriber"><img src="https://tokyolife.vn/media/wysiwyg/home-page-image/icon/ytb-01.png" alt="yb"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="grid wide">
+                    <div class="footer-bottom_about">
+                        <h3>© 2021 NVN.VN</h3>
+                        <p>Cre: n<a href="https://tokyolife.vn/">guyenvannam.vn</a></p>
+                        <div class="footer-bottom_about-pay">
+                            <img src="https://tokyolife.vn/media/wysiwyg/payment/httt_2_.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- fixed -->
+    <style>
+        #noidung_tinnhan {
+            width: 96%;
+            height: 300px;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .chat-img {
+            float: left;
+            width: 48px;
+        }
+
+            .chat-img img {
+                -webkit-border-radius: 50px;
+                -moz-border-radius: 50px;
+                border-radius: 50px;
+                width: 100%;
+            }
+
+        .chat-message {
+            -webkit-border-radius: 50px;
+            -moz-border-radius: 50px;
+            border-radius: 50px;
+            background: #5a99ee;
+            display: inline-block;
+            padding: 10px 20px;
+            position: relative;
+        }
+
+            .chat-message:before {
+                content: "";
+                position: absolute;
+                top: 15px;
+                width: 0;
+                height: 0;
+            }
+
+            .chat-message h5 {
+                margin: 0 0 5px 0;
+                font-weight: 600;
+                line-height: 100%;
+                font-size: .9rem;
+            }
+
+            .chat-message p {
+                line-height: 18px;
+                margin: 0;
+                padding: 0;
+                width: 170px;
+            }
+
+        .chat-body {
+            margin-left: 20px;
+            float: left;
+            width: 70%;
+        }
+
+        .in .chat-message:before {
+            left: -12px;
+            border-bottom: 20px solid transparent;
+            border-right: 20px solid #5a99ee;
+        }
+
+        .out .chat-img {
+            float: right;
+        }
+
+        .out .chat-body {
+            float: right;
+            margin-right: 20px;
+            text-align: right;
+        }
+
+       .out .chat-message {
+            background: #fc6d4c;
+        }
+
+           .out .chat-message:before {
+                right: -12px;
+                border-bottom: 20px solid transparent;
+                border-left: 20px solid #fc6d4c;
+            }
+
+        .card .card-header:first-child {
+            -webkit-border-radius: 0.3rem 0.3rem 0 0;
+            -moz-border-radius: 0.3rem 0.3rem 0 0;
+            border-radius: 0.3rem 0.3rem 0 0;
+        }
+
+        .card .card-header {
+            background: #17202b;
+            border: 0;
+            font-size: 1rem;
+            padding: .65rem 1rem;
+            position: relative;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .content {
+            margin-top: 40px;
+        }
+    </style>
+    <div class="fixed-container">
+        <div class="fixed-form">
+            <div class="fixed-form_header">
+                @{
+                    if (Session["nguoidung"] != null)
+                    {
+                        <h3 class="fixed-form_header-title">Chào @nguoi.ten, bạn có câu hỏi nào không</h3>
+                    }
+                    else
+                    {
+                        <h3 class="fixed-form_header-title">Chào bạn, bạn có câu hỏi nào không</h3>
+                    }
+                }
+
+                <i class="far fa-window-minimize"></i>
+            </div>
+            <form action="~/Nguoidungs/Nhantin_khachhang">
+                <div id="noidung_tinnhan" class="fixed-form_group">
+                    <!--Bắt đầu tin-->
+                    @{ if (Session["nguoidung"] != null)
+                        {
+                            var tinnhan = db.Nhantins.Where(s => s.id_khachhang == nguoi.id_nguoidung && s.id_admin == 18).ToList();
+                            foreach (var item in tinnhan)
+                            {
+                                if (item.trangthai == 1)
+                                {
+                                    <div class="in" style="width: 92%; height: auto; line-height: 22px; padding-top: 4px;">
+                                        <div class="chat-img">
+                                            <img alt="Avtar" src="https://bootdey.com/img/Content/avatar/avatar2.png">
+                                        </div>
+                                        <div class="chat-body">
+                                            <div class="chat-message">
+                                                <p>@item.noidungnhan</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="out" style="width: 92%; height: auto; line-height: 22px; padding-top: 4px;">
+                                        <div class="chat-img">
+                                            <img alt="Avtar"  style="height:48px;width:48px" src="data:image/jpg;base64,@nguoi.anh_daidien">
+                                        </div>
+                                        <div class="chat-body">
+                                            <div class="chat-message">
+                                                <p>@item.noidungnhan</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                            }
+                        }
+                        else
+                        {
+                            <h3 >Hãy đăng nhập để nhắn tin nhé</h3>
+                        }
+
+
+                    }
+
+
+                    <!--Kết thúc tin-->
+
+
+                </div>
+                <div class="fixed-form_footer">
+                    <div class="fixed-btn_group">
+                        <input style="border:1px solid; border-radius: 10px; width: 90%;" type="text" name="noidung" id="noidung"  required>
+                        <input style=" width: 58px; height: 33px; padding: 2px 3px;" type="submit" value="Gửi" class="fixed-btn_group-item active">
+                    </div>
+                    <a class="fixed-form_footer-link" href="">Nguyễn Văn Nam</a>
+                </div>
+
+            </form>
+        </div>
+        <div class="btn1 btn-message"><i class="fas fa-comments"></i></div>
+        <a href="#top" class="btn1 btn-srollFixed">
+            <i class="fas fa-chevron-up"></i>
+        </a>
+    </div>
+    <!-- modal -->
+    <div class="modal-place">
+        <div class="modal-overlay">
+            <div class="modal-place_container">
+                <div class="modal-place_regions">
+                    <div class="modal-place_regions-content">
+                        <span>Miền Bắc</span><i class="fas fa-caret-down"></i>
+                        <ul class="modal-place_regions-list">
+                            <li class="modal-place_regions-item">
+                                <a href="">
+                                    TOKYOLIFE KIẾN AN <br>
+                                    2 12-14 Trần Nhân Tông - Kiến An - Hải Phòng <br>
+                                    0225 8830 213
+                                </a>
+                            </li>
+                            <li class="modal-place_regions-item">
+                                <a href="">
+                                    TOKYOLIFE SAO ĐỎ <br>
+                                    Số 112 Nguyễn Trãi - Sao Đỏ - Chí Linh - Hải Dương <br>
+                                    0220 3596226
+                                </a>
+                            </li>
+                            <li class="modal-place_regions-item">
+                                <a href="">
+                                    TOKYOLIFE HẢI PHÒNG 4<br>
+                                    Số 158 Tô Hiệu - Trại Cau - Lê Chân - TP Hải Phòng <br>
+                                    02253610885
+                                </a>
+                            </li>
+                            <li class="modal-place_regions-item">
+                                <a href="">
+                                    TOKYOLIFE PHỐ NỐI<br>
+                                    18C Phố Nối - Mỹ Hào - Hưng Yên <br>
+                                    02213900692
+                                </a>
+                            </li>
+                            <li class="modal-place_regions-item">
+                                <a href="">
+                                    TOKYOLIFE HẠ LONG<br>
+                                    4 182 Cao Thắng, TP Hạ Long, Quảng Ninh<br>
+                                    0203.3900977
+                                </a>
+                            </li>
+                            <li class="modal-place_regions-item">
+                                <a href="">
+                                    TOKYOLIFE HỒ TÙNG MẬU<br>
+                                    28 Hồ Tùng Mậu -Mai Dịch - Cầu Giấy - TP. Hà Nội<br>
+                                    0243.7918094
+                                </a>
+                            </li>
+                            <li class="modal-place_regions-item">
+                                <a href="">
+                                    TOKYOLIFE TỪ SƠN<br>
+                                    Số 6-8 Khu Phố Minh Khai- Từ Sơn - Bắc Ninh<br>
+                                    0222.3761338
+                                </a>
+                            </li>
+                            <li class="modal-place_regions-item">
+                                <a href="">
+                                    TOKYOLIFE VIỆT TRÌ 2<br>
+                                    2137 ĐẠI LỘ HÙNG VƯƠNG - TP. Việt Trì<br>
+                                    0210 384 3456
+                                </a>
+                            </li>
+                            <li class="modal-place_regions-item">
+                                <a href="">
+                                    TOKYOLIFE TÂN TRIỀU<br>
+                                    24 Đường 70 -Tân Triều - Thanh Trì - TP. Hà Nội<br>
+                                    0243.7809021
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-place_regions-content">
+                        <span>Miền Trung</span><i class="fas fa-caret-down"></i>
+                        <ul class="modal-place_regions-list">
+                            <li class="modal-place_regions-item">
+                                <a href="">
+                                    TOKYOLIFE ĐỒNG HỚI 1 <br>
+                                    41 Trần Hưng Đạo - TP. Đồng Hới<br>
+                                    0232.3833678 <br>
+                                </a>
+                            </li>
+                            <li class="modal-place_regions-item">
+                                <a href="">
+                                    TOKYOLIFE BỈM SƠN<br>
+                                    254 Nguyễn Huệ - Thị Xã Bỉm Sơn<br>
+                                    0237.3770996<br>
+                                </a>
+                            </li>
+                            <li class="modal-place_regions-item">
+                                <a href="">
+                                    TOKYOLIFE VINH 2<br>
+                                    65 Lê Hồng Phong - TP. Vinh<br>
+                                    0238.3588575<br>
+                                </a>
+                            </li>
+                            <li class="modal-place_regions-item">
+                                <a href="">
+                                    TOKYOLIFE HUẾ<br>
+                                    28 Hùng Vương - TP. Huế<br>
+                                    0234.3818.399<br>
+                                </a>
+                            </li>
+                            <li class="modal-place_regions-item">
+                                <a href="">
+                                    TOKYOLIFE THANH HÓA 2<br>
+                                    70 Trần Phú - TP. Thanh Hóa<br>
+                                    0237.372.0696 <br>
+                                </a>
+                            </li>
+                            <li class="modal-place_regions-item">
+                                <a href="">
+                                    TOKYOLIFE ĐÔNG HÀ<br>
+                                    93 Hùng Vương - TP. Đông Hà<br>
+                                    0233.3899779<br>
+                                </a>
+                            </li>
+                            <li class="modal-place_regions-item">
+                                <a href="">
+                                    TOKYOLIFE ĐÔNG HÀ<br>
+                                    93 Hùng Vương - TP. Đông Hà<br>
+                                    0233.3899779<br>
+                                </a>
+                            </li>
+                            <li class="modal-place_regions-item">
+                                <a href="">
+                                    TOKYOLIFE ĐÔNG HÀ<br>
+                                    93 Hùng Vương - TP. Đông Hà<br>
+                                    0233.3899779<br>
+                                </a>
+                            </li>
+                            <li class="modal-place_regions-item">
+                                <a href="">
+                                    TOKYOLIFE QUẢNG NGÃI<br>
+                                    485 Quang Trung - TP. Quảng Ngãi<br>
+                                    0255.373.7988<br>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-place_regions-content">
+                        <span>Miền Nam</span><i class="fas fa-caret-down"></i>
+                        <ul class="modal-place_regions-list">
+                            <li class="modal-place_regions-item">
+                                <a href="">
+                                    TOKYOLIFE BÌNH DƯƠNG <br>
+                                    604 CMT 8 - Phú Cường - TP. Thủ Dầu Một<br>
+                                    0274.3899929<br>
+                                </a>
+                            </li>
+                            <li class="modal-place_regions-item">
+                                <a href="">
+                                    TOKYOLIFE ÂU CƠ SÀI GÒN<br>
+                                    683A Âu Cơ - Tân Phú - TP. HCM<br>
+                                    02836360366<br>
+                                </a>
+                            </li>
+                            <li class="modal-place_regions-item">
+                                <a href="">
+                                    TOKYOLIFE KIÊN GIANG<br>
+                                    466 Nguyễn Trung Trực - TP. Rạch Giá - Kiên Giang<br>
+                                    02973891886<br>
+                                </a>
+                            </li>
+                            <li class="modal-place_regions-item">
+                                <a href="">
+                                    TOKYOLIFE BIÊN HÒA<br>
+                                    1257 Phạm Văn Thuận - TP. Biên Hòa<br>
+                                    025 1882 8668 <br>
+                                </a>
+                            </li>
+                            <li class="modal-place_regions-item">
+                                <a href="">
+                                    TOKYOLIFE LÊ VĂN KHƯƠNG<br>
+                                    73 Lê Văn Khương, phường Hiệp Thành, quận 12, HCM (đối diện CH Thế giới di động)<br>
+                                    028 3636 0731<br>
+                                </a>
+                            </li>
+                            <li class="modal-place_regions-item">
+                                <a href="">
+                                    TOKYOLIFE CẦN THƠ<br>
+                                    76B Đường 3/2 - Ninh Kiều - TP. Cần Thơ<br>
+                                    02923699668<br>
+                                </a>
+                            </li>
+                            <li class="modal-place_regions-item">
+                                <a href="">
+                                    TOKYOLIFE BIÊN HÒA 2<br>
+                                    1278 ( Số cũ 119) Phạm Văn Thuận, Phương Tân Tiến, Tp Biên Hòa, Tỉnh Đồng Nai<br>
+                                    0251 3686 764<br>
+                                </a>
+                            </li>
+                            <li class="modal-place_regions-item">
+                                <a href="">
+                                    TOKYOLIFE VŨNG TÀU 2<br>
+                                    365-367 đường Nguyễn An Ninh - P9 - Tp Vũng Tàu<br>
+                                    0254 3613638<br>
+                                </a>
+                            </li>
+                            <li class="modal-place_regions-item">
+                                <a href="">
+                                    TOKYOLIFE BẠC LIÊU<br>
+                                    Số nhà 443 Trần Phú, Phường 7, Thành Phố Bạc Liêu, Tỉnh Bạc Liêu<br>
+                                    0291 390 1933<br>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Theme_shop/Theme_trangchu/main.js"></script>
+</body>
+
+</html>

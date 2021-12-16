@@ -1,0 +1,68 @@
+﻿@model ShopNongsan.Models.Sanpham
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div>
+    @*@Html.ActionLink("Quay lại", "Index")*@
+    <a href='@Url.Action("Index", "Sanphams")'>
+        <i class="fas fa-backward"> Quay lại</i>
+    </a>
+</div>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Tên sản phẩm</th>
+            <th scope="col">First</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Tên sản phẩm</td>
+            <td>@Html.DisplayFor(model => model.tensanpham)</td>
+        </tr>
+        <tr>
+            <td scope="row">Ảnh sản phẩm</td>
+            <td><img src="data:image/jpg;base64,@Html.DisplayFor(model => model.img_sanpham)" width="50" height="50" style="border-radius:24%" /></td>
+        </tr>
+        <tr>
+            <td>Giá tiền</td>
+            <td>@Html.DisplayFor(model => model.giatien) đ</td>
+        </tr>
+        <tr>
+            <td>Mô tả</td>
+            <td ><p class="cut-text-mota">@Html.DisplayFor(model => model.mota)</p></td>
+        </tr>
+        <tr>
+            <td>Số lượng</td>
+            <td>@Html.DisplayFor(model => model.soluong)</td>
+        </tr>
+        <tr>
+            <td>Số lượt mua</td>
+            <td>@Html.DisplayFor(model => model.soluotmua)</td>
+        </tr>
+        <tr>
+            <td>Ngày thêm</td>
+            <td>@Html.DisplayFor(model => model.ngay_them)</td>
+        </tr>
+        <tr>
+            <td>Trạng thái</td>
+            <td>@Html.DisplayFor(model => model.trangthai)</td>
+        </tr>
+        <tr>
+            <td>Tên danh mục</td>
+            <td>@Html.DisplayFor(model => model.DanhmucSanpham.tendanhmuc)</td>
+        </tr>
+    </tbody>
+</table>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-danger" /> |
+            @*@Html.ActionLink("Quay lại", "Index",new { @class = "btn btn-outline-danger" })*@
+        </div>
+    }

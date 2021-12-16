@@ -1,0 +1,180 @@
+/*****************************
+33 - Layout - Footer
+*****************************/
+
+.footer{
+    font-size: 14px;
+   
+        &__about{
+            font-size: 14px;
+        }
+
+        &__logo{
+            margin-bottom: 30px;
+        }
+
+        &__address{
+
+            &-item{
+                margin-bottom: 15px;
+                color: $color-gray-2 !important;
+
+                &:last-child{
+                    margin-bottom: 0px;
+                }
+
+                span{
+                    color: $color-primary;
+                }
+
+                a{
+                    color: $color-gray-2;
+                    &:hover{
+                        color: $color-primary;
+                    }
+                }
+            }
+        }
+
+        &__menu{margin-top: 35px;}
+
+        &__nav{
+
+            &-title{
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+        }
+
+        &__list{
+            margin-bottom: 15px;
+            &:last-child{
+                margin-bottom: 0px;
+            }
+        }
+
+        &__link{
+            color: $color-gray-2;
+            transition: all .3s ease;
+            font-size: 14px;
+            text-decoration: none !important;
+            display: block;
+            &:hover{
+                padding-left: 10px;
+                color: $color-primary;
+            }
+        }
+
+        &__social{
+
+            &-nav{
+                display: flex;
+            }
+
+            &-list{
+                margin-right: 10px;
+                display: inline-block;
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                border-radius: 5px;
+
+                &:nth-child(1){background: #3c5b9b;}
+                &:nth-child(2){background: #40c1df;}
+                &:nth-child(3){background: #ed3c32;}
+                &:nth-child(4){background: #eb8314;}
+                &:nth-child(5){background: #c619b8;}
+                
+            }
+
+            &-link{
+                color: $color-white !important;
+                display: block;
+            }
+        }
+
+        &__form{
+            margin-top: 60px;
+
+            &-box{
+                display: flex;
+                font-size: 14px;
+
+                input {
+                    width: 100%;
+                    height: 44px;
+                    padding: 10px 10px 10px 10px;
+                    outline: none;
+                    border: 1px solid #e1e1e1;
+                    border-top-left-radius: 3px;
+                    border-bottom-left-radius: 3px;
+                    border-top-right-radius: 0px;
+                    border-bottom-right-radius: 0px;
+                    border-right: none;
+                }
+            }
+        }
+
+
+        &__quick-nav{
+            margin-top: 50px;
+            border-top: 1px solid $color-gray;
+        }
+
+        &__quick-link{
+            display: inline-block;
+            color: $color-gray;
+            text-decoration: none !important;
+            transition: all .3s ease;
+            font-size: 14px;
+
+            &:hover{
+                color: $color-primary;
+            }
+
+            &::after{
+                content: "/";
+                padding: 0 3px;
+                color: $color-gray;
+            }
+
+            &:last-child::after{
+                content: "";
+            }
+        }
+
+
+    &__bottom{
+        padding: 40px 0;
+    }
+
+    &__copyright-text{
+        text-align: center;
+        margin-bottom: 20px;
+        @include breakpoint(large){
+            text-align: left;
+            margin-bottom: 0;
+        }
+       p{
+           margin: 0;
+       }
+    }
+
+    &__payment{
+        overflow: hidden;
+        text-align: center;
+        @include breakpoint(large){
+            text-align: right;
+        }
+
+        &-link{display: block;}
+
+        &-img{
+            max-width: 100%;
+
+        }
+    }
+
+
+}

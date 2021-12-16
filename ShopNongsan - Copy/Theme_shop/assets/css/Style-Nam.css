@@ -1,0 +1,58 @@
+﻿
+.boder-avatar {
+    height: 42px;
+    width: 42px;
+    border-radius: 50%;
+}
+.anh {
+    height: 100px;
+    width: 100px;
+}
+.chia-khoi-slide {
+    display: block;
+}
+.chia-khoi-slide1 {
+    display: flex;
+}
+.nongsan-chilinh {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 300px;
+    grid-gap: 16px;
+    margin: 40px 0 40px 0;
+    background-size: cover;
+}
+
+    .nongsan-chilinh a {
+        text-decoration: none;
+        color: rgb(7, 0, 0);
+    }
+
+    .nongsan-chilinh .card-nongsan {
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        border-radius: 5px;
+        display: block;
+        flex-direction: column;
+        justify-content: flex-end;
+        transition: all 0.3s ease;
+        width: 200px;
+    }
+
+        .nongsan-chilinh .card-nongsan .card-img {
+            height: 200px;
+            width: 200px;
+        }
+
+        .nongsan-chilinh .card-nongsan .card-title {
+            height: 40px;
+        }
+
+        .nongsan-chilinh .card-nongsan .card-gia {
+            height: 10%;
+            font-size: 25px;
+            color: red;
+            text-align: center;
+            background: #ffffff;
+        }

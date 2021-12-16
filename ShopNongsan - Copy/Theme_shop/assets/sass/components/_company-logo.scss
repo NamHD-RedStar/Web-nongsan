@@ -1,0 +1,34 @@
+/*****************************
+11 - Component - Company Logo
+*****************************/
+.company-logo{
+    &--2{
+        border-top: 1px solid $color-gray-1;
+        margin-top: 20px;
+        @include breakpoint(medium){margin-top: 40px;}
+        @include breakpoint(large){margin-top: 60px;}
+    }
+    &__item {
+        overflow: hidden;
+        text-align: center;
+    }
+
+    &__link {
+        display: block;
+        margin-bottom: 30px;
+        &:last-child{
+            margin-bottom: 0;
+        }
+    }
+
+    &__img {
+        max-width: 100%;
+        height: auto;
+        transition: all .3s ease;
+        &:hover{
+            transform: scale(1.05);
+        }
+    }
+
+
+}

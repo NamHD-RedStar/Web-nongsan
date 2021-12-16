@@ -1,0 +1,194 @@
+﻿@model IEnumerable<ShopNongsan.Models.GiahangUser>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_LayoutGiaodich.cshtml";
+    var nguoi = Session["nguoidung"] as ShopNongsan.Models.Nguoidung;
+    decimal total = 0;
+    int stt = 1;
+    var ngaygiao = DateTime.Now.AddDays(+10).ToString("dd-MM-yyyy");
+    var phivanchuyen = 22000;
+    int giamgia = 0;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/Theme_shop/assets/css/giaodich.css">
+    <link rel="stylesheet" href="../CSS/index.css">
+    <script src="../JS/all.min.js"></script>
+    <title>Giao dịch</title>
+</head>
+
+<body>
+    <div class="khung">
+        <a href='@Url.Action("Index", "GiahangUsers")'>
+            <i class="fas fa-backward"> Quay lại</i>
+        </a>
+        <h1>1.Hình thức giao hàng</h1>
+        <div class="main-giaodich">
+            <div class="left">
+
+                <div class="hinhthuc-giaohang">
+                    <div class="hinhthuc">
+                        <input type="radio" checked name="hinhthuc"> Tiết kiệm
+                        <input type="radio" name="hinhthuc"> Nhanh
+                    </div>
+                    <div class="sanpham">
+                        <div class="row">
+                            <div class="col-0">
+                                @foreach (var item in ViewBag.Giohang_user)
+                                {
+                                    var thanhtien = item.giatien * item.soluong;
+                                    total += thanhtien;
+                                    <div class="sanpham-mua">
+                                        <div class="col-1">
+                                            @*  <img class='anh-sanpham' src='data:image/jpeg;base64, $image' />*@
+                                            <input type="text" name="id_sanpham" value="@item.id_sanpham" style="display:none" />
+                                            <img src="data:image/jpeg;base64,@item.img_sanpham" alt="Alternate Text" class="anh-sanpham" />
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="ten-sanpham">
+                                                <p class="cut-txt">@item.tensanpham</p>
+                                            </div>
+
+                                            <div class="soluong-gia">
+                                                <div class="soluong">
+                                                    SL:
+                                                    @item.soluong
+                                                </div>
+                                                <div class="gia">
+                                                    @item.giatien.ToString("n0") đ
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <div class="col-3">
+                                <p class="ngay">
+                                    Ngày giao: @ngaygiao
+
+                                </p><br>
+                                Sản phẩm sẽ được giao trong vòng 10 ngày
+                            </div>
+                            <div class="col-4">
+                                <p class="ngay"> @phivanchuyen.ToString("n0") đ</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <h1>2.Hình thức thanh toán</h1>
+                <div class="hinhthuc-thanhtoan">
+                    <ul>
+                        <li>
+                            <label for="">
+                                <input type="radio" checked name="hinhthucthanhtoan">
+                                <div class="title-thanhtoan">
+                                    <div class="icon-thanhtoan">
+                                        <img class="anh-sanpham" src="~/Images/icon/icon-payment-method-cod.svg" alt="">
+                                    </div>
+                                    <div class="icon-name">
+                                        Thanh toán tiền mặt khi nhận hàng
+                                    </div>
+
+                                </div>
+                            </label>
+                        </li>
+                        <li>
+                            <label for="">
+                                <input type="radio" name="hinhthucthanhtoan">
+                                <div class="title-thanhtoan">
+                                    <div class="icon-thanhtoan">
+                                        <img class="anh-sanpham" src="~/Images/icon/icon-payment-method-mo-mo.svg" alt="">
+                                    </div>
+                                    <div class="title-thanhtoan">
+                                        Thanh toán bằng MoMo
+                                    </div>
+
+                                </div>
+                            </label>
+                        </li>
+                        <li>
+                            <label for="">
+                                <input type="radio" name="hinhthucthanhtoan">
+                                <div class="title-thanhtoan">
+                                    <div class="icon-thanhtoan">
+                                        <img class="anh-sanpham" src="~/Images/icon/icon-payment-method-zalo-pay.svg" alt="">
+                                    </div>
+                                    <div class="title-thanhtoan">
+                                        Thanh toán tiền bằng ZaloPay
+                                    </div>
+
+                                </div>
+                            </label>
+                        </li>
+                        <li>
+                            <label for="">
+                                <input type="radio" name="hinhthucthanhtoan">
+                                <div class="title-thanhtoan">
+                                    <div class="icon-thanhtoan">
+                                        <img class="anh-sanpham" src="~/Images/icon/icon-payment-method-atm.svg" alt="">
+                                    </div>
+                                    <div class="title-thanhtoan">
+                                        Thanh toán bằng ATM nội địa/Internet Banking (Miễn phí thanh toán)
+                                    </div>
+                                </div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="btn-muahang">
+
+                    <a href="~/Giaodich/Muahang"><input type="submit" value="Mua hàng" name="muahang"></a>
+                </div>
+            </div>
+            @*//lấy dl người dùng*@
+            @{
+                if (Session["nguoidung"] != null)
+                { 
+                    if (Session["magiamgia"] != null)
+                    {
+                         giamgia = Convert.ToInt32(Session["magiamgia"]);
+                    }
+                    <div class="right">
+                        <div class="main-right">
+                            <div class="diachi">
+                                <p> Địa chỉ giao hàng</p>
+                                <hr>
+                                <p class="ngay">@nguoi.ho  @nguoi.ten</p>
+                                <p>@nguoi.diachi</p>
+                                <p>Điện thoại:@nguoi.sdt</p>
+                            </div>
+                            <div class="donhang">
+                                <div class="tinh-tien">
+                                    <ul>
+                                        <li>
+                                            <span> Tạm tính</span>
+                                            <span><label id="tongtien"> @(total.ToString("n0"))</label> đ</span>
+                                        </li>
+                                        <li>
+                                            <span> Phí vận chuyển</span>
+                                            <span><label>22,000</label> đ</span>
+                                        </li>
+                                        <li>
+                                            <span> Thành tiền</span>
+                                            <span ><label style="color: rgb(238, 35, 71); font-size: 19px; font-weight: 400; text-align: right;">    @((total+phivanchuyen- giamgia).ToString("n0"))</label> đ</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+
+
+    </div>
+</body>
+
+</html>

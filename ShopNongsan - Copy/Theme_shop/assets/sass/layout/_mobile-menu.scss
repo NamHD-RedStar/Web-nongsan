@@ -1,0 +1,195 @@
+/*****************************
+31 - Layout - Mobile Menu
+*****************************/
+// mobile header
+.offside{
+    background: $color-white;
+    &-button{
+        border: none;
+        background: transparent;
+        font-size: 32px;
+        outline: none !important;
+    }
+}
+
+.offcanvas{
+    padding: 50px 20px;
+
+    &--open{
+        border: none;
+        background: transparent;
+        font-size: 32px;
+        outline: none !important;
+    }
+   
+    &__close{
+        border: none;
+        background: transparent;
+        font-size: 32px;
+        outline: none !important;
+        position: absolute;
+        right: 20px;
+        top: 0
+    }
+
+    // Offcanvas Userole
+    &-userpanel{
+        a{
+           display: block;
+           color: #232323;
+           text-decoration: none;
+        }
+        
+        &__role{
+            position: relative;
+            padding: 5px 0;
+            border-bottom: 1px solid #ddd;
+
+            &:last-child{
+                border-bottom: none
+            }
+        }
+    } 
+
+
+    &__user-expand{
+        &::after{
+            content: "\e90b";
+            position: absolute;
+            font-family: 'plaza-icon';
+            right: 0;
+            transition: all .3s ease;
+        }
+    }
+
+    &-userpanel__role.active  &__user-expand{
+        &::after{
+            transform: rotate(180deg);
+        }
+        
+    }
+
+    &-userpanel .user-sub-menu{
+        display: none;
+        padding: 5px 0;
+
+        li{
+            font-size: 14px;
+            padding: 5px 5px;
+        }
+    }
+
+
+    // OffCanvas Menu
+    &-menu li{
+        position: relative;
+        padding: 5px 5px;
+    }
+
+    &-menu > ul > li{
+        border-bottom: 1px solid #ddd;
+
+        &:last-child{
+            border-bottom: none;
+        }
+    }
+
+    &-menu li a{
+        display: block;
+        color: #232323;
+        text-decoration: none;
+        &:hover{
+            color: $color-primary;
+        }
+    }
+    &-menu li .sub-menu{
+        display: none;
+    }
+
+    &__menu-expand{
+        &::after{
+            content: "\e935";
+            position: absolute;
+            font-family: 'plaza-icon';
+            right: 0;           
+            transition: all .3s ease;
+        }
+    }
+
+    &-menu .active > &__menu-expand,
+    .sub-menu > .active &__menu-expand{
+         border-bottom: 1px solid #ddd;
+
+        &:last-child{
+            border-bottom: none;
+        }
+        &::after{
+            content: "\e929";
+            font-family: 'plaza-icon';
+        }
+    }
+
+
+    // OffCanvas User Button
+
+    &-buttons{
+        display: flex;
+        justify-content: center;
+
+        a{
+            color: $color-white;
+            background: $color-primary;
+            border: 2px solid $color-white;
+            text-decoration: none;
+            width: 45px;
+            height: 45px;
+            line-height: 45px;
+            font-size: 20px;
+            transition: all .3s ease;
+            text-align: center;
+            border-radius: 50%;
+            margin-right: 15px;
+
+            &:last-child{
+                margin-right: 0;
+            }
+
+            &:hover{
+                color:  $color-primary;
+                background: $color-white;
+                border: 2px solid $color-primary;
+            }
+        }
+    }
+
+
+    &-social {
+        display: flex;
+        align-items: center;
+
+        span{ font-weight: 500;}
+
+        & ul {
+            display: flex;
+            font-size: 18px;
+            margin-left: 15px;
+        }
+    
+        & li {
+            margin-right: 10px;
+            display: inline-block;
+
+            &:last-child{
+                margin-right: 0;
+            }
+        }
+    
+        & a {
+            display: block;
+            text-align: center;
+        }
+    }
+    
+    
+
+}

@@ -1,0 +1,167 @@
+﻿@model IEnumerable<ShopNongsan.Models.Donhang>
+@{
+    ViewBag.Title = "index_distinct";
+    Layout = "~/Views/_LayoutShop.cshtml";
+    string trangthai = "";
+    ShopNongsan.Models.ShopNongsanEntities db = new ShopNongsan.Models.ShopNongsanEntities();
+
+}
+<style>
+    #donhang_dagiao {
+        display: none;
+    }
+</style>
+<div style="display:flex;">
+
+    <input class="header-bottom_cart-icon header-bottom_cart-icon1" type="button" name="btn-danggiao" id="btn-danggiao" value="Đang chờ chốt  đơn" />
+    <input class="header-bottom_cart-icon header-bottom_cart-icon1" type="button" name="btn-dagiao" id="btn-dagiao" value="Đang giao" />
+    <h2>Đơn hàng của bạn</h2>
+</div>
+<div id="donhang_danggiao">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Mã đơn hàng</th>
+                <th scope="col">SẢN PHẨM</th>
+                <th scope="col">Ngày mua</th>
+                <th scope="col">Ngày giao</th>
+                <th scope="col">Giảm giá</th>
+                <th scope="col">Tổng tiền</th>
+                <th scope="col">Trạng thái</th>
+                <th scope="col">Hủy đơn</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                //Hiển thị thông tin đơn hàng
+                foreach (var item in ViewBag.donhangss)
+                {
+                    string ngaymua = item.Thu_VN(item._ngaymua.DayOfWeek.ToString());
+                    string ngaygiao = item.Thu_VN(item._ngaygiao.DayOfWeek.ToString());
+                    var tongtien = item._thanhtien + 22000;
+                    var soluong = item._soluong - 1;
+                    if (item._trangthai == 0)
+                    {
+                        trangthai = "Đang chờ chốt đơn";
+                    }
+                    int giamgia = 0;
+                    // Tìm mã giảm giá
+                    string madonhang = item._madonhang;
+                    var timma = db.Add_magiamgia_donhang.Where(s => s.madonhang == madonhang).FirstOrDefault();
+                    if (timma != null)
+                    {
+                        giamgia = (int)timma.giamgia;
+                    }
+                    else
+                    {
+                        giamgia = 0;
+                    }
+
+                    <tr style="border:1px solid">
+                        <th scope="row"><a href="~/DonhangUser/Chitietdonhang/@item._madonhang" style="text-decoration:none"> @item._madonhang</a></th>
+                        @{
+                            if (soluong == 0)
+                            {
+                                <td>@item._tensp</td>
+                            }
+                            else
+                            {
+                                <td>@item._tensp<br /><p style="font-size: 14px; color: #ff1e07d9">(và @soluong sản phẩm khác)</p></td>
+                            }
+                        }
+                        <td>@ngaymua, @item._ngaymua.ToString("dd-MM-yyyy")</td>
+                        <td>@ngaygiao, @item._ngaygiao.ToString("dd-MM-yyyy")</td>
+                        <td>@giamgia.ToString("n0") đ </td>
+                        <td>@((tongtien - giamgia).ToString("n0")) đ</td>
+                        <td>@trangthai</td>
+                        <td>  <a href="~/DonhangUser/Huydonhang/@item._madonhang"> Hủy đơn hàng</a></td>
+                      
+                    </tr>
+
+                }
+
+            }
+
+        </tbody>
+    </table>
+</div>
+<div id="donhang_dagiao">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Mã đơn hàng</th>
+                <th scope="col">SẢN PHẨM</th>
+                <th scope="col">Ngày mua</th>
+                <th scope="col">Ngày giao</th>
+                <th scope="col">Tổng tiền</th>
+                <th scope="col">Trạng thái</th>
+                <th scope="col">Bạn nhận được hàng chưa</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                //Hiển thị thông tin đơn hàng
+                foreach (var item in Model)
+                {
+                    string ngaymua = item.Thu_VN(item._ngaymua.DayOfWeek.ToString());
+                    string ngaygiao = item.Thu_VN(item._ngaygiao.DayOfWeek.ToString());
+                    var tongtien = item._thanhtien + 22000;
+                    var soluong = item._soluong - 1;
+                    if (item._trangthai == 1)
+                    {
+                        trangthai = "Đang giao";
+                    }
+                    else if (item._trangthai == 3)
+                    {
+                        trangthai = "Chưa nhận được hàng";
+                    }
+                    else if (item._trangthai == 4)
+                    {
+                        trangthai = "Đã nhận được hàng";
+                    }
+
+                        <tr style="border:1px solid">
+                            <th scope="row"><a href="~/DonhangUser/Chitietdonhang/@item._madonhang" style="text-decoration:none"> @item._madonhang</a></th>
+                            @{
+                                if (soluong == 0)
+                                {
+                                    <td>@item._tensp</td>
+                                }
+                                else
+                                {
+                                    <td>@item._tensp<br /><p style="font-size: 14px; color: #ff1e07d9">(và @soluong sản phẩm khác)</p></td>
+                                }
+                            }
+                            <td>@ngaymua, @item._ngaymua.ToString("dd-MM-yyyy")</td>
+                            <td>@ngaygiao, @item._ngaygiao.ToString("dd-MM-yyyy")</td>
+                            <td>@tongtien.ToString("n0") đ</td>
+                            <td>@trangthai</td>
+                            <td>
+                                <a href="~/DonhangUser/Xacnhan_chuanhan/@item._madonhang" class="header-bottom_cart-icon header-bottom_cart-icon1">Chưa</a>
+                                <a href="~/DonhangUser/Xacnhan_danhan/@item._madonhang" class="header-bottom_cart-icon header-bottom_cart-icon1">Đã nhận </a>
+                            </td>
+                        </tr>
+
+                }
+
+            }
+
+        </tbody>
+    </table>
+</div>
+
+
+
+
+<script language="javascript">
+    // nếu chọn đơn hàng đã giao thì hẩn đang giao
+    document.getElementById("btn-dagiao").onclick = function () {
+        document.getElementById("donhang_dagiao").style.display = 'block';
+            document.getElementById("donhang_danggiao").style.display = 'none';
+    };
+    // nếu chọn đang giao thì ẩn đã giao
+    document.getElementById("btn-danggiao").onclick = function () {
+            document.getElementById("donhang_danggiao").style.display = 'block';
+        document.getElementById("donhang_dagiao").style.display = 'none';
+        };
+</script>

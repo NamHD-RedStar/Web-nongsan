@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ShopNongsanModelStoreContainer" CdmEntityContainer="ShopNongsanEntities">
+    <EntitySetMapping Name="Binhluans">
+      <EntityTypeMapping TypeName="ShopNongsanModel.Binhluan">
+        <MappingFragment StoreEntitySet="Binhluan">
+          <ScalarProperty Name="id_binhluan" ColumnName="id_binhluan" />
+          <ScalarProperty Name="id_taikhoan" ColumnName="id_taikhoan" />
+          <ScalarProperty Name="danhgia" ColumnName="danhgia" />
+          <ScalarProperty Name="cmt" ColumnName="cmt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DanhmucSanphams">
+      <EntityTypeMapping TypeName="ShopNongsanModel.DanhmucSanpham">
+        <MappingFragment StoreEntitySet="DanhmucSanpham">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_danhmuc" ColumnName="id_danhmuc" />
+          <ScalarProperty Name="tendanhmuc" ColumnName="tendanhmuc" />
+          <ScalarProperty Name="img_danhmuc" ColumnName="img_danhmuc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Giohangs">
+      <EntityTypeMapping TypeName="ShopNongsanModel.Giohang">
+        <MappingFragment StoreEntitySet="Giohang">
+          <ScalarProperty Name="id_giohang" ColumnName="id_giohang" />
+          <ScalarProperty Name="id_taikhoan" ColumnName="id_taikhoan" />
+          <ScalarProperty Name="id_sanpham" ColumnName="id_sanpham" />
+          <ScalarProperty Name="giatien" ColumnName="giatien" />
+          <ScalarProperty Name="soluong" ColumnName="soluong" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Taikhoans">
+      <EntityTypeMapping TypeName="ShopNongsanModel.Taikhoan">
+        <MappingFragment StoreEntitySet="Taikhoan">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="pass" ColumnName="pass" />
+          <ScalarProperty Name="id_taikhoan" ColumnName="id_taikhoan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sanphams">
+      <EntityTypeMapping TypeName="ShopNongsanModel.Sanpham">
+        <MappingFragment StoreEntitySet="Sanpham">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_danhmuc" ColumnName="id_danhmuc" />
+          <ScalarProperty Name="tensanpham" ColumnName="tensanpham" />
+          <ScalarProperty Name="giatien" ColumnName="giatien" />
+          <ScalarProperty Name="img_anh" ColumnName="img_anh" />
+          <ScalarProperty Name="mota" ColumnName="mota" />
+          <ScalarProperty Name="ngay_them" ColumnName="ngay_them" />
+          <ScalarProperty Name="soluong" ColumnName="soluong" />
+          <ScalarProperty Name="soluotmua" ColumnName="soluotmua" />
+          <ScalarProperty Name="trangthai" ColumnName="trangthai" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

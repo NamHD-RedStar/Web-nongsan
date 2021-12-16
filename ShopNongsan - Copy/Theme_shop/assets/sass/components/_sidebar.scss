@@ -1,0 +1,95 @@
+/*****************************
+16 - Component - Sidebar Widget
+*****************************/
+
+.sidebar{
+    margin-top: 60px;
+    @include breakpoint(medium){
+        margin-top: 80px;
+    }
+    @include breakpoint(large){
+        margin-top: 0px;
+    }
+
+    &__widget {
+        padding: 20px;
+        border: 1px solid  $color-gray-1;
+        border-radius: 3px;
+        margin-bottom: 40px;
+
+        &:last-child{
+            margin-bottom: 0;
+        }
+    }
+
+    &__box{
+        position: relative;
+
+        &::after{
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 1px;
+            background-color: $color-gray-1;
+            bottom: -20px;
+            left: 0;
+        }
+    }
+
+    &__title {
+        font-size: 18px;
+        margin-bottom: 40px;
+        text-transform: uppercase;
+    }
+
+    &__menu-collapse-list:last-child  .accordion__title{margin-bottom: 0;}
+
+    &__post-img{
+        width: 40%;
+    }
+
+    &__post-content{
+        width: 60%;
+        margin-left: 10px;
+        a{
+            font-size: 14px;
+            word-wrap: break-word;
+            font-weight: 500;
+        }
+        span{font-size: 13px}
+    }
+
+    &__tag{
+        li{
+            display: inline-block;
+            margin-right: 5px;
+        }
+    }
+}
+
+
+.accordion{
+
+    &__title{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+    &__category-list{
+        li{
+            padding: 5px;
+            display: block;
+        }
+
+    }
+
+    a{
+        text-decoration: none !important;
+        color: $color-black;
+
+        &:hover{color: $color-primary;}
+    }
+}
+

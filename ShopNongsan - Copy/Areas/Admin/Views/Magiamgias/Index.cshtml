@@ -1,0 +1,37 @@
+﻿@model IEnumerable<ShopNongsan.Models.Magiamgia>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div style="display:flex;">
+    @Html.ActionLink("Thêm mã mới", "Create", null, new { @class = "btn btn-outline-success" })
+</div>
+<h4>@TempData["msg"]</h4>
+<table class="table">
+    <tr class="thead-dark">
+        <th>Mã giảm giá</th>
+        <th>Đơn giá</th>
+        <th>Tên mã</th>
+        <th>Số lượng</th>
+        <th>Trạng thái</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <th scope="row">@item.magiamgia1</th>
+    <td>@item.dongia</td>
+    <td>@item.tenmagiamgia</td>
+    <td>@item.soluong</td>
+    <td>@item.trangthai</td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.id_magiamgia }, new { @class = "btn btn-outline-success" })
+        @Html.ActionLink("Delete", "Delete", new { id = item.id_magiamgia }, new { @class = "btn btn-outline-danger" })
+    </td>
+</tr>
+    }
+
+</table>

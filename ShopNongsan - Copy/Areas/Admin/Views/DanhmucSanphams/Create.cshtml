@@ -1,0 +1,46 @@
+﻿@model ShopNongsan.Models.DanhmucSanpham
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    @*@Html.ActionLink("Quay lại", "Index")*@
+    <a href='@Url.Action("Index", "DanhmucSanphams")'>
+        <i class="fas fa-backward"> Quay lại</i>
+    </a>
+</div>
+<div class=" chia-khoi">
+    @using (Html.BeginForm("Create", "Danhmucsanphams", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Danh mục sản phẩm</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+               Tên danh mục
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.tendanhmuc, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.tendanhmuc, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+           Ảnh danh mục
+                <div class="col-md-10">
+                    @*@Html.EditorFor(model => model.img_danhmuc, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.img_danhmuc, "", new { @class = "text-danger" })*@
+                    <input type="file" name="img" id="img" value="" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-outline-success" />
+                </div>
+            </div>
+        </div>
+    }
+    </div>

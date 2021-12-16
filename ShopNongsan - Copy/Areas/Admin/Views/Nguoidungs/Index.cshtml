@@ -1,0 +1,75 @@
+﻿@model IEnumerable<ShopNongsan.Models.Nguoidung>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div style="display:flex;">
+    @Html.ActionLink("Thêm mới người dùng", "Create", null, new { @class = "btn btn-outline-success" })
+    @using (Html.BeginForm("Index", "Nguoidungs", FormMethod.Get))
+    {
+        <div class="input-group">
+            <input type="text" class="form-control bg-light border-0 small" placeholder="Tìm kiếm người dùng..."
+                   aria-label="Search" aria-describedby="basic-addon2" name="timkiem">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit" value="Tìm kiếm">
+                    <i class="fas fa-search fa-sm"></i>
+                </button>
+            </div>
+        </div>
+       
+    }
+</div>
+<h4>@TempData["msg"]</h4>
+<table class="table">
+    <tr class="thead-dark">
+        <th>
+            Họ tên
+        </th>
+
+        <th>
+            Ảnh đại diện
+        </th>
+        <th>
+            Địa chỉ
+        </th>
+        <th>
+            SĐT
+        </th>
+        <th>
+            Gmail
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ho)  @Html.DisplayFor(modelItem => item.ten)
+            </td>
+            <td>
+                @*  @Html.DisplayFor(modelItem => item.anh_daidien)*@
+                <img src="data:image/jpg;base64,@item.anh_daidien" class="boder-avatar" />
+            </td>
+            <td>
+                <p class="an-chu">  @Html.DisplayFor(modelItem => item.diachi)</p>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sdt)
+            </td>
+            <td>
+                <p class="an-chu">  @Html.DisplayFor(modelItem => item.gmail)</p>
+            </td>
+
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.id_nguoidung }, new { @class = "btn btn-outline-success" })*@
+                @Html.ActionLink("Nhắn tin", "Traloitinnhan_nguoidung", new { id = item.id_nguoidung }, new { @class = "btn btn-outline-success" })
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.id_nguoidung }, new { @class = "btn btn-outline-primary" })
+                @*@Html.ActionLink("Delete", "Delete", new { id = item.id_nguoidung }, new { @class = "btn btn-outline-danger" })*@
+            </td>
+        </tr>
+    }
+
+</table>

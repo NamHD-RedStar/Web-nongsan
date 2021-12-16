@@ -1,0 +1,20 @@
+﻿@model ShopNongsan.Models.Nguoidung
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/_LayoutLogin.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Edit", "Nguoidungs", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <input type="text" name="diachi" id="diachi" value="" />
+
+    <input type="submit" name="name" value="Sửa" />
+
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

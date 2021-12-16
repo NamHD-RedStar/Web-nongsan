@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ShopNongsanModelStoreContainer" CdmEntityContainer="ShopNongsanEntities">
+    <EntitySetMapping Name="DanhmucSanphams">
+      <EntityTypeMapping TypeName="ShopNongsanModel.DanhmucSanpham">
+        <MappingFragment StoreEntitySet="DanhmucSanpham">
+          <ScalarProperty Name="id_danhmuc" ColumnName="id_danhmuc" />
+          <ScalarProperty Name="tendanhmuc" ColumnName="tendanhmuc" />
+          <ScalarProperty Name="img_danhmuc" ColumnName="img_danhmuc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Nguoidungs">
+      <EntityTypeMapping TypeName="ShopNongsanModel.Nguoidung">
+        <MappingFragment StoreEntitySet="Nguoidung">
+          <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
+          <ScalarProperty Name="ho" ColumnName="ho" />
+          <ScalarProperty Name="ten" ColumnName="ten" />
+          <ScalarProperty Name="anh_daidien" ColumnName="anh_daidien" />
+          <ScalarProperty Name="diachi" ColumnName="diachi" />
+          <ScalarProperty Name="sdt" ColumnName="sdt" />
+          <ScalarProperty Name="gmail" ColumnName="gmail" />
+          <ScalarProperty Name="matkhau" ColumnName="matkhau" />
+          <ScalarProperty Name="ngaydangky" ColumnName="ngaydangky" />
+          <ScalarProperty Name="quyen" ColumnName="quyen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sanphams">
+      <EntityTypeMapping TypeName="ShopNongsanModel.Sanpham">
+        <MappingFragment StoreEntitySet="Sanpham">
+          <ScalarProperty Name="id_sanpham" ColumnName="id_sanpham" />
+          <ScalarProperty Name="id_danhmuc" ColumnName="id_danhmuc" />
+          <ScalarProperty Name="tensanpham" ColumnName="tensanpham" />
+          <ScalarProperty Name="giatien" ColumnName="giatien" />
+          <ScalarProperty Name="img_sanpham" ColumnName="img_sanpham" />
+          <ScalarProperty Name="list_img" ColumnName="list_img" />
+          <ScalarProperty Name="mota" ColumnName="mota" />
+          <ScalarProperty Name="soluong" ColumnName="soluong" />
+          <ScalarProperty Name="soluotmua" ColumnName="soluotmua" />
+          <ScalarProperty Name="ngay_them" ColumnName="ngay_them" />
+          <ScalarProperty Name="trangthai" ColumnName="trangthai" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GiahangUsers">
+      <EntityTypeMapping TypeName="ShopNongsanModel.GiahangUser">
+        <MappingFragment StoreEntitySet="GiahangUser">
+          <ScalarProperty Name="soluong" ColumnName="soluong" />
+          <ScalarProperty Name="giatien" ColumnName="giatien" />
+          <ScalarProperty Name="tensanpham" ColumnName="tensanpham" />
+          <ScalarProperty Name="img_sanpham" ColumnName="img_sanpham" />
+          <ScalarProperty Name="id_sanpham" ColumnName="id_sanpham" />
+          <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
+          <ScalarProperty Name="id_giohang" ColumnName="id_giohang" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Danhgianguoidungs">
+      <EntityTypeMapping TypeName="ShopNongsanModel.Danhgianguoidung">
+        <MappingFragment StoreEntitySet="Danhgianguoidung">
+          <ScalarProperty Name="noidung" ColumnName="noidung" />
+          <ScalarProperty Name="sao_danhgia" ColumnName="sao_danhgia" />
+          <ScalarProperty Name="id_sanpham" ColumnName="id_sanpham" />
+          <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
+          <ScalarProperty Name="id_danhgia" ColumnName="id_danhgia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DonhangUsers">
+      <EntityTypeMapping TypeName="ShopNongsanModel.DonhangUser">
+        <MappingFragment StoreEntitySet="DonhangUser">
+          <ScalarProperty Name="trangthai" ColumnName="trangthai" />
+          <ScalarProperty Name="ngaygiao" ColumnName="ngaygiao" />
+          <ScalarProperty Name="ngaymua" ColumnName="ngaymua" />
+          <ScalarProperty Name="soluong" ColumnName="soluong" />
+          <ScalarProperty Name="giatien" ColumnName="giatien" />
+          <ScalarProperty Name="ten_sanpham" ColumnName="ten_sanpham" />
+          <ScalarProperty Name="id_sanpham" ColumnName="id_sanpham" />
+          <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
+          <ScalarProperty Name="madonhang" ColumnName="madonhang" />
+          <ScalarProperty Name="id_donhang" ColumnName="id_donhang" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Nhantins">
+      <EntityTypeMapping TypeName="ShopNongsanModel.Nhantin">
+        <MappingFragment StoreEntitySet="Nhantin">
+          <ScalarProperty Name="trangthai" ColumnName="trangthai" />
+          <ScalarProperty Name="thoigiannhan" ColumnName="thoigiannhan" />
+          <ScalarProperty Name="noidungnhan" ColumnName="noidungnhan" />
+          <ScalarProperty Name="id_khachhang" ColumnName="id_khachhang" />
+          <ScalarProperty Name="id_admin" ColumnName="id_admin" />
+          <ScalarProperty Name="id_tinnhan" ColumnName="id_tinnhan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Magiamgias">
+      <EntityTypeMapping TypeName="ShopNongsanModel.Magiamgia">
+        <MappingFragment StoreEntitySet="Magiamgia">
+          <ScalarProperty Name="trangthai" ColumnName="trangthai" />
+          <ScalarProperty Name="soluong" ColumnName="soluong" />
+          <ScalarProperty Name="tenmagiamgia" ColumnName="tenmagiamgia" />
+          <ScalarProperty Name="dongia" ColumnName="dongia" />
+          <ScalarProperty Name="magiamgia1" ColumnName="magiamgia" />
+          <ScalarProperty Name="id_magiamgia" ColumnName="id_magiamgia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Add_magiamgia_donhang">
+      <EntityTypeMapping TypeName="ShopNongsanModel.Add_magiamgia_donhang">
+        <MappingFragment StoreEntitySet="Add_magiamgia_donhang">
+          <ScalarProperty Name="giamgia" ColumnName="giamgia" />
+          <ScalarProperty Name="madonhang" ColumnName="madonhang" />
+          <ScalarProperty Name="id_mgg_donhang" ColumnName="id_mgg_donhang" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

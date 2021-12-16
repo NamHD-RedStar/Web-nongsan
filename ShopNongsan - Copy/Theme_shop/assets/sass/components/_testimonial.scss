@@ -1,0 +1,40 @@
+/*****************************
+10 - Component - Testimonial
+*****************************/
+.testimonial{
+    padding-bottom: 65px;
+
+    &__desc{
+        margin-bottom: 18px;
+
+        p{
+            font-size: 14px;
+            line-height: 25px;
+            color: #242424;
+        }
+        
+    }
+
+    &__info{
+        &--user{
+            font-size: 14px;
+            color: #0063d1;
+            line-height: 25px;
+            font-weight: 700;
+            text-transform: capitalize;
+            margin: 0;
+
+            &::after{
+                content: "-";
+            }
+        }
+
+        &--email{
+            font-size: 13px;
+            color: #444444;
+            font-weight: 400;
+            line-height: 20px;
+            margin: 0;
+        }
+    }
+}

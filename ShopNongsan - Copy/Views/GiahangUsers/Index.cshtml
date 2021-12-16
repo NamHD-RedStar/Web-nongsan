@@ -1,0 +1,173 @@
+﻿@model IEnumerable<ShopNongsan.Models.GiahangUser>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_LayoutGiohang.cshtml";
+    //Layout = "~/Views/_LayoutShop.cshtml";
+    var nguoi = Session["nguoidung"] as ShopNongsan.Models.Nguoidung;
+    decimal total = 0;
+    int stt = 1;
+
+    var magiamgia = Convert.ToInt32(Session["magiamgia"]);
+    ShopNongsan.Models.ShopNongsanEntities db = new ShopNongsan.Models.ShopNongsanEntities();
+
+}
+<style>
+    .soluong_sp {
+        height: 100%;
+        width: 70px;
+        border: 1px solid;
+        border-radius: 2px;
+        text-align: center;
+    }
+
+    td {
+        text-align: center;
+        line-height: 55px
+    }
+</style>
+<div class="chia-khoi-slide1">
+    <div class="khung">
+        <div class="giohang">
+            <div class="giohang-left">
+
+
+
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Ảnh sản phẩm</th>
+                            <th scope="col">Tên sản phẩm</th>
+                            <th scope="col">Giá tiền</th>
+                            <th scope="col">Số lượng</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.Giohang_user)
+                        {
+                            var thanhtien = item.giatien * item.soluong;
+                            total += thanhtien;
+                            int id_sp_sp = Convert.ToInt32(item.id_sanpham);
+                            var maxsp = db.Sanphams.Where(s => s.id_sanpham == id_sp_sp).FirstOrDefault().soluong;
+                            <tr>
+                                <th scope="row">
+                                    <a href="/SanphamShop/Details/@item.id_sanpham" class="product__img--link">
+                                        <img src="data:image/jpg;base64,@item.img_sanpham" class="boder-anhsp" />
+                                    </a>
+                                </th>
+                                <td>@item.tensanpham</td>
+                                <td>@item.giatien.ToString("n0")</td>
+                                @using (@Html.BeginForm("Update_soluong_giohang", "GiahangUsers", new { id = item.id_giohang }))
+                                {
+                                    <td><input class="soluong_sp" type="number" name="soluong" id="soluong" value="@item.soluong" max="@maxsp" min="1" /></td>
+                                    <td>
+                                        <input class="btn btn-outline-info" type="submit" name="name" value="Update" />
+                                    </td>
+                                }
+                                @using (Html.BeginForm("Deletegiohang", "GiahangUsers", new { id = item.id_giohang }))
+                                {
+                                    <td><input type="checkbox" value="@item.id_giohang" required></td>
+                                    <td>
+                                        <input type="submit" name="name" value="Xóa" class="btn btn-outline-danger" />
+                                    </td>
+                                }
+
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+
+
+
+            @{
+                if (Session["nguoidung"] != null)
+                {
+
+                    <div class="giohang-right">
+                        <div class="thongtin-user">
+                            <ul>
+
+                                <li>
+                                    <span style=" display: inline-block; font-size: 14px; color: rgb(36, 36, 36); font-weight: 500;"> Giao tới</span>
+                                    <span style=" display: inline-block; text-decoration: none; font-size: 13px; color: rgb(13, 92, 182); cursor: pointer;"><a href="~/Profile/Index">Thay đổi</a></span>
+                                </li>
+                                <li>
+                                    <span style="font-size: 15px; display: inline-block; font-weight: 500; color: rgb(36, 36, 36);">@nguoi.ho  @nguoi.ten</span>|
+                                    <span style="font-size: 15px; display: inline-block; font-weight: 500; color: rgb(36, 36, 36);">@nguoi.sdt</span>
+                                </li>
+                                <li>
+                                    <span style="color: rgb(120, 120, 120); font-size: 13px;">@nguoi.diachi</span>
+                                </li>
+
+                            </ul>
+
+                        </div>
+                        <div class="tinh-tien">
+                            <ul>
+
+                                <li>
+                                    <span style=" font-weight: 300; color: rgb(51, 51, 51); display: inline-block;"> Tạm tính</span>
+                                    <span><label id="tongtien">@(total.ToString("n0"))</label>đ</span>
+                                </li>
+                                <li>
+                                    <span style=" font-weight: 300; color: rgb(51, 51, 51); display: inline-block;">Mã giảm giá</span>
+                                    <span>
+                                        <form action="~/GiahangUsers/Xuly_magiamgia" method="post">
+                                            <div class="btn-muahang" style="display:flex">
+                                                <input type="text" style="width: 140px; height: 40px; border: solid 1px #ed6504; border-radius: 6px; background: #fff; color: #201616; font-size: smaller; " name="ma" id="ma" value="" required />
+                                                @{
+                                                    if (total >= 200000)
+                                                    {
+                                                        <input type="submit" value="Áp dụng" name="">
+                                                    }
+                                                    else
+                                                    {
+                                                     <input type="" value="Đơn hàng >200k" disabled />
+                                                    }
+                                                }
+
+                                            </div>
+                                        </form>
+                                    </span>
+                                </li>
+                                <li>
+                                    <span style=" font-weight: 300; color: rgb(51, 51, 51); display: inline-block;"> Giảm giá</span>
+                                    <span><label> -@Session["magiamgia"] </label> đ</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tong-tien">
+                            <ul>
+                                <li>
+                                    <span style=" font-weight: 300; color: rgb(51, 51, 51); display: inline-block;"> Tổng cộng</span>
+                                    <span style=" color: rgb(254, 56, 52); font-size: 22px; font-weight: 400; text-align: right;">
+                                        <label id="thanhtien">
+                                            @{ total -= magiamgia;
+                                            }
+                                            @total.ToString("n0")
+                                        </label> đ
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="btn-muahang">
+                            <a href="~/Giaodich/Index"><input type="submit" value="Mua hàng" name="muahang"></a>
+                        </div>
+                        <div class="btn-muahang">
+                            <a href="~/SanphamShop"><input type="submit" value="Tiếp tục mua"></a>
+                        </div>
+
+
+                    </div>
+                }
+            }
+        </div>
+
+    </div>
+</div>

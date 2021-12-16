@@ -1,0 +1,42 @@
+/*****************************
+22 - Page - Product Single
+*****************************/
+
+.product-details-tab-area{
+	padding: 30px 20px;
+	@include breakpoint(medium){
+		padding: 30px 40px;
+	}
+}
+
+.review-box {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    & > * {
+    	margin-right: 30px;
+	}
+
+	& > *:last-child {
+    	margin-right: 0;
+	}
+}
+
+
+.product-dis{
+
+	&__img{
+		display: inline-block;
+		border: 1px solid $color-gray-1;
+	}
+
+	&__title{font-weight: 500;}
+
+	&__text{
+		font-weight: 300;
+	}
+}
+
+
+

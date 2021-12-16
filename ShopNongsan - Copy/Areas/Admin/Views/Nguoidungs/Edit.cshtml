@@ -1,0 +1,103 @@
+﻿@model ShopNongsan.Models.Nguoidung
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    @*@Html.ActionLink("Quay lại", "Index")*@
+    <a href='@Url.Action("Index", "Nguoidungs")'>
+        <i class="fas fa-backward"> Quay lại</i>
+    </a>
+</div>
+<div class=" chia-khoi">
+    @using (Html.BeginForm("Edit", "Nguoidungs", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Thay đổi thông tin</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id_nguoidung)
+
+        <div class="form-group">
+            Họ
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ho, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ho, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            Tên
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ten, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ten, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            Ảnh đại diện
+            <div class="col-md-10">
+                <img src="data:image/jpg;base64,@Html.DisplayFor(model => model.anh_daidien)" width="50" height="50" />
+                @*@Html.EditorFor(model => model.anh_daidien, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.anh_daidien, "", new { @class = "text-danger" })*@
+                <input type="file" name="img" id="img" value="" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            Địa chỉ
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.diachi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.diachi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            SĐT
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.sdt, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.sdt, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            Gmail
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.gmail, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.gmail, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+           Mật khẩu
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.matkhau, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.matkhau, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            Ngày đăng ký
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ngaydangky, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ngaydangky, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            Quyền
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.quyen, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.quyen, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-primary btn-lg btn-block" />
+            </div>
+        </div>
+    </div>
+    }
+</div>

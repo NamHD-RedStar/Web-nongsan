@@ -1,0 +1,91 @@
+/*****************************
+07 - Component - CMS
+*****************************/
+
+.cms{
+    
+    &--1{
+        margin-top: 60px; 
+
+        @include breakpoint(medium){
+            margin-top: 80px;
+        } 
+
+        @include breakpoint(large){
+            margin-top: 100px;
+        } 
+    }
+    
+    &.p-t-100 {
+        padding-top: 60px;
+        @include breakpoint(medium){padding-top: 80px;}
+        @include breakpoint(large){padding-top: 100px;}
+    }
+    
+
+    & .col-12 > &__content{
+        margin-bottom: 30px;
+        @include breakpoint(medium){
+            margin-bottom: 0px;
+        }
+    }
+
+    & .col-12:last-child > &__content{
+        margin-bottom: 0;
+        
+    }
+
+    
+    &__content{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+
+        @include breakpoint(medium){
+            margin-bottom: 0px;
+        }
+
+        @include breakpoint(large){
+            align-items: flex-start;
+            margin-bottom: 0px;
+            flex-direction: row;
+            text-align: left;
+        } 
+        
+    }
+    
+    &__icon{
+        margin-right: 0;
+        @include breakpoint(large){
+            margin-right: 20px;
+        }
+        margin-bottom: 15px;
+         @include breakpoint(large){
+            margin-bottom: 0px;
+        } 
+    }
+    
+    &__title{
+        color: #242424;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: capitalize;
+        margin-bottom: 0;
+    }
+    
+    &__des{
+        line-height: 23px;
+        color: #666666;
+        font-size: 13px;
+        margin: 0;
+    }
+    
+    &__content:hover &__icon{
+        animation: animate-zoom-blink 1.5s infinite linear;
+        
+    }
+
+    
+}

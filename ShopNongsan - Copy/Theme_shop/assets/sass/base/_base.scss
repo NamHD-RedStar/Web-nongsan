@@ -1,0 +1,192 @@
+/*****************************
+01 - Base - Default
+*****************************/
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    word-wrap: break-word;
+
+    &,
+    &::after,
+    &::before {
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+}
+
+
+body {
+
+    font : {
+        family: $font-primary;
+        size: 16px;
+    }
+}
+
+dl, ol, ul {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+
+
+*button{
+    border: none;
+    background: transparent;
+    outline: none !important;
+}
+
+.no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.img-responsive{
+    overflow: hidden;
+    img{
+        width: 100%;
+        height: auto;
+    }
+    
+}
+
+.border-around{
+    @include border-around;
+}
+
+.list-space{
+   &--small li{
+        margin-bottom: 10px;
+        &:last-child{margin-bottom: 0;}
+    }
+
+    &--medium li{
+        margin-bottom: 20px;
+        &:last-child{margin-bottom: 0;}
+    }
+
+    &--large li{
+        margin-bottom: 30px;
+        &:last-child{margin-bottom: 0;}
+    }
+}
+.pos-relative {
+    position: relative;
+}
+
+.pos-absolute {
+    position: absolute;
+}
+
+.position-sticky {
+    position: sticky;
+    top: 0;
+    width: 100%;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.clearfix{
+    @include clearfix;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+.float-2 {
+    width: 50%;
+    
+}
+.float-3 {
+    width: 100%;
+
+    @include breakpoint(small){
+        width: 50%;
+    }
+    @include breakpoint(medium){
+        width: 50%;
+    }
+    @include breakpoint(large){
+        width: 33.3333%;
+    }
+    
+}
+.float-4 {
+    width: 100%;
+
+    @include breakpoint(small){
+        width: 50%;
+    }
+    @include breakpoint(medium){
+        width: 33.333%;
+    }
+    @include breakpoint(large){
+        width: 25%;
+    }
+    
+}
+.float-5 {
+    width: 100%;
+
+    @include breakpoint(small){
+        width: 50%;
+    }
+    @include breakpoint(medium){
+        width: 33.333%;
+    }
+    @include breakpoint(large){
+        width: 25%;
+    }
+    @include breakpoint(xlarge){
+        width: 20%;
+    }
+    
+}
+
+.float-20-per{
+    width: 20%;
+}
+
+.float-80-per{
+    width: 80%;
+}
+
+
+.text-overflow-ellipsis{
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.gray-bg.p-tb-100,
+.swiper-outside-arrow-hover.p-tb-100{
+    padding: 60px 0;
+    @include breakpoint(medium) {
+        padding: 80px 0;
+    }
+    @include breakpoint(large) {
+        padding: 100px 0;
+    }
+}
+
+.gray-bg.m-t-100{
+    margin-top: 60px;
+    @include breakpoint(medium) {
+        margin-top: 80px;
+    }
+    @include breakpoint(large) {
+        margin-top: 100px;
+    }
+}
+

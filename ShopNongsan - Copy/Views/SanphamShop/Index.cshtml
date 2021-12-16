@@ -1,0 +1,829 @@
+﻿@model IEnumerable<ShopNongsan.Models.Sanpham>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_LayoutShop.cshtml";
+    ShopNongsan.Models.ShopNongsanEntities db = new ShopNongsan.Models.ShopNongsanEntities();
+    var danhmucsp = db.DanhmucSanphams.Take(10).ToList();
+    var magiamgia = db.Magiamgias.ToList();
+}
+
+<style>
+    .a-all-sp {
+        text-decoration: none;
+        color: var(--primary-color);
+    }
+</style>
+<div class="content">
+    <!-- bar -->
+    <div class="introduce-container">
+        <div class="grid wide">
+            <div class="row no-gutters">
+                <div class="col l-3 m-0 c-0">
+                    <div class="bar-container">
+                        <h3 class="bar-menu"><i class="fas fa-bars"></i>DANH MỤC SẢN PHẨM</h3>
+                        <ul class="bar-list">
+                            @{
+                                foreach (var item in danhmucsp)
+                                {
+                                    <li class="bar-item">
+                                        <a href="~/SanphamShop/all_sanpham_danhmuc/@item.id_danhmuc" style="width:100%;height:100%;text-decoration:none;color:#ff0000"> <img src="https://tokyolife.vn/media/wysiwyg/icon19-19/my-pham.png" alt="">@item.tendanhmuc</a><i class="fas fa-chevron-right"></i>
+                                    </li>
+                                }
+                            }
+
+                          
+
+                        </ul>
+                    </div>
+                </div>
+                <!-- nav and slider -->
+                <div class="col l-9 m-12 c-12">
+                    <div class="nav-container">
+                        <ul class="nav-list">
+                            @{
+                                foreach (var item in magiamgia)
+                                {
+                                    <li class="nav-item">
+                                       @item.magiamgia1
+                                    </li>
+                                }
+                            }
+
+                        </ul>
+                    </div>
+
+                    <div class="slider-container">
+                        <div class="slider-imgs">
+                            <img class="slider-img active" src="~/Images/img_slide/img (9).jpg" alt="">
+                            <img class="slider-img" src="~/Images/img_slide/img (1).jpg" alt="">
+                            <img class="slider-img" src="~/Images/img_slide/img (2).jpg" alt="">
+                            <img class="slider-img" src="~/Images/img_slide/img (3).jpg" alt="">
+                            <img class="slider-img" src="~/Images/img_slide/img (4).jpg" alt="">
+                            <img class="slider-img" src="~/Images/img_slide/img (5).jpg" alt="">
+                            <img class="slider-img" src="~/Images/img_slide/img (6).jpg" alt="">
+                            <img class="slider-img" src="~/Images/img_slide/img (7).jpg" alt="">
+                        </div>
+                        <div class="slider-next"><i class="fas fa-chevron-right" style="margin: 25% 35%;"></i></div>
+                        <div class="slider-prev"><i class="fas fa-chevron-left" style="margin: 25% 35%;"></i></div>
+                        <div class="slider-radio">
+                            <div class="slider-radio_item active"></div>
+                            <div class="slider-radio_item"></div>
+                            <div class="slider-radio_item"></div>
+                            <div class="slider-radio_item"></div>
+                            <div class="slider-radio_item"></div>
+                            <div class="slider-radio_item"></div>
+                            <div class="slider-radio_item"></div>
+                            <div class="slider-radio_item"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banerProduct -->
+    <div class="baner-product">
+        <div class="grid wide">
+            <div class="row">
+                <div class="col l-4 m-4 c-12">
+                    <img src="~/Images/img_slide/kiwi.jpg" alt="TOKYOLIFE" class="baner-product_img">
+                </div>
+
+                <div class="col l-8 m-8 c-12">
+                    <div class="row">
+                        <div class="col l-6 m-6 c-6">
+                            <img style="height:234px" src="~/Images/img_slide/dokho1.jpg" alt="TOKYOLIFE" class="baner-product_img">
+                        </div>
+                        <div class="col l-6 m-6 c-6">
+                            <img style="height:234px" src="~/Images/img_slide/dokho3.jpg" alt="TOKYOLIFE" class="baner-product_img">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col l-12 m-12 c-12">
+                            <img src="~/Images/img_slide/banner.jpg" alt="TOKYOLIFE" class="baner-product_img">
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+    <!-- product-propose -->
+    <div class="product-propose">
+        <div class="grid wide">
+            <div class="product-propose_title">
+                <h3 class="product-propose_title-name active">HÀNG MỚI VỀ</h3>
+                <h3 class="product-propose_title-name"><a href="~/SanphamShop/all_sanpham_danhmuc/0" class="a-all-sp">TẤT CẢ SẢN PHẨM</a></h3>
+                <div class="line"></div>
+            </div>
+            <div class="product-propose_new active">
+                <div class="product-propose_btn product-propose_prev"><i class="fas fa-angle-left"></i></div>
+                <div class="product-propose_btn product-propose_next"><i class="fas fa-angle-right"></i></div>
+                <div class="row row-nowrap">
+                    @foreach (var item in Model)
+                    {
+
+                        <div class="col l-3 m-4 c-6 prpduct-propose_list">
+                            <div class="product-propose_new-item">
+                                <a href="/SanphamShop/Details/@item.id_sanpham">
+                                    <img  class="product-propose_new-item_img" src="data:image/jpg;base64,@item.img_sanpham" alt="">
+                                </a>
+                                <img src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                <h2><p class="product-propose_new-item_info">@Html.DisplayFor(modelItem => item.tensanpham)</p></h2>
+                                <h4 class="product-propose_new-item_price">@string.Format("{0:0,0}", item.giatien) đ</h4>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="product-propose_new">
+                <div class="product-propose_btn product-propose_prev"><i class="fas fa-angle-left"></i></div>
+                <div class="product-propose_btn product-propose_next"><i class="fas fa-angle-right"></i></div>
+                <div class="row row-nowrap">
+                    @foreach (var item in Model)
+                    {
+
+                        <div class="col l-3 m-4 c-6 prpduct-propose_list">
+                            <div class="product-propose_new-item">
+                                <a href="/SanphamShop/Details/@item.id_sanpham">
+                                    <img class="product-propose_new-item_img" src="data:image/jpg;base64,@item.img_sanpham" alt="">
+                                </a>
+                                <img src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                <p class="product-propose_new-item_info">@Html.DisplayFor(modelItem => item.tensanpham)</p>
+                                <h4 class="product-propose_new-item_price">@string.Format("{0:0,0}", item.giatien) đ</h4>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- banerCenter -->
+    <div class="baner-center">
+        <div class="grid wide">
+            <img class="baner-center_img" src="https://tokyolife.vn/media/wysiwyg/home-page-image/home-1/7.jpg" alt="tokyolife">
+        </div>
+    </div>
+
+    <!-- main-product -->
+    <!--Rau các loại-->
+    <div class="product-container">
+        <div class="grid wide">
+            <div class="product-title">
+                <h3>Rau</h3>
+                <div class="product-change">
+                    <p id="title1" class="product-change-title active">HÀNG MỚI VỀ</p>
+                    <p class="product-change-title"><a href="~/SanphamShop/all_sanpham_danhmuc/1" class="a-all-sp">TẤT CẢ SẢN PHẨM</a></p>
+                    <div class="product-change-arrow">
+                        <i class="fas fa-angle-left"></i>
+                        <i class="fas fa-angle-right"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-content">
+                <div class="row">
+                    <div class="col l-2 m-2 c-12">
+                      
+                    </div>
+
+                    <div class="col l-10 m-10 c-12">
+                        <div id="product1" class="product-content_about product-propose_new active">
+                            <div class="row">
+                                @foreach (var item in ViewBag.rau)
+                                {
+                                    <div class="col l-3 m-6 c-6">
+                                        <div class="product-propose_new-item">
+                                            <a href="/SanphamShop/Details/@item.id_sanpham">
+                                                <img style="min-height:122px" class="product-propose_new-item_img" src="data:image/jpg;base64,@item.img_sanpham" alt="">
+                                            </a>
+                                            <img src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                            <p class="product-propose_new-item_info"> @item.tensanpham</p>
+                                            <h4 class="product-propose_new-item_price">@item.giatien.ToString("n0") đ</h4>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+                        <!--
+                          <div id="product1" class="product-content_about product-propose_new">
+                              <div class="row">
+                                  <div class="col l-3 m-4 c-6">
+                                      <div class="product-propose_new-item">
+                                          <img src="https://tokyolife.vn/media/catalog/product/cache/7a08107443ea0e40aee3357a52df61d8/h/_/h_p_chia_ng_n_t_l_nh_freezer_-_352_35k.jpg" alt="tokyolife" class="product-propose_new-item_img">
+                                          <img src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                          <p class="product-propose_new-item_info"> Hộp chia ngăn tủ ...</p>
+                                          <h4 class="product-propose_new-item_price">29.000 ₫</h4>
+                                      </div>
+                                  </div>
+
+                                  <div class="col l-3 m-4 c-6">
+                                      <div class="product-propose_new-item">
+                                          <img src="https://tokyolife.vn/media/catalog/product/cache/7a08107443ea0e40aee3357a52df61d8/g/i/gi_ng_with_inomata_600-4539_33k.jpg" alt="tokyolife" class="product-propose_new-item_img">
+                                          <img src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                          <p class="product-propose_new-item_info"> Hộp đựng đồ đa năng ...</p>
+                                          <h4 class="product-propose_new-item_price">19.000 ₫</h4>
+                                      </div>
+                                  </div>
+
+                                  <div class="col l-3 m-4 c-6">
+                                      <div class="product-propose_new-item">
+                                          <img src="https://tokyolife.vn/media/catalog/product/cache/7a08107443ea0e40aee3357a52df61d8/h/_/h_p_ng_a_n_ng_inomata-5401_33k.jpg" alt="tokyolife" class="product-propose_new-item_img">
+                                          <img src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                          <p class="product-propose_new-item_info"> Hộp đựng đồ đa năng ...</p>
+                                          <h4 class="product-propose_new-item_price">29.000 ₫</h4>
+                                      </div>
+                                  </div>
+
+                                  <div class="col l-3 m-4 c-6">
+                                      <div class="product-propose_new-item">
+                                          <img src="https://tokyolife.vn/media/catalog/product/cache/7a08107443ea0e40aee3357a52df61d8/k/h/khu_n_l_m_kem_inomata_-5050_39k.jpg" alt="tokyolife" class="product-propose_new-item_img">
+                                          <img src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                          <p class="product-propose_new-item_info"> Khuôn làm kem ...</p>
+                                          <h4 class="product-propose_new-item_price">29.000 ₫</h4>
+                                      </div>
+                                  </div>
+
+                              </div>
+                          </div>
+                        -->
+
+                        <div class="product-content_baner">
+                            <div class="row sm-gutter">
+                                <div class="col l-6 m-6 c-0">
+                                    <img class="product-content_baner-img" style="height:245px" src="~/Images/img_slide/img (9).jpg" alt="tokyolife">
+                                </div>
+                                <div class="col l-6 m-6 c-0">
+                                    <img class="product-content_baner-img" src="https://tokyolife.vn/media/wysiwyg/categories-image/Thudong2021-7.jpg" alt="tokyolife">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Đồ khô -->
+    <div class="product-container">
+        <div class="grid wide">
+            <div class="product-title">
+                <h3>ĐỒ KHÔ</h3>
+                <div class="product-change">
+                    <p id="title2" class="product-change-title active">HÀNG MỚI VỀ</p>
+                    <p class="product-change-title "><a href="~/SanphamShop/all_sanpham_danhmuc/4" class="a-all-sp">TẤT CẢ SẢN PHẨM</a></p>
+                    <div class="product-change-arrow">
+                        <i class="fas fa-angle-left"></i>
+                        <i class="fas fa-angle-right"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-content">
+                <div class="row">
+                  
+
+                    <div class="col l-4 m-0 c-0">
+                        <img class="product-content_baner-img" src="~/Images/img_slide/dokho1.jpg" alt="tokyolife">
+                        <img class="product-content_baner-img" src="~/Images/img_slide/dokho2.jpg" alt="tokyolife">
+                    </div>
+
+                    <div class="col l-6 m-10 c-12">
+                        <div id="product2" class="product-content_about product-propose_new active">
+                            <div class="row">
+
+                                @foreach (var item in ViewBag.dokho)
+                                {
+                                    <div class="col l-3 m-6 c-6">
+                                        <div class="product-propose_new-item">
+                                            <a href="/SanphamShop/Details/@item.id_sanpham">
+                                                <img style="min-height:122px" class="product-propose_new-item_img" src="data:image/jpg;base64,@item.img_sanpham" alt="">
+                                            </a>
+                                            <img src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                            <p class="product-propose_new-item_info"> @item.tensanpham</p>
+                                            <h4 class="product-propose_new-item_price">@item.giatien.ToString("n0") đ</h4>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+
+                        <!--
+                          <div id="product2" class="product-content_about product-propose_new">
+                              <div class="row">
+                                  <div class="col l-4 m-6 c-6">
+                                      <div class="product-propose_new-item">
+                                          <img src="https://tokyolife.vn/media/catalog/product/cache/7a08107443ea0e40aee3357a52df61d8/m/_/m_t_n_5_chi_c.jpg" alt="tokyolife" class="product-propose_new-item_img">
+                                          <img src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                          <p class="product-propose_new-item_info"> Mặt nạ dưỡng chất ...</p>
+                                          <h4 class="product-propose_new-item_price">30.000 ₫</h4>
+                                      </div>
+                                  </div>
+
+                                  <div class="col l-4 m-6 c-6">
+                                      <div class="product-propose_new-item">
+                                          <img src="https://tokyolife.vn/media/catalog/product/cache/7a08107443ea0e40aee3357a52df61d8/x/_/x_t_ch_ng_n_ng_tokyolife_uv_spray_sun_protect_spf_50_kh_ng_h_ng_4550084844381_gi_350k_5_.jpg" alt="tokyolife" class="product-propose_new-item_img">
+                                          <img src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                          <p class="product-propose_new-item_info"> Xịt chống nắng dưỡng ẩm ...</p>
+                                          <h4 class="product-propose_new-item_price">290.000 ₫</h4>
+                                      </div>
+                                  </div>
+
+                                  <div class="col l-4 m-6 c-6">
+                                      <div class="product-propose_new-item">
+                                          <img src="https://tokyolife.vn/media/catalog/product/cache/7a08107443ea0e40aee3357a52df61d8/x/_/x_t_ch_ng_n_ng_tokyolife_uv_spray_sun_protect_spf_50_h_ng_th_o_m_c_4550084844398_gi_ny_350k_1_.jpg" alt="tokyolife" class="product-propose_new-item_img">
+                                          <img src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                          <p class="product-propose_new-item_info"> Xịt chống nắng dưỡng ẩm ...</p>
+                                          <h4 class="product-propose_new-item_price">290.000 ₫</h4>
+                                      </div>
+                                  </div>
+
+                                  <div class="col l-4 m-6 c-6">
+                                      <div class="product-propose_new-item">
+                                          <img src="https://tokyolife.vn/media/catalog/product/cache/7a08107443ea0e40aee3357a52df61d8/s/_/s_a_r_a_m_t_j_white_tinh_ch_t_tr_xanh_160g_165k.jpg" alt="tokyolife" class="product-propose_new-item_img">
+                                          <img src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                          <p class="product-propose_new-item_info"> Sữa rửa mặt J’White Trà ...</p>
+                                          <h4 class="product-propose_new-item_price">165.000 ₫</h4>
+                                      </div>
+                                  </div>
+
+                                  <div class="col l-4 m-6 c-6">
+                                      <div class="product-propose_new-item">
+                                          <img src="https://tokyolife.vn/media/catalog/product/cache/7a08107443ea0e40aee3357a52df61d8/s/_/s_a_r_a_m_t_j_white_tinh_ch_t_l_h_i_160g_165k.jpg" alt="tokyolife" class="product-propose_new-item_img">
+                                          <img src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                          <p class="product-propose_new-item_info"> Sữa rửa mặt J’White Trà ...</p>
+                                          <h4 class="product-propose_new-item_price">165.000 ₫</h4>
+                                      </div>
+                                  </div>
+
+                                  <div class="col l-4 m-6 c-6">
+                                      <div class="product-propose_new-item">
+                                          <img src="https://tokyolife.vn/media/catalog/product/cache/7a08107443ea0e40aee3357a52df61d8/s/_/s_a_r_a_m_t_j_white_tinh_ch_t_g_o_160g_165k.jpg" alt="tokyolife" class="product-propose_new-item_img">
+                                          <img src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                          <p class="product-propose_new-item_info"> Sữa rửa mặt J’White Trà ...</p>
+                                          <h4 class="product-propose_new-item_price">165.000 ₫</h4>
+                                      </div>
+                                  </div>
+
+                              </div>
+                          </div>
+                        -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thịt -->
+    <div class="product-container">
+        <div class="grid wide">
+            <div class="product-title">
+                <h3>Thịt các loại</h3>
+                <div class="product-change">
+                    <p id="title3" class="product-change-title active">HÀNG MỚI VỀ</p>
+                    <p class="product-change-title "><a href="~/SanphamShop/all_sanpham_danhmuc/2" class="a-all-sp">TẤT CẢ SẢN PHẨM</a></p>
+                    <div class="product-change-arrow">
+                        <i class="fas fa-angle-left"></i>
+                        <i class="fas fa-angle-right"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-content">
+                <div class="row">
+                 
+
+                    <div class="col l-4 m-0 c-0">
+                        <img class="product-content_baner-img" src="~/Images/img_slide/banner_thit.jpg" alt="tokyolife">
+                        <img class="product-content_baner-img" src="~/Images/img_slide/banner_thit2.jpg" alt="tokyolife">
+                    </div>
+
+                    <div class="col l-6 m-10 c-12">
+                        <div id="product3" class="product-content_about product-propose_new active">
+                            <div class="row">
+                                @foreach (var item in ViewBag.thit)
+                                {
+                                    <div class="col l-3 m-6 c-6">
+                                        <div class="product-propose_new-item">
+                                            <a href="/SanphamShop/Details/@item.id_sanpham">
+                                                <img style="min-height:122px" class="product-propose_new-item_img" src="data:image/jpg;base64,@item.img_sanpham" alt="">
+                                            </a>
+                                            <img src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                            <p class="product-propose_new-item_info"> @item.tensanpham</p>
+                                            <h4 class="product-propose_new-item_price">@item.giatien.ToString("n0") đ</h4>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+
+                        <!--
+                          <div id="product3" class="product-content_about product-propose_new">
+                              <div class="row">
+                                  <div class="col l-4 m-6 c-6">
+                                      <div class="product-propose_new-item">
+                                          <img src="https://tokyolife.vn/media/catalog/product/cache/7a08107443ea0e40aee3357a52df61d8/_/o/_o_t-shirt_nam_ng_n_tay_e7tsh036e-tr_ng-01-490k-qu_n_thun_nam_d_i_e7pan602e-ghi-xx-690k_5.jpg" alt="tokyolife" class="product-propose_new-item_img">
+                                          <img src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                          <p class="product-propose_new-item_info"> Quần thun nam E7PAN602E</p>
+                                          <h4 class="product-propose_new-item_price">150.000 ₫</h4>
+                                      </div>
+                                  </div>
+
+                                  <div class="col l-4 m-6 c-6">
+                                      <div class="product-propose_new-item">
+                                          <img src="https://tokyolife.vn/media/catalog/product/cache/7a08107443ea0e40aee3357a52df61d8/_/o/_o_t-shirt_nam_ng_n_tay_e7tsh016-tr_ng-01-340k-qu_n_short_nam_kaki_e7shp001e-_en-00-690k_1.jpg" alt="tokyolife" class="product-propose_new-item_img">
+                                          <img src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                          <p class="product-propose_new-item_info"> Quần short nam E7SHP001E</p>
+                                          <h4 class="product-propose_new-item_price">250.000 ₫</h4>
+                                      </div>
+                                  </div>
+
+                                  <div class="col l-4 m-6 c-6">
+                                      <div class="product-propose_new-item">
+                                          <img src="https://tokyolife.vn/media/catalog/product/cache/7a08107443ea0e40aee3357a52df61d8/_/o/_o_t-shirt_nam_ng_n_tay_e7tsh015e-cam-36-250k-qu_n_short_nam_i723-064e_-_n_u-320k.jpg_2__1.jpg" alt="tokyolife" class="product-propose_new-item_img">
+                                          <img src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                          <p class="product-propose_new-item_info"> Quần short nam I723-064E</p>
+                                          <h4 class="product-propose_new-item_price">49.000 ₫</h4>
+                                      </div>
+                                  </div>
+
+                                  <div class="col l-4 m-6 c-6">
+                                      <div class="product-propose_new-item">
+                                          <img src="https://tokyolife.vn/media/catalog/product/cache/7a08107443ea0e40aee3357a52df61d8/q/u/qu_n_jeans_nam_d_i_e7pan402e-890k_6.jpg" alt="tokyolife" class="product-propose_new-item_img">
+                                          <img src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                          <p class="product-propose_new-item_info"> Quần jeans nam dài ...</p>
+                                          <h4 class="product-propose_new-item_price">250.000 ₫</h4>
+                                      </div>
+                                  </div>
+
+                                  <div class="col l-4 m-6 c-6">
+                                      <div class="product-propose_new-item">
+                                          <img src="https://tokyolife.vn/media/catalog/product/cache/7a08107443ea0e40aee3357a52df61d8/q/u/qu_n_short_nam_e7shp400e-640k_2__6.jpg" alt="tokyolife" class="product-propose_new-item_img">
+                                          <img src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                          <p class="product-propose_new-item_info"> Quần short nam E7SHP400E</p>
+                                          <h4 class="product-propose_new-item_price">150.000 ₫</h4>
+                                      </div>
+                                  </div>
+
+                                  <div class="col l-4 m-6 c-6">
+                                      <div class="product-propose_new-item">
+                                          <img src="https://tokyolife.vn/media/catalog/product/cache/7a08107443ea0e40aee3357a52df61d8/q/u/qu_n_short_nam_e7shp607e-740k_5.jpg" alt="tokyolife" class="product-propose_new-item_img">
+                                          <img src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                          <p class="product-propose_new-item_info"> Quần short nam E7SHP400E</p>
+                                          <h4 class="product-propose_new-item_price">120.000 ₫</h4>
+                                      </div>
+                                  </div>
+
+                              </div>
+                          </div>
+                        -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hoa quả -->
+    <div class="product-container">
+        <div class="grid wide">
+            <div class="product-title">
+                <h3>HOA QUẢ</h3>
+                <div class="product-change">
+                    <p id="title4" class="product-change-title active">HÀNG MỚI VỀ</p>
+                    <p class="product-change-title "><a href="~/SanphamShop/all_sanpham_danhmuc/3" class="a-all-sp">TẤT CẢ SẢN PHẨM</a></p>
+                    <div class="product-change-arrow">
+                        <i class="fas fa-angle-left"></i>
+                        <i class="fas fa-angle-right"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-content">
+                <div class="row">
+                  
+
+                    <div class="col l-4 m-0 c-0">
+                        <img class="product-content_baner-img" src="~/Images/img_slide/hoaqua1.jpg" alt="tokyolife">
+                        <img class="product-content_baner-img" src="~/Images/img_slide/hoaqua2.jpg" alt="tokyolife">
+                    </div>
+
+                    <div class="col l-6 m-10 c-12">
+                        <div id="product4" class="product-content_about product-propose_new active">
+                            <div class="row">
+                                @foreach (var item in ViewBag.hoaqua)
+                                {
+                                    <div class="col l-3 m-6 c-6">
+                                        <div class="product-propose_new-item">
+                                            <a href="/SanphamShop/Details/@item.id_sanpham">
+                                                <img style="min-height:122px" class="product-propose_new-item_img" src="data:image/jpg;base64,@item.img_sanpham" alt="">
+                                            </a>
+                                            <img src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                            <p class="product-propose_new-item_info"> @item.tensanpham</p>
+                                            <h4 class="product-propose_new-item_price">@item.giatien.ToString("n0") đ</h4>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+                        <!--
+                          <div id="product4" class="product-content_about product-propose_new">
+                              <div class="row">
+                                  <div class="col l-4 m-6 c-6">
+                                      <div class="product-propose_new-item">
+                                          <img src="https://tokyolife.vn/media/catalog/product/cache/7a08107443ea0e40aee3357a52df61d8/1/8/18.jpg" alt="tokyolife" class="product-propose_new-item_img">
+                                          <img src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                          <p class="product-propose_new-item_info"> Bikini nâng ngực ...</p>
+                                          <h4 class="product-propose_new-item_price">150.000 ₫</h4>
+                                          <div class="product-propose_new-item_saleAll">
+                                              <p class="product-propose_new-item_sale">390.000 ₫</p>
+                                          </div>
+                                      </div>
+                                  </div>
+
+                                  <div class="col l-4 m-6 c-6">
+                                      <div class="product-propose_new-item">
+                                          <img src="https://tokyolife.vn/media/catalog/product/cache/7a08107443ea0e40aee3357a52df61d8/l/9/l9bkn401e-590k_6_.jpg" alt="tokyolife" class="product-propose_new-item_img">
+                                          <img src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                          <p class="product-propose_new-item_info"> Bikini nâng ngực ...</p>
+                                          <h4 class="product-propose_new-item_price">150.000 ₫</h4>
+                                          <div class="product-propose_new-item_saleAll">
+                                              <p class="product-propose_new-item_sale">390.000 ₫</p>
+                                          </div>
+                                      </div>
+                                  </div>
+
+                                  <div class="col l-4 m-6 c-6">
+                                      <div class="product-propose_new-item">
+                                          <img src="https://tokyolife.vn/media/catalog/product/cache/7a08107443ea0e40aee3357a52df61d8/1/5/15.jpg" alt="tokyolife" class="product-propose_new-item_img">
+                                          <img src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                          <p class="product-propose_new-item_info"> Bikini hai mảnh L9BKN019E</p>
+                                          <h4 class="product-propose_new-item_price">150.000 ₫</h4>
+                                          <div class="product-propose_new-item_saleAll">
+                                              <p class="product-propose_new-item_sale">490.000 ₫</p>
+                                          </div>
+                                      </div>
+                                  </div>
+
+                                  <div class="col l-4 m-6 c-6">
+                                      <div class="product-propose_new-item">
+                                          <img src="https://tokyolife.vn/media/catalog/product/cache/7a08107443ea0e40aee3357a52df61d8/2/8/28.jpg" alt="tokyolife" class="product-propose_new-item_img">
+                                          <img src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                          <p class="product-propose_new-item_info"> Bikini một mảnh L9BKN404E</p>
+                                          <h4 class="product-propose_new-item_price">250.000 ₫</h4>
+                                          <div class="product-propose_new-item_saleAll">
+                                              <p class="product-propose_new-item_sale">390.000 ₫</p>
+                                          </div>
+                                      </div>
+                                  </div>
+
+                                  <div class="col l-4 m-6 c-6">
+                                      <div class="product-propose_new-item">
+                                          <img src="https://tokyolife.vn/media/catalog/product/cache/7a08107443ea0e40aee3357a52df61d8/2/7/27_5.jpg" alt="tokyolife" class="product-propose_new-item_img">
+                                          <img src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                          <p class="product-propose_new-item_info"> Bikini nâng ngực ...</p>
+                                          <h4 class="product-propose_new-item_price">150.000 ₫</h4>
+                                          <div class="product-propose_new-item_saleAll">
+                                              <p class="product-propose_new-item_sale">490.000 ₫</p>
+                                          </div>
+                                      </div>
+                                  </div>
+
+                                  <div class="col l-4 m-6 c-6">
+                                      <div class="product-propose_new-item">
+                                          <img src="https://tokyolife.vn/media/catalog/product/cache/7a08107443ea0e40aee3357a52df61d8/2/4/24.jpg" alt="tokyolife" class="product-propose_new-item_img">
+                                          <img src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                          <p class="product-propose_new-item_info"> Bikini hai mảnh L9BKN011E</p>
+                                          <h4 class="product-propose_new-item_price">490.000 ₫</h4>
+                                      </div>
+                                  </div>
+
+                              </div>
+                          </div>
+                        -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nông sản khác -->
+    <div class="product-container">
+        <div class="grid wide">
+            <div class="product-title">
+                <h3>NÔNG SẢN KHÁC</h3>
+                <div class="product-change">
+                    <p id="title5" class="product-change-title active">HÀNG MỚI VỀ</p>
+                    <p class="product-change-title "><a href="~/SanphamShop/all_sanpham_danhmuc/5" class="a-all-sp">TẤT CẢ SẢN PHẨM</a></p>
+                    <div class="product-change-arrow">
+                        <i class="fas fa-angle-left"></i>
+                        <i class="fas fa-angle-right"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="product-content">
+                <div class="row">
+                    <div class="col l-4 m-0 c-0">
+                        <img class="product-content_baner-img" src="~/Images/img_slide/img (11).jpg" alt="tokyolife">
+                        <img class="product-content_baner-img" src="~/Images/img_slide/img (12).jpg" alt="tokyolife">
+                    </div>
+
+                    <div class="col l-6 m-10 c-12">
+                        <div id="product5" class="product-content_about product-propose_new active">
+                            <div class="row">
+                                @foreach (var item in ViewBag.nongsankhac)
+                                {
+                                    <div class="col l-3 m-6 c-6">
+                                        <div class="product-propose_new-item">
+                                            <a href="/SanphamShop/Details/@item.id_sanpham">
+                                                <img style="min-height:122px" class="product-propose_new-item_img" src="data:image/jpg;base64,@item.img_sanpham" alt="">
+                                            </a>
+                                            <img src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                            <p class="product-propose_new-item_info"> @item.tensanpham</p>
+                                            <h4 class="product-propose_new-item_price">@item.giatien.ToString("n0") đ</h4>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+
+                        <!--
+                          <div id="product5" class="product-content_about product-propose_new">
+                              <div class="row">
+                                  <div class="col l-4 m-6 c-6">
+                                      <div class="product-propose_new-item">
+                                          <img src="https://tokyolife.vn/media/catalog/product/cache/7a08107443ea0e40aee3357a52df61d8/m/_/m_baby_o6hat003e_50k_2_.jpg" alt="tokyolife" class="product-propose_new-item_img">
+                                          <img src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                          <p class="product-propose_new-item_info"> Mũ baby O6HAT003E</p>
+                                          <h4 class="product-propose_new-item_price">15.000 ₫</h4>
+                                          <div class="product-propose_new-item_saleAll">
+                                              <p class="product-propose_new-item_sale">50.000 ₫</p>
+                                          </div>
+                                      </div>
+                                  </div>
+
+                                  <div class="col l-4 m-6 c-6">
+                                      <div class="product-propose_new-item">
+                                          <img src="https://tokyolife.vn/media/catalog/product/cache/7a08107443ea0e40aee3357a52df61d8/_/v/_vmd8796-edit.jpg" alt="tokyolife" class="product-propose_new-item_img">
+                                          <img src="https://tokyolife.vn/media/wysiwyg/home/Only-Store.svg" alt="" class="product-propose_new-item_logo">
+                                          <p class="product-propose_new-item_info"> Bộ áo quần baby bé trai ...</p>
+                                          <h4 class="product-propose_new-item_price">36.000 ₫</h4>
+                                          <div class="product-propose_new-item_saleAll">
+                                              <p class="product-propose_new-item_sale">120.000 ₫</p>
+                                          </div>
+                                      </div>
+                                  </div>
+
+                                  <div class="col l-4 m-6 c-6">
+                                      <div class="product-propose_new-item">
+                                          <img src="https://tokyolife.vn/media/catalog/product/cache/7a08107443ea0e40aee3357a52df61d8/b/_/b_qu_n_o_baby_c_c_th_ng_o6cls005e-_xanh_ng_c-150.000_.jpg" alt="tokyolife" class="product-propose_new-item_img">
+                                          <img src="https://tokyolife.vn/media/wysiwyg/home/Only-Store.svg" alt="" class="product-propose_new-item_logo">
+                                          <p class="product-propose_new-item_info"> Bộ áo quần dài baby cúc ...</p>
+                                          <h4 class="product-propose_new-item_price">150.000 ₫</h4>
+                                          <div class="product-propose_new-item_saleAll">
+                                              <p class="product-propose_new-item_sale">290.000 ₫</p>
+                                          </div>
+                                      </div>
+                                  </div>
+
+                                  <div class="col l-4 m-6 c-6">
+                                      <div class="product-propose_new-item">
+                                          <img src="https://tokyolife.vn/media/catalog/product/cache/7a08107443ea0e40aee3357a52df61d8/g/i/gi_y_t_lec_99_9_n_c_tinh_khi_t_c_h_p_ng_hello_kitty_80_t_155k_2_.jpg" alt="tokyolife" class="product-propose_new-item_img">
+                                          <img src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                          <p class="product-propose_new-item_info"> Giấy ướt Hello Kitty ...</p>
+                                          <h4 class="product-propose_new-item_price">155.000 ₫</h4>
+                                      </div>
+                                  </div>
+
+                                  <div class="col l-4 m-6 c-6">
+                                      <div class="product-propose_new-item">
+                                          <img src="https://tokyolife.vn/media/catalog/product/cache/7a08107443ea0e40aee3357a52df61d8/g/i/gi_y_t_lec_99_9_n_c_tinh_khi_t_doraemon_80_t_155k_1__1.jpg" alt="tokyolife" class="product-propose_new-item_img">
+                                          <img src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                          <p class="product-propose_new-item_info"> Giấy ướt Doraemon SS-275</p>
+                                          <h4 class="product-propose_new-item_price">155.000 ₫</h4>
+                                      </div>
+                                  </div>
+
+                                  <div class="col l-4 m-6 c-6">
+                                      <div class="product-propose_new-item">
+                                          <img src="https://tokyolife.vn/media/catalog/product/cache/7a08107443ea0e40aee3357a52df61d8/_/v/_vmd8811-edit.jpg" alt="tokyolife" class="product-propose_new-item_img">
+                                          <img src="https://tokyolife.vn/media/wysiwyg/home/Only-Store.svg" alt="" class="product-propose_new-item_logo">
+                                          <p class="product-propose_new-item_info"> Bộ liền thân baby ...</p>
+                                          <h4 class="product-propose_new-item_price">36.000 ₫</h4>
+                                          <div class="product-propose_new-item_saleAll">
+                                              <p class="product-propose_new-item_sale">120.000 ₫</p>
+                                          </div>
+                                      </div>
+                                  </div>
+
+                              </div>
+                          </div>
+                        -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- infoStore -->
+    <div class="info-store">
+        <div class="grid wide">
+            <div class="product-title">
+                <h3>THÔNG TIN CỬA HÀNG</h3>
+            </div>
+
+            <div class="row">
+                <div class="col l-4 m-6 c-12">
+                    <div class="info-store_about">
+                        <img src="https://tokyolife.vn/media/wysiwyg/blog/tokyolife-tao-viec-lam-cho-nguoi-khuyet-tat.jpg" alt="tokyolife" class="info-store_about-img">
+                        <h3 class="info-store_about-sub">TIN TỨC</h3>
+                    </div>
+                </div>
+                <div class="col l-4 m-6 c-0">
+                    <div class="info-store_about">
+                        <img src="https://tokyolife.vn/media/wysiwyg/blog/CH.jpg" alt="tokyolife" class="info-store_about-img">
+                        <h3 class="info-store_about-sub">HỆ THỐNG CỬA HÀNG</h3>
+                    </div>
+                </div>
+                <div class="col l-4 m-0 c-0">
+                    <div class="info-store_about">
+                        <img src="https://tokyolife.vn/media/wysiwyg/blog/370x270.2.jpg" alt="tokyolife" class="info-store_about-img">
+                        <h3 class="info-store_about-sub">CHỨNG NHẬN CHÍNH HẢNG</h3>
+                        <p class="info-store_about-text">Giấy chứng nhận nhập khẩu chính hãng từ các thương hiệu nổi tiếng Nhật Bản...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col l-3 m-4 c-6">
+                    <div class="info-store_logo">
+                        <img src="https://tokyolife.vn/media/wysiwyg/brand/Rohtologo.png" alt="" class="info-store_logo-img">
+
+                    </div>
+                </div>
+
+                <div class="col l-3 m-4 c-6">
+                    <div class="info-store_logo">
+                        <img src="https://tokyolife.vn/media/wysiwyg/brand/EBISUlogo.png" alt="" class="info-store_logo-img">
+
+                    </div>
+                </div>
+
+                <div class="col l-3 m-4 c-6">
+                    <div class="info-store_logo">
+                        <img src="https://tokyolife.vn/media/wysiwyg/brand/Kracie.png" alt="" class="info-store_logo-img">
+
+                    </div>
+                </div>
+
+                <div class="col l-3 m-4 c-6">
+                    <div class="info-store_logo">
+                        <img src="https://tokyolife.vn/media/wysiwyg/brand/b4.jpg" alt="" class="info-store_logo-img">
+
+                    </div>
+                </div>
+
+                <div class="col l-3 m-4 c-6">
+                    <div class="info-store_logo">
+                        <img src="https://tokyolife.vn/media/wysiwyg/brand/b6.jpg" alt="" class="info-store_logo-img">
+
+                    </div>
+                </div>
+
+                <div class="col l-3 m-4 c-6">
+                    <div class="info-store_logo">
+                        <img src="https://tokyolife.vn/media/wysiwyg/brand/b7.jpg" alt="" class="info-store_logo-img">
+
+                    </div>
+                </div>
+
+                <div class="col l-3 m-4 c-6">
+                    <div class="info-store_logo">
+                        <img src="https://tokyolife.vn/media/wysiwyg/brand/sh.jpg" alt="" class="info-store_logo-img">
+
+                    </div>
+                </div>
+
+                <div class="col l-3 m-4 c-6">
+                    <div class="info-store_logo">
+                        <img src="https://tokyolife.vn/media/wysiwyg/brand/b9.jpg" alt="" class="info-store_logo-img">
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

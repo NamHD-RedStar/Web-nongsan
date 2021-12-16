@@ -1,0 +1,78 @@
+/*****************************
+36 - Layout - Offacnvas
+*****************************/
+
+/* Body Style When OffCanvas Open */
+
+
+.offcanvas-close{
+    font-size: 24px;
+}
+
+/* OffCanvas Overlay */
+.offcanvas-overlay {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    display: none;
+
+    background-color: rgba($color-black, 0.5);
+}
+
+$transition: all 0.5s ease 0s;
+// Heading Color
+$heading-color: #333333;
+
+/* OffCanvas */
+.offcanvas {
+    font-size: 16px;
+    font-weight: 400;
+
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    right: 0;
+    left: auto;
+
+    display: block;
+    overflow: hidden;
+
+    width: 300px;
+    height: 100vh;
+    padding: 20px;
+
+    transition: $transition;
+    transform: translateX(100%);
+
+    background-color: $color-white;
+    box-shadow: none;
+    overflow-y: auto;
+    @include breakpoint(small){
+        width: 400px;
+    }
+
+    &.offcanvas-open {
+        transform: translateX(0);
+    }
+
+
+    // OffCanvas Mobile Menu
+    &.offcanvas-mobile-menu {
+        right: auto;
+        left: 0;
+
+        padding: 50px 40px;
+
+        transform: translateX(-100%);
+
+        &.offcanvas-open {
+            transform: translateX(0);
+        }
+    }
+
+
+}

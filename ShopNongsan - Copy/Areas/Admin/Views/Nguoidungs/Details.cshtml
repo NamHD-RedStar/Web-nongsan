@@ -1,0 +1,77 @@
+﻿@model ShopNongsan.Models.Nguoidung
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    @*@Html.ActionLink("Quay lại", "Index")*@
+    <a href='@Url.Action("Index", "Nguoidungs")'>
+        <i class="fas fa-backward"> Quay lại</i>
+    </a>
+</div>
+<div class="chia-khoi">
+    <div><h2>Chi tiết người dùng</h2></div>
+    <div>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Nội dung</th>
+                    <th scope="col">Chi tiết</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Họ</th>
+                    <td>    @Html.DisplayFor(model => model.ho)</td>
+
+                </tr>
+                <tr>
+                    <th scope="row">Tên</th>
+                    <td>     @Html.DisplayFor(model => model.ten)</td>
+
+                </tr>
+                <tr>
+                    <th scope="row">Ảnh đại diện</th>
+                    <td>     <img src="data:image/jpg;base64,@Html.DisplayFor(model => model.anh_daidien)" width="50" height="50" /></td>
+
+                </tr>
+                <tr>
+                    <th scope="row">Địa chỉ</th>
+                    <td>    @Html.DisplayFor(model => model.diachi)</td>
+
+                </tr>
+                <tr>
+                    <th scope="row">SĐT</th>
+                    <td>  @Html.DisplayFor(model => model.sdt)</td>
+
+                </tr>
+                <tr>
+                    <th scope="row">Gmail</th>
+                    <td>     @Html.DisplayFor(model => model.gmail)</td>
+
+                </tr>
+                <tr>
+                    <th scope="row">Ngày đăng ký</th>
+                    <td>    @Html.DisplayFor(model => model.ngaydangky)</td>
+
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <p>
+        @Html.ActionLink("Quên mật khẩu", "Quenmatkhau", new { id = Model.id_nguoidung }, new { @class = "btn btn-primary btn-lg btn-block" })
+        @*@Html.ActionLink("Back to List", "Index")*@
+    </p>
+</div>
+@*<script language="javascript">
+    document.getElementById("quenmatkhau").onclick = function () {
+        document.getElementById("form_quenmatkhau").style.display = 'block';
+        };
+        document.getElementById("doimatkhau").onclick = function () {
+            document.getElementById("thaydoimatkhau").style.display = 'block';
+            document.getElementById("thongtin").style.display = 'none';
+        };
+</script>*@

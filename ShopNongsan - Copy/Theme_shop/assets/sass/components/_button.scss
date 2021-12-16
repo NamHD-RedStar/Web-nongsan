@@ -1,0 +1,296 @@
+/*****************************
+05 - Component - Button
+*****************************/
+
+// Button Normal
+.btn{
+    display: inline-block;
+    font-size: 13px;
+    line-height: 1;
+    outline: none;
+
+    &:focus{
+        box-shadow: none;
+    }
+
+    // Button Style
+    &--box{
+        border-radius: 3px;
+    }
+
+    &--border{
+        &-white{
+            color: $color-white;
+            border: 2px solid $color-white;
+
+            &:hover{
+                background: $color-primary;
+                border-color: $color-primary;
+            
+            }
+        }
+        &-blue{
+            color: $color-primary;
+            border: 2px solid $color-primary;
+
+            &:hover{
+                background: $color-primary;
+                border-color: $color-primary;
+                color: $color-white;
+            }
+        }
+    }
+
+    &--block{
+        display: block;
+    }
+
+    &--submit{
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 3px;
+    }
+
+    // Button Size
+    &--large{
+        padding: 15px 20px;
+
+        @include breakpoint(medium){padding: 16px 25px;}
+        @include breakpoint(large){padding: 17px 35px;}
+        @include breakpoint(xlarge){padding: 18px 40px;}
+        
+    }
+    
+    &--medium{
+        padding: 13px 40px;
+    }
+
+    &--small{
+        padding: 13px 27px;
+    }
+
+    // Button Color
+    &--blue{
+        background: $color-primary;
+        color: $color-white;
+        
+        &:hover{
+            background: $color-black-1;
+            color: $color-white;
+        }
+    }
+    
+    &--white{
+        background: $color-white;
+        color: $color-gray-2;
+        
+        &:hover{
+            background: $color-primary;
+            color: $color-white;
+        }
+    }
+
+    &--gray{
+        background: $color-white-1;
+        color: $color-gray-2;
+        
+        &:hover{
+            background: $color-primary;
+            color: $color-white;
+        }
+    }
+
+    // Button Text Transform
+    &--uppercase{
+        text-transform: uppercase;
+    }
+
+    // Button Font Weight
+    &--weight{
+        font-weight: 500;
+    }
+
+
+    &--hover-zoom{
+        transform: scale(.8);
+        transition: all .3s ease;
+    }
+}
+
+button.btn--block{
+    width: 100%;
+}
+
+.link{
+    &--gray{
+        color: $color-gray;
+        text-decoration: none !important;
+
+        &:hover{
+            color: $color-primary;
+        }
+    }
+
+    &--icon-left{
+        display: inline-flex;
+        align-items: center;
+        i{margin-right: 10px;}
+    }
+
+    &--icon-right{
+        display: inline-flex;
+        align-items: center;
+        i{margin-left: 10px;}
+    }
+}
+
+
+// Slider Arrow Navigation Button
+.swiper-button-next,
+.swiper-button-prev{
+    &::after{
+        content: "";
+        display: none;
+    }
+}
+.swiper-outside-arrow-fix  {
+    width: 100%;
+}
+
+.text__nav{
+    width: 75px;
+    height: 35px;
+    line-height: 1;
+    padding: 10px 0;
+}
+
+.text-swiper-buttons{
+    margin-top: 40px;
+    margin-bottom: 50px;
+
+    @include breakpoint(medium){
+        margin-top: 190px;
+        margin-bottom: 0px;
+    }
+    @include breakpoint(large){
+        margin-top: 170px;
+        margin-bottom: 0px;
+    }
+    @include breakpoint(xlarge){
+        margin-top: 150px;
+        margin-bottom: 0px;
+    }
+}
+
+
+.slider-arrow-btn-style{
+    font-size: 16px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    z-index: 999;
+    transition: all .3s ease;
+    backface-visibility: hidden;
+}
+
+.default__nav {
+    @extend .slider-arrow-btn-style;
+    background: $color-black-2;
+    border-radius: 50%;
+    color: $color-white;
+    visibility: hidden;
+    opacity: 0;
+    @include breakpoint(large){
+        color: $color-black-1;
+        font-size: 28px;
+        background: transparent;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        line-height: normal;
+    }
+
+    &--next{
+        right: calc(0% + 10px);
+        @include breakpoint(large){
+            right: calc(0% - 10px);
+        }
+        &::after {
+            content: "";
+        }
+
+    }
+
+    &--prev {
+        left: calc(0% + 10px);
+        
+        @include breakpoint(large){
+            left: calc(0% - 10px);
+        }
+        &::after {
+            content: "";
+        }
+
+    }
+
+    &:hover{
+        color: $color-primary;
+    }
+
+}
+
+
+.inner__nav {
+    @extend .slider-arrow-btn-style;
+    background: $color-primary;
+    color: $color-white;
+
+    &--next{
+        right: calc(0% + 20px);
+        &::after {
+            content: "";
+        }
+
+    }
+
+    &--prev {
+        left: calc(0% + 20px);
+        &::after {
+            content: "";
+        }
+
+    }
+
+    &:hover{
+        color: $color-white;
+    }
+
+}
+
+.swiper-outside-arrow-hover:hover .default__nav {
+    visibility: hidden;
+    opacity: 0;
+
+    &--next {
+        right: calc(0% + 20px);
+       
+        @include breakpoint(large){
+            right: calc(0% - 30px);
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+
+    &--prev {
+        left: calc(0% + 20px);
+        
+        @include breakpoint(large){
+            left: calc(0% - 30px);
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+
+}

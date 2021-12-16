@@ -1,0 +1,212 @@
+﻿
+@{
+    ViewBag.Title = "Hienthitinnhan_nguoidung";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ShopNongsan.Models.ShopNongsanEntities db = new ShopNongsan.Models.ShopNongsanEntities();
+}
+<!-- fixed -->
+
+<style>
+    .khung_form {
+        width: 100%;
+        height: auto;
+        min-height: 500px;
+    }
+    #ten_nguoinhan {
+        position: fixed;
+        top: 0;
+        padding: 5px;
+    }
+    .noidungtin {
+        border: 1px solid;
+        border-radius: 10px;
+        width: 40%;
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
+  
+    
+    .nav-out-int {
+        width: 100%;
+        float: right;
+        padding:5px 0;
+    }
+    #noidung_tinnhan {
+        width: 100%;
+        height: 440px;
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
+
+    .chat-img {
+        float: left;
+        width: 48px;
+    }
+
+        .chat-img img {
+            -webkit-border-radius: 50px;
+            -moz-border-radius: 50px;
+            border-radius: 50px;
+            width: 100%;
+        }
+
+    .chat-message {
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        border-radius: 50px;
+        background: #5a99ee;
+        display: inline-block;
+        padding: 10px 20px;
+        position: relative;
+    }
+
+        .chat-message:before {
+            content: "";
+            position: absolute;
+            top: 15px;
+            width: 0;
+            height: 0;
+        }
+
+        .chat-message h5 {
+            margin: 0 0 5px 0;
+            font-weight: 600;
+            line-height: 100%;
+            font-size: .9rem;
+        }
+
+        .chat-message p {
+            line-height: 18px;
+            margin: 0;
+            padding: 0;
+            width: 170px;
+            color: #ffffff;
+            word-break: break-word;
+        }
+
+    .in .chat-body {
+        float: left;
+        margin-left: 20px;
+        text-align: left;
+    }
+
+    .in .chat-message:before {
+        left: -12px;
+        border-bottom: 20px solid transparent;
+        border-right: 20px solid #5a99ee;
+    }
+
+    .out .chat-img {
+        float: right;
+    }
+
+    .out .chat-body {
+        float: right;
+        margin-right: 20px;
+        text-align: right;
+    }
+
+    .out .chat-message {
+        background: #fc6d4c;
+    }
+
+        .out .chat-message:before {
+            right: -12px;
+            border-bottom: 20px solid transparent;
+            border-left: 20px solid #fc6d4c;
+        }
+
+    .card .card-header:first-child {
+        -webkit-border-radius: 0.3rem 0.3rem 0 0;
+        -moz-border-radius: 0.3rem 0.3rem 0 0;
+        border-radius: 0.3rem 0.3rem 0 0;
+    }
+
+    .card .card-header {
+        background: #17202b;
+        border: 0;
+        font-size: 1rem;
+        padding: .65rem 1rem;
+        position: relative;
+        font-weight: 600;
+        color: #ffffff;
+    }
+
+    .content {
+        margin-top: 40px;
+    }
+</style>
+<div class="khung_form">
+    <form action="~/Admin/Nguoidungs/Traloitinnhan_nguoidung/@ViewBag.id_nguoigui">
+        <div id="noidung_tinnhan" class="fixed-form_group" style="">
+            <!--Bắt đầu tin-->
+            @{ if (Session["nguoidung"] != null)
+                {
+                    int id = Convert.ToInt32(ViewBag.id_nguoigui);
+                    var nguoi = db.Nguoidungs.Where(s => s.id_nguoidung == id).FirstOrDefault();
+
+                    foreach (var item in ViewBag.tinnhan)
+                    {
+                        <div id="ten_nguoinhan" class="chat-img">
+                            <img alt="Avtar" style="height:38px;width:38px" src="data:image/jpg;base64,@nguoi.anh_daidien" >
+                            <p>@nguoi.ten</p>
+                        </div>
+                        if (item.trangthai == 0)
+                        {
+                            <div class="in" style="width: 100%; height: auto; line-height: 22px; padding-top: 4px;">
+                                <nav class="nav-out-int">
+                                    <div class="chat-img">
+                                        <img alt="Avtar" style="height:48px;width:48px" src="data:image/jpg;base64,@nguoi.anh_daidien">
+                                    </div>
+                                    <div class="chat-body">
+                                        <div class="chat-message">
+                                            <p>@item.noidungnhan</p>
+                                        </div>
+                                    </div>
+                                </nav>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="out" style="width: 100%; height: auto; line-height: 22px; padding-top: 4px;">
+                                <nav class="nav-out-int">
+                                    <div class="chat-img">
+                                        <img alt="Avtar" style="height:48px;width:48px" src="https://bootdey.com/img/Content/avatar/avatar2.png">
+                                    </div>
+                                    <div class="chat-body">
+                                        <div class="chat-message">
+                                            <p>@item.noidungnhan</p>
+                                        </div>
+                                    </div>
+                                </nav>
+                            </div>
+
+                        }
+
+                    }
+                }
+                else
+                {
+                    <h3>Hãy đăng nhập để nhắn tin nhé</h3>
+                }
+
+
+            }
+
+
+            <!--Kết thúc tin-->
+
+
+        </div>
+        <div class="fixed-form_footer">
+            <div class="fixed-btn_group">
+                <nav style="text-align: right; margin-right: 15px;">
+                    <input class="noidungtin" type="text" name="noidungtin" id="noidungtin" required>
+                    <input style=" width: 58px; height: 33px; padding: 2px 3px;" type="submit" value="Gửi" class="fixed-btn_group-item active">
+                </nav>
+            </div>
+            <a class="fixed-form_footer-link" href="">Nguyễn Văn Nam</a>
+        </div>
+
+    </form>
+</div>

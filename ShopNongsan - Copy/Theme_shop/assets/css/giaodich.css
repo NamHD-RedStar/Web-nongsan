@@ -1,0 +1,209 @@
+﻿.main-giaodich {
+    display: flex;
+
+}
+
+/* thuộc tính chung */
+.cut-txt {
+    font-size: 14px;
+
+    position: relative;
+    font-weight: 300;
+    white-space: nowrap;
+    margin-bottom: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ngay {
+    color: rgb(38, 188, 78);
+    font-weight: 800;
+    font-size: 14px;
+}
+
+
+
+.left {
+    width: 65%;
+}
+
+.left .hinhthuc-giaohang {
+    border-radius: 5px;
+    border: 1px solid rgb(221, 221, 221);
+    padding: 20px 20px;
+}
+
+.left .hinhthuc-giaohang .hinhthuc {
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 10px;
+    width: 200px;
+    padding: 20px;
+
+}
+
+.left .hinhthuc-giaohang .sanpham {
+    margin-top: 5px;
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 10px;
+    padding: 20px;
+
+}
+
+.left .hinhthuc-giaohang .sanpham .row {
+    display: flex;
+}
+
+.left .hinhthuc-giaohang .sanpham .row .col-0 {
+    display: block;
+}
+
+.left .hinhthuc-giaohang .sanpham .row .col-0 .sanpham-mua {
+    display: flex;
+    margin: 5px 0;
+}
+
+.left .hinhthuc-giaohang .sanpham .row .col-1 {
+    background-color: rgb(61, 190, 44);
+    width: 50px;
+    height: 50px;
+}
+
+
+.anh-sanpham {
+    height: 100%;
+    width: 100%;
+    border-radius: 15px;
+}
+
+.left .hinhthuc-giaohang .sanpham .row .col-2 {
+    width: 300px;
+    display: block;
+    padding-left: 10px;
+    color: rgb(120, 120, 120);
+}
+
+.left .hinhthuc-giaohang .sanpham .row .col-2 .soluong-gia {
+    display: flex;
+    justify-content: space-between;
+}
+
+.left .hinhthuc-giaohang .sanpham .row .col-3 {
+
+    width: 250px;
+    padding: 20px;
+
+}
+
+.left .hinhthuc-giaohang .sanpham .row .col-4 {
+    width: 70px;
+    padding: 5px;
+    text-align: center;
+}
+
+
+
+
+
+
+
+.left .hinhthuc-thanhtoan {
+    border-radius: 5px;
+    border: 1px solid rgb(221, 221, 221);
+}
+
+.left .hinhthuc-thanhtoan ul {
+    display: block;
+    padding: 15px;
+    list-style-type: none;
+}
+
+.left .hinhthuc-thanhtoan ul li label {
+    display: flex;
+    height: 50px;
+    font-size: 20px;
+    margin: auto 0px;
+    line-height: 50px;
+}
+
+.left .hinhthuc-thanhtoan ul li label input {
+    height: 20px;
+    width: 20px;
+    margin: auto 10px;
+}
+
+.left .hinhthuc-thanhtoan ul li label .icon-thanhtoan {
+    height: 50px;
+    width: 50px;
+    margin-right: 10px;
+}
+
+.left .hinhthuc-thanhtoan ul li label .title-thanhtoan {
+    display: flex;
+}
+
+.btn-muahang {
+    height: 40px;
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 8px;
+    border-color: rgb(253 235 0 / 92%);
+    background: linear-gradient(161deg, rgb(255, 66, 78), rgb(253, 130, 10));
+    color: floralwhite;
+    text-align: center;
+    line-height: 40px;
+    font-size: 20px;
+
+}
+
+.btn-muahang:hover {
+    background: linear-gradient(161deg, rgb(199, 219, 20), rgb(19, 211, 28));
+}
+
+.btn-muahang input {
+    color: rgb(255 255 255);
+    background-color: transparent;
+    height: 100%;
+    width: 100%;
+    border: 0;
+    font-size: 20px;
+}
+
+
+
+.right {
+    margin-left: 20px;
+
+}
+.right .main-right {
+   height: 100px;
+   width: 300px;
+}
+.right .main-right .diachi{
+    border: orange solid 1px;
+    width: 100%;
+    border-radius: 3px;
+    padding: 5px 20px;
+
+}
+.right .main-right .donhang{
+    margin-top: 10px;
+    border: orange solid 1px;
+    height: 100px;
+    width: 100%;
+    border-radius: 3px;
+    padding: 5px 20px;
+
+}
+
+.right .tinh-tien{
+    margin-top: 10px;
+}
+.right .tinh-tien ul li{
+    list-style: none;
+    margin: 5px 5px;
+    font-size: 20px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+ 
+}

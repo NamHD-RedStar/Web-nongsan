@@ -1,0 +1,14 @@
+/*****************************
+34 - Layout - Custom Layout
+*****************************/
+
+.container{
+    max-width: 100%;
+
+    @include breakpoint(large){
+        max-width: 945px;
+    }
+    @include breakpoint(xlarge){
+        max-width: 1140px;
+    }
+}

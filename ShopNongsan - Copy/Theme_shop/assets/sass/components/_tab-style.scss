@@ -1,0 +1,103 @@
+/*****************************
+18 - Component - Tabstyle
+*****************************/
+
+// Tablist Customize
+
+.tablist{
+	li{position: relative;}
+
+	.nav-link{
+		padding: .5rem 0 !important;
+	}
+
+	//Tablist Color
+	&--style-black{
+		.nav-link{
+			color: $color-gray-2;
+			&.active, &:hover{color: $color-black;}
+		}
+	}
+
+	&--style-blue{
+		.nav-link{
+			color: $color-gray-2;
+			&.active, &:hover{color: $color-primary;}
+		}
+	}
+
+	// Tablist Style
+
+	&--style-title{
+		li > .nav-link{
+			font-size: 20px;
+		    line-height: 22px;
+		    font-weight: 500;
+		    text-transform: capitalize;
+		}
+		
+	}
+
+	// Tablist Seperator
+	&--style-seperator{
+		li::after {
+			position: absolute;
+			content: "";
+			width: 1px;
+			height: 15px;
+			background: $color-gray-1;
+			top: 50%;
+			transform: translateY(-50%);
+			left: calc(100% - 35px);
+		}
+
+		li:last-child::after{
+			display: none;
+		}
+	}
+	
+	// Tablist Link Gap
+	&--style-gap{
+		li:last-child > .nav-link{
+    		margin-right: 0
+		}
+
+		&-20{
+			li > .nav-link{margin-right: 20px;}
+		}
+		&-30{
+			li > .nav-link{margin-right: 30px;}
+		}
+		&-70{
+			li > .nav-link{margin-right: 70px;}
+		}
+
+
+
+	}
+}
+
+.tab-content .tab-pane {
+    display: block;
+    height: 0;
+    max-width: 100%;
+    visibility: hidden;
+    overflow: hidden;
+    opacity: 0;
+}
+
+.tab-content .tab-pane.active {
+    height: auto;
+    visibility: visible;
+    opacity: 1;
+    overflow: visible;
+}
+
+.tab-animate-zoom .tab-pane{
+    transform: translateY(-100px) scale(.5);
+    transition: all .5s ease;
+}
+.tab-animate-zoom .tab-pane.active{
+    transform: translateY(0) scale(1);
+}
+    

@@ -1,0 +1,108 @@
+﻿@model ShopNongsan.Models.Sanpham
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div>
+    @*@Html.ActionLink("Back to List", "Index")*@
+    <a href='@Url.Action("Index", "Sanphams")'>
+        <i class="fas fa-backward"> Quay lại</i>
+    </a>
+    @*  @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-primary btn-lg btn-block" })*@
+</div>
+<div class="chia-khoi">
+
+    @using (Html.BeginForm("Edit", "Sanphams", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id_sanpham)
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Mục</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                       Danh mục
+                    </td>
+                    <td>
+                        @Html.DropDownList("id_danhmuc", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.id_danhmuc, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td scope="row">
+                       Ảnh sản phẩm
+                    </td>
+                    <td>
+                        <img src="data:image/jpg;base64,@Html.DisplayFor(model => model.img_sanpham)" width="50" height="50" />
+                    </td>
+                  
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="file" name="img" id="img" value="" />
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Tên sản phẩm
+
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.tensanpham, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.tensanpham, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Giá tiền
+
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.giatien, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.giatien, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>Mô tả</td>
+                    <td>
+                        <p>
+                            @Html.EditorFor(model => model.mota, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.TextAreaFor(model => model.mota, new { cols = 35, @rows = 3 })
+                            @Html.ValidationMessageFor(model => model.mota, "", new { @class = "text-danger" })
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td> Số lượng</td>
+                    <td>
+                        @Html.EditorFor(model => model.soluong, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.soluong, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>Trạng thái</td>
+                    <td>
+                        @Html.EditorFor(model => model.trangthai, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.trangthai, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-primary btn-lg btn-block" />
+            </div>
+        </div>
+
+    }
+</div>

@@ -1,0 +1,91 @@
+﻿@model ShopNongsan.Models.DonhangUser
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DonhangUser</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.madonhang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.madonhang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_sanpham)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_sanpham)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ten_sanpham)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ten_sanpham)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.giatien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.giatien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.soluong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.soluong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngaymua)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngaymua)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngaygiao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngaygiao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trangthai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trangthai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nguoidung.ho)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nguoidung.ho)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_donhang }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,153 @@
+/*****************************
+20 - Component - Form
+*****************************/
+.form-box{
+	&__single-group{
+		display: flex;
+		flex-direction: column;
+		margin-top: 25px;
+
+		label{
+			font-size: 14px;
+			font-weight: 400;
+			text-align: left;
+		}
+
+		input, textarea, select{
+			border: 1px solid $color-gray-1;
+			border-radius: 3px;
+			padding: 7.5px 10px;
+			width: 100%;
+			outline: none;
+			font-size: 14px;
+		}
+	}
+}
+
+select{
+    outline: none;
+    border: 1px solid $color-gray-1;
+    padding: 5px 15px;
+    
+}
+
+label > span{
+    display: inline-block;
+    padding-left: 30px;
+}
+
+input[type=checkbox] {
+    appearance: none;
+    position: relative;
+
+    &::after{
+        position: absolute;
+        content: "";
+        width: 20px;
+        height: 20px;
+        border: 1px solid $color-primary;
+        top: -15px;
+        line-height: 20px;
+        background: $color-white;
+        text-align: center;
+        transition: all .3s ease;
+        border-radius: 2px;
+    }
+}
+
+
+input[type=checkbox]:checked::after{
+    content: "\f00c";
+    font-family: "Font Awesome 5 Light";
+    color: $color-white;
+    background: $color-primary;
+}
+
+
+input[type=radio] {
+    appearance: none;
+    position: relative;
+
+    &::after{
+        position: absolute;
+        content: "";
+        font-family: "Font Awesome 5 Free";
+        background: $color-white;
+        text-align: center;
+        transition: all .3s ease;
+        top: -17px;
+        color: $color-primary;
+    }
+}
+
+// Product Color
+.product-color{
+
+    &-select{
+        position: relative;
+        appearance: none;
+    }
+
+    &-select::after{
+        position: absolute;
+        content: "";
+        width: 15px;
+        height: 15px;
+        border-radius: 50% !important;
+        border: 1px solid transparent !important;
+    }
+
+    &-select[value="color-red"]::after{
+        background: $color-youtube !important;
+    }
+    &-select[value="color-green"]::after{
+        background: $color-green !important;
+    }
+    &-select[value="color-blue"]::after{
+        background: $color-primary !important;
+    }
+
+    &-select:checked::after{
+        content: "" !important;
+        border: 2px solid $color-black !important;
+    }
+
+}
+
+input[type=radio]:checked::after{
+    content: "\f058";
+}
+
+
+// Shipping Select
+input[type=radio].shipping-select::after{
+        position: absolute;
+		content: "\f111";
+		font-family: "Font Awesome 5 Free";
+		background: transparent;
+        text-align: center;
+		transition: all .3s ease;
+		top: -17px;
+		color: $color-primary;
+}
+
+input[type=radio].shipping-select:checked::after{
+    content: "\f058";
+}
+
+
+
+.from-box__buttons {
+    flex-direction: column;
+    align-items: flex-start !important;
+    @include breakpoint(small){
+        flex-direction: row;
+    }
+}
+
+.form-box-right{
+    margin-top: 25px;
+    @include breakpoint(small){
+        margin-top: 0;
+    }
+}

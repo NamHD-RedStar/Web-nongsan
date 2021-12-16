@@ -1,0 +1,311 @@
+/*****************************
+09 - Component - Product
+*****************************/
+.product {
+    &--1{
+        margin-top: 57px; 
+
+        @include breakpoint(medium){
+            margin-top: 76px;
+        } 
+
+        @include breakpoint(large){
+            margin-top: 96px;
+        }
+    }
+
+    & .swiper-outside-arrow-fix .m-t-50{
+        margin-top: 40px;
+        @include breakpoint(large){
+            margin-top: 50px;
+        }
+    }
+
+    &__box {
+        background-color: $color-white;
+        transition: all .3s ease;
+        padding: 15px;
+
+        &--lg{
+            &-hr{padding: 30px 20px;}
+            &-vr{padding: 30px 20px;}
+            
+        }
+
+        &--md{
+            padding: 16px 15px;
+            margin-top: 30px;
+            text-align: center;
+            
+            @include breakpoint(medium){
+                text-align: left;
+            }
+
+            @include breakpoint(large){
+                margin-top: 0;
+                
+            }
+        }
+
+        &--border {
+            border-radius: 3px;
+            border: 1px solid #ebebeb;
+
+            &:hover {
+                border: 1px solid $color-primary;
+            }
+
+        }
+
+        &--border-hover {
+            border-radius: 3px;
+            border: 2px solid transparent;
+
+            &:hover {
+                border: 2px solid #ebebeb;
+            }
+
+        }
+
+        & .btn--hover-zoom{
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        &:hover .btn--hover-zoom{
+            visibility: visible;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+    }
+
+    // Product Imgge
+    &__img-box {
+        overflow: hidden;
+        position: relative;
+
+    }
+
+    &__img--link {
+        display: block;
+    }
+
+    &__img {
+        max-width: 100%;
+    }
+
+    &__tag {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        color: #fff;
+        border-radius: 50%;
+        font-size: 13px;
+
+        &--new{
+            background: $color-primary;
+        }
+        &--discount{
+            background: $color-green;
+        }
+    }
+
+    &__wishlist-icon {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        color: $color-primary;
+        text-decoration: none !important;
+        visibility: hidden;
+        opacity: 0;
+        transition: all .3s ease;
+        transform: scale(.8);
+    }
+
+    &__box:hover &__wishlist-icon {
+        visibility: visible;
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    // Product Counter 
+    &__counter-box {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        text-align: center;
+        background-color: rgba(0, 99, 209, 0.95);
+        color: $color-white;
+        border-radius: 3px;
+        font-weight: 500;
+        height: 55px;
+    }
+
+    &__counter-item
+     {
+        position: absolute;
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        top: 50%;
+        transform: translateY(-50%);
+
+        p {
+            font-size: 13px;
+            font-weight: 400;
+            text-transform: uppercase;
+            margin-bottom: 0;
+        }
+
+    }
+
+    &__upper-btn{
+        position: absolute;
+        text-align: center;
+        left: auto;
+        right: 0;
+        top: 75%;
+        width: 100%;
+    }
+
+
+    // Product Price
+    &__price {
+        &-del {
+            font-size: 14px;
+            color: #a4a4a4;
+            font-weight: 400;
+            text-decoration: line-through;
+            margin-right: 5px;
+        }
+
+        &-reg {
+            font-size: 16px;
+            font-weight: 500;
+            color: #0063d1;
+        }
+
+    }
+
+
+    // Product link
+    &__link {
+        display: block;
+        overflow: hidden;
+        color: #242424;
+        font-size: 14px;
+        line-height: 24px;
+        
+        &--weight-regular{
+            font-weight: 500
+        }
+        
+        &--weight-light{
+            font-weight: 400
+        }
+
+
+
+        &:hover {
+            color: $color-primary;
+            text-decoration: none;
+        }
+
+        &--underline:hover {
+            text-decoration: underline;
+        }
+    }
+
+    // Product Description
+    &__desc {
+        font-size: 14px;
+        color: #777777;
+        line-height: 24px;
+    }
+
+    // Product review
+    &__review {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+
+        li {
+            margin-right: 2px;
+        }
+
+        li:last-child {
+            margin-right: 0px;
+        }
+
+        &--fill {
+            color: $color-primary;
+        }
+        
+        &--blank {
+            color: $color-black-1;
+        }
+    }
+
+
+    // Product Tab
+    &-tablist .nav-link,
+    &__extra-nav .nav-link {
+        color: #242424;
+        &.active, &:hover{color: $color-primary;}
+    }
+
+    &-tablist--style-title li{
+        position: relative;
+
+        &::after{
+            content: "";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 15px;
+            width: 0px;
+            background: $color-gray;
+        }
+
+        @include breakpoint(medium){
+            &::after{
+                content: "";
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                height: 15px;
+                width: 1px;
+                background: $color-gray;
+            }
+    
+            &:first-child::after{
+                display: none;
+            }
+        }
+        
+        
+    }
+
+    &-tablist--style-title .nav-link{
+        font-size: 20px;
+        line-height: 22px;
+        font-weight: 500;
+        text-transform: capitalize;
+        color: $color-gray;
+        &.active, &:hover{color: $color-black;}
+    }
+
+}
+
+

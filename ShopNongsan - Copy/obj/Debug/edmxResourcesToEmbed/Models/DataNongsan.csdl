@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ShopNongsanModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Binhluan">
+    <Key>
+      <PropertyRef Name="id_binhluan" />
+    </Key>
+    <Property Name="id_binhluan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_taikhoan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="danhgia" Type="Int32" />
+    <Property Name="cmt" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Taikhoan" Relationship="Self.fk_Binhluan" FromRole="Binhluan" ToRole="Taikhoan" />
+  </EntityType>
+  <EntityType Name="DanhmucSanpham">
+    <Key>
+      <PropertyRef Name="id_danhmuc" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_danhmuc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tendanhmuc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="img_danhmuc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Sanphams" Relationship="Self.fk_Danhmucsp" FromRole="DanhmucSanpham" ToRole="Sanpham" />
+  </EntityType>
+  <EntityType Name="Giohang">
+    <Key>
+      <PropertyRef Name="id_giohang" />
+    </Key>
+    <Property Name="id_giohang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_taikhoan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_sanpham" Type="Int32" />
+    <Property Name="giatien" Type="Int32" />
+    <Property Name="soluong" Type="Int32" />
+    <NavigationProperty Name="Taikhoan" Relationship="Self.fk_Giohang" FromRole="Giohang" ToRole="Taikhoan" />
+  </EntityType>
+  <EntityType Name="Taikhoan">
+    <Key>
+      <PropertyRef Name="id_taikhoan" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_taikhoan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Binhluans" Relationship="Self.fk_Binhluan" FromRole="Taikhoan" ToRole="Binhluan" />
+    <NavigationProperty Name="Giohangs" Relationship="Self.fk_Giohang" FromRole="Taikhoan" ToRole="Giohang" />
+  </EntityType>
+  <EntityType Name="Sanpham">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_danhmuc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="tensanpham" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="giatien" Type="Int32" />
+    <Property Name="img_anh" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="mota" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ngay_them" Type="DateTime" Precision="0" />
+    <Property Name="soluong" Type="Int32" />
+    <Property Name="soluotmua" Type="Int32" />
+    <Property Name="trangthai" Type="Int32" />
+    <NavigationProperty Name="DanhmucSanpham" Relationship="Self.fk_Danhmucsp" FromRole="Sanpham" ToRole="DanhmucSanpham" />
+  </EntityType>
+  <Association Name="fk_Binhluan">
+    <End Role="Taikhoan" Type="Self.Taikhoan" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Binhluan" Type="Self.Binhluan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Taikhoan">
+        <PropertyRef Name="id_taikhoan" />
+      </Principal>
+      <Dependent Role="Binhluan">
+        <PropertyRef Name="id_taikhoan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Danhmucsp">
+    <End Role="DanhmucSanpham" Type="Self.DanhmucSanpham" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Sanpham" Type="Self.Sanpham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DanhmucSanpham">
+        <PropertyRef Name="id_danhmuc" />
+      </Principal>
+      <Dependent Role="Sanpham">
+        <PropertyRef Name="id_danhmuc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Giohang">
+    <End Role="Taikhoan" Type="Self.Taikhoan" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Giohang" Type="Self.Giohang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Taikhoan">
+        <PropertyRef Name="id_taikhoan" />
+      </Principal>
+      <Dependent Role="Giohang">
+        <PropertyRef Name="id_taikhoan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ShopNongsanEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Binhluans" EntityType="Self.Binhluan" />
+    <EntitySet Name="DanhmucSanphams" EntityType="Self.DanhmucSanpham" />
+    <EntitySet Name="Giohangs" EntityType="Self.Giohang" />
+    <EntitySet Name="Taikhoans" EntityType="Self.Taikhoan" />
+    <EntitySet Name="Sanphams" EntityType="Self.Sanpham" />
+    <AssociationSet Name="fk_Binhluan" Association="Self.fk_Binhluan">
+      <End Role="Taikhoan" EntitySet="Taikhoans" />
+      <End Role="Binhluan" EntitySet="Binhluans" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Danhmucsp" Association="Self.fk_Danhmucsp">
+      <End Role="DanhmucSanpham" EntitySet="DanhmucSanphams" />
+      <End Role="Sanpham" EntitySet="Sanphams" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Giohang" Association="Self.fk_Giohang">
+      <End Role="Taikhoan" EntitySet="Taikhoans" />
+      <End Role="Giohang" EntitySet="Giohangs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

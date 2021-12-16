@@ -1,0 +1,108 @@
+/*****************************
+14 - Component - Shop Sorting
+*****************************/
+.sort-box{
+    border: 1px solid #dee2e6;
+    padding: 20px;
+    border-radius: 3px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-size: 13px;
+    flex-direction: column;
+    @include breakpoint(medium){
+        flex-direction: row;
+        align-items: center;
+    }
+
+    &__left, &__right{
+        display: flex;
+        align-items: center;
+
+        span{display: inline-block;}
+    }
+
+    &__left{
+        span{margin-left: 55px;}
+        margin-bottom: 20px;
+        @include breakpoint(medium){
+            margin-bottom: 0;
+        }
+    }
+
+    &__right{
+        span{margin-right: 20px;}
+    }
+
+    &__tab-list{
+        
+        li{
+            margin-right: 15px;
+            display: inline-block;
+            &:last-child{margin-right: 0;}
+        }
+    }
+}
+
+.sort-nav-link{
+    display: block;
+    font-size: 18px;
+    text-decoration: none !important;
+    color: $color-black-1;
+
+    &.active{
+        color: $color-primary;
+    }
+}
+
+.select-sort{
+    padding: 5px 100px 5px 15px;
+    border-radius: 3px;
+    appearance: none;
+
+    option{
+        text-align: right;
+        border: 1px solid $color-gray-1;
+        padding: 5px 15px;
+    }
+
+    &__arrow{
+        position: relative;
+        margin-bottom: 0;
+    
+        &::after{
+            content: "\f0d7";
+            position: absolute;
+            font-family: "Font Awesome 5 Free";
+            font-weight: 600;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 25px;
+        }
+    }
+}
+
+
+
+.tab-pane > .product__box--default{
+    transform: scale(.3);
+    transition: all .3s ease;
+}
+
+.tab-pane.active > .product__box--default{
+    transform: scale(1);
+}
+.tab-pane > .product__box--list{
+    transform: translateX(100px);
+    transition: all .5s ease;
+}
+
+.tab-pane.active > .product__box--list{
+    transform: translateX(0);
+}
+
+.product__box--list .product__img {
+    margin: 0 auto;
+    text-align: center;
+    display: block;
+}

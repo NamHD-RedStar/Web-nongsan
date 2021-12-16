@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_LayoutShop.cshtml";
+    string trangthai = "";
+}
+
+<h2>Đơn hàng của bạn</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Mã đơn hàng</th>
+            <th scope="col">Ngày mua</th>
+            <th scope="col">Sản phẩm của bạn</th>
+            <th scope="col">Tổng tiền</th>
+            <th scope="col">Trạng thái</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            //Hiển thị thông tin đơn hàng
+            foreach (var item in ViewBag.donhangUsers)
+            {
+                int tongtien = item.giatien * item.soluong;
+                if (@item.trangthai == 0)
+                {
+                    trangthai = "Đang chờ chốt đơn";
+                }
+                else
+                {
+                    trangthai = "Đang giao";
+                }
+                <tr>
+                    <th scope="row">@item.madonhang</th>
+                    <td>@item.ngaymua.ToString("dd-MM-yyyy")</td>
+                    <td>@item.ten_sanpham</td>
+                    <td>@tongtien.ToString("n0") đ</td>
+                    <td>@trangthai</td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
+

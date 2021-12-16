@@ -1,0 +1,542 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ShopNongsanModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Add_magiamgia_donhang">
+          <Key>
+            <PropertyRef Name="id_mgg_donhang" />
+          </Key>
+          <Property Name="id_mgg_donhang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="madonhang" Type="nvarchar" MaxLength="50" />
+          <Property Name="giamgia" Type="int" />
+        </EntityType>
+        <EntityType Name="Danhgianguoidung">
+          <Key>
+            <PropertyRef Name="id_danhgia" />
+          </Key>
+          <Property Name="id_danhgia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_nguoidung" Type="int" />
+          <Property Name="id_sanpham" Type="int" />
+          <Property Name="sao_danhgia" Type="int" />
+          <Property Name="noidung" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="DanhmucSanpham">
+          <Key>
+            <PropertyRef Name="id_danhmuc" />
+          </Key>
+          <Property Name="id_danhmuc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tendanhmuc" Type="nvarchar" MaxLength="50" />
+          <Property Name="img_danhmuc" Type="text" />
+        </EntityType>
+        <EntityType Name="DonhangUser">
+          <Key>
+            <PropertyRef Name="id_donhang" />
+          </Key>
+          <Property Name="id_donhang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="madonhang" Type="nvarchar" MaxLength="50" />
+          <Property Name="id_nguoidung" Type="int" />
+          <Property Name="id_sanpham" Type="int" />
+          <Property Name="ten_sanpham" Type="nvarchar" MaxLength="50" />
+          <Property Name="giatien" Type="int" />
+          <Property Name="soluong" Type="int" />
+          <Property Name="ngaymua" Type="smalldatetime" />
+          <Property Name="ngaygiao" Type="smalldatetime" />
+          <Property Name="trangthai" Type="int" />
+        </EntityType>
+        <EntityType Name="GiahangUser">
+          <Key>
+            <PropertyRef Name="id_giohang" />
+          </Key>
+          <Property Name="id_giohang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_nguoidung" Type="int" />
+          <Property Name="id_sanpham" Type="int" />
+          <Property Name="img_sanpham" Type="text" />
+          <Property Name="tensanpham" Type="nvarchar" MaxLength="100" />
+          <Property Name="giatien" Type="int" />
+          <Property Name="soluong" Type="int" />
+        </EntityType>
+        <EntityType Name="Magiamgia">
+          <Key>
+            <PropertyRef Name="id_magiamgia" />
+          </Key>
+          <Property Name="id_magiamgia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="magiamgia" Type="nvarchar" MaxLength="50" />
+          <Property Name="dongia" Type="int" />
+          <Property Name="tenmagiamgia" Type="nvarchar" MaxLength="50" />
+          <Property Name="soluong" Type="int" />
+          <Property Name="trangthai" Type="int" />
+        </EntityType>
+        <EntityType Name="Nguoidung">
+          <Key>
+            <PropertyRef Name="id_nguoidung" />
+          </Key>
+          <Property Name="id_nguoidung" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ho" Type="nvarchar" MaxLength="100" />
+          <Property Name="ten" Type="nvarchar" MaxLength="100" />
+          <Property Name="anh_daidien" Type="text" />
+          <Property Name="diachi" Type="nvarchar" MaxLength="100" />
+          <Property Name="sdt" Type="varchar" MaxLength="15" />
+          <Property Name="gmail" Type="nvarchar" MaxLength="100" />
+          <Property Name="matkhau" Type="nvarchar" MaxLength="50" />
+          <Property Name="ngaydangky" Type="smalldatetime" />
+          <Property Name="quyen" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Nhantin">
+          <Key>
+            <PropertyRef Name="id_tinnhan" />
+          </Key>
+          <Property Name="id_tinnhan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_admin" Type="int" />
+          <Property Name="id_khachhang" Type="int" />
+          <Property Name="noidungnhan" Type="nvarchar(max)" />
+          <Property Name="thoigiannhan" Type="smalldatetime" />
+          <Property Name="trangthai" Type="int" />
+        </EntityType>
+        <EntityType Name="Sanpham">
+          <Key>
+            <PropertyRef Name="id_sanpham" />
+          </Key>
+          <Property Name="id_sanpham" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_danhmuc" Type="int" />
+          <Property Name="tensanpham" Type="nvarchar" MaxLength="50" />
+          <Property Name="giatien" Type="int" />
+          <Property Name="img_sanpham" Type="text" />
+          <Property Name="list_img" Type="text" />
+          <Property Name="mota" Type="nvarchar(max)" />
+          <Property Name="soluong" Type="int" />
+          <Property Name="soluotmua" Type="int" />
+          <Property Name="ngay_them" Type="smalldatetime" />
+          <Property Name="trangthai" Type="int" />
+        </EntityType>
+        <Association Name="fk_Danhmucsp_sanpham">
+          <End Role="DanhmucSanpham" Type="Self.DanhmucSanpham" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Sanpham" Type="Self.Sanpham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DanhmucSanpham">
+              <PropertyRef Name="id_danhmuc" />
+            </Principal>
+            <Dependent Role="Sanpham">
+              <PropertyRef Name="id_danhmuc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DonhangUser">
+          <End Role="Nguoidung" Type="Self.Nguoidung" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DonhangUser" Type="Self.DonhangUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nguoidung">
+              <PropertyRef Name="id_nguoidung" />
+            </Principal>
+            <Dependent Role="DonhangUser">
+              <PropertyRef Name="id_nguoidung" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Giohang_user">
+          <End Role="Nguoidung" Type="Self.Nguoidung" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="GiahangUser" Type="Self.GiahangUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nguoidung">
+              <PropertyRef Name="id_nguoidung" />
+            </Principal>
+            <Dependent Role="GiahangUser">
+              <PropertyRef Name="id_nguoidung" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="kf_Danhgianguoidung">
+          <End Role="Nguoidung" Type="Self.Nguoidung" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Danhgianguoidung" Type="Self.Danhgianguoidung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nguoidung">
+              <PropertyRef Name="id_nguoidung" />
+            </Principal>
+            <Dependent Role="Danhgianguoidung">
+              <PropertyRef Name="id_nguoidung" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ShopNongsanModelStoreContainer">
+          <EntitySet Name="Add_magiamgia_donhang" EntityType="Self.Add_magiamgia_donhang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Danhgianguoidung" EntityType="Self.Danhgianguoidung" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DanhmucSanpham" EntityType="Self.DanhmucSanpham" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DonhangUser" EntityType="Self.DonhangUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GiahangUser" EntityType="Self.GiahangUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Magiamgia" EntityType="Self.Magiamgia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nguoidung" EntityType="Self.Nguoidung" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nhantin" EntityType="Self.Nhantin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sanpham" EntityType="Self.Sanpham" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_Danhmucsp_sanpham" Association="Self.fk_Danhmucsp_sanpham">
+            <End Role="DanhmucSanpham" EntitySet="DanhmucSanpham" />
+            <End Role="Sanpham" EntitySet="Sanpham" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DonhangUser" Association="Self.fk_DonhangUser">
+            <End Role="Nguoidung" EntitySet="Nguoidung" />
+            <End Role="DonhangUser" EntitySet="DonhangUser" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Giohang_user" Association="Self.fk_Giohang_user">
+            <End Role="Nguoidung" EntitySet="Nguoidung" />
+            <End Role="GiahangUser" EntitySet="GiahangUser" />
+          </AssociationSet>
+          <AssociationSet Name="kf_Danhgianguoidung" Association="Self.kf_Danhgianguoidung">
+            <End Role="Nguoidung" EntitySet="Nguoidung" />
+            <End Role="Danhgianguoidung" EntitySet="Danhgianguoidung" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ShopNongsanModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DanhmucSanpham">
+          <Key>
+            <PropertyRef Name="id_danhmuc" />
+          </Key>
+          <Property Name="id_danhmuc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tendanhmuc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="img_danhmuc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Sanphams" Relationship="Self.fk_Danhmucsp_sanpham" FromRole="DanhmucSanpham" ToRole="Sanpham" />
+        </EntityType>
+        <EntityType Name="Nguoidung">
+          <Key>
+            <PropertyRef Name="id_nguoidung" />
+          </Key>
+          <Property Name="id_nguoidung" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ho" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ten" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="anh_daidien" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="diachi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="sdt" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="gmail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="matkhau" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ngaydangky" Type="DateTime" Precision="0" />
+          <Property Name="quyen" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="GiahangUsers" Relationship="ShopNongsanModel.fk_Giohang_user" FromRole="Nguoidung" ToRole="GiahangUser" />
+          <NavigationProperty Name="Danhgianguoidungs" Relationship="ShopNongsanModel.kf_Danhgianguoidung" FromRole="Nguoidung" ToRole="Danhgianguoidung" />
+          <NavigationProperty Name="DonhangUsers" Relationship="ShopNongsanModel.fk_DonhangUser" FromRole="Nguoidung" ToRole="DonhangUser" />
+        </EntityType>
+        <EntityType Name="Sanpham">
+          <Key>
+            <PropertyRef Name="id_sanpham" />
+          </Key>
+          <Property Name="id_sanpham" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_danhmuc" Type="Int32" />
+          <Property Name="tensanpham" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="giatien" Type="Int32" />
+          <Property Name="img_sanpham" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="list_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="mota" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="soluong" Type="Int32" />
+          <Property Name="soluotmua" Type="Int32" />
+          <Property Name="ngay_them" Type="DateTime" Precision="0" />
+          <Property Name="trangthai" Type="Int32" />
+          <NavigationProperty Name="DanhmucSanpham" Relationship="Self.fk_Danhmucsp_sanpham" FromRole="Sanpham" ToRole="DanhmucSanpham" />
+        </EntityType>
+        <Association Name="fk_Danhmucsp_sanpham">
+          <End Role="DanhmucSanpham" Type="Self.DanhmucSanpham" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Sanpham" Type="Self.Sanpham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DanhmucSanpham">
+              <PropertyRef Name="id_danhmuc" />
+            </Principal>
+            <Dependent Role="Sanpham">
+              <PropertyRef Name="id_danhmuc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ShopNongsanEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DanhmucSanphams" EntityType="Self.DanhmucSanpham" />
+          <EntitySet Name="Nguoidungs" EntityType="Self.Nguoidung" />
+          <EntitySet Name="Sanphams" EntityType="Self.Sanpham" />
+          <AssociationSet Name="fk_Danhmucsp_sanpham" Association="Self.fk_Danhmucsp_sanpham">
+            <End Role="DanhmucSanpham" EntitySet="DanhmucSanphams" />
+            <End Role="Sanpham" EntitySet="Sanphams" />
+          </AssociationSet>
+          <EntitySet Name="GiahangUsers" EntityType="ShopNongsanModel.GiahangUser" />
+          <AssociationSet Name="fk_Giohang_user" Association="ShopNongsanModel.fk_Giohang_user">
+            <End Role="Nguoidung" EntitySet="Nguoidungs" />
+            <End Role="GiahangUser" EntitySet="GiahangUsers" />
+          </AssociationSet>
+          <EntitySet Name="Danhgianguoidungs" EntityType="ShopNongsanModel.Danhgianguoidung" />
+          <AssociationSet Name="kf_Danhgianguoidung" Association="ShopNongsanModel.kf_Danhgianguoidung">
+            <End Role="Nguoidung" EntitySet="Nguoidungs" />
+            <End Role="Danhgianguoidung" EntitySet="Danhgianguoidungs" />
+          </AssociationSet>
+          <EntitySet Name="DonhangUsers" EntityType="ShopNongsanModel.DonhangUser" />
+          <AssociationSet Name="fk_DonhangUser" Association="ShopNongsanModel.fk_DonhangUser">
+            <End Role="Nguoidung" EntitySet="Nguoidungs" />
+            <End Role="DonhangUser" EntitySet="DonhangUsers" />
+          </AssociationSet>
+          <EntitySet Name="Nhantins" EntityType="ShopNongsanModel.Nhantin" />
+          <EntitySet Name="Magiamgias" EntityType="ShopNongsanModel.Magiamgia" />
+          <EntitySet Name="Add_magiamgia_donhang" EntityType="ShopNongsanModel.Add_magiamgia_donhang" />
+        </EntityContainer>
+        <EntityType Name="GiahangUser">
+          <Key>
+            <PropertyRef Name="id_giohang" />
+          </Key>
+          <Property Name="id_giohang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_nguoidung" Type="Int32" />
+          <Property Name="id_sanpham" Type="Int32" />
+          <Property Name="img_sanpham" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="tensanpham" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="giatien" Type="Int32" />
+          <Property Name="soluong" Type="Int32" />
+          <NavigationProperty Name="Nguoidung" Relationship="ShopNongsanModel.fk_Giohang_user" FromRole="GiahangUser" ToRole="Nguoidung" />
+        </EntityType>
+        <Association Name="fk_Giohang_user">
+          <End Type="ShopNongsanModel.Nguoidung" Role="Nguoidung" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ShopNongsanModel.GiahangUser" Role="GiahangUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nguoidung">
+              <PropertyRef Name="id_nguoidung" />
+            </Principal>
+            <Dependent Role="GiahangUser">
+              <PropertyRef Name="id_nguoidung" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Danhgianguoidung">
+          <Key>
+            <PropertyRef Name="id_danhgia" />
+          </Key>
+          <Property Name="id_danhgia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_nguoidung" Type="Int32" />
+          <Property Name="id_sanpham" Type="Int32" />
+          <Property Name="sao_danhgia" Type="Int32" />
+          <Property Name="noidung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Nguoidung" Relationship="ShopNongsanModel.kf_Danhgianguoidung" FromRole="Danhgianguoidung" ToRole="Nguoidung" />
+        </EntityType>
+        <Association Name="kf_Danhgianguoidung">
+          <End Type="ShopNongsanModel.Nguoidung" Role="Nguoidung" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ShopNongsanModel.Danhgianguoidung" Role="Danhgianguoidung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nguoidung">
+              <PropertyRef Name="id_nguoidung" />
+            </Principal>
+            <Dependent Role="Danhgianguoidung">
+              <PropertyRef Name="id_nguoidung" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DonhangUser">
+          <Key>
+            <PropertyRef Name="id_donhang" />
+          </Key>
+          <Property Name="id_donhang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="madonhang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_nguoidung" Type="Int32" />
+          <Property Name="id_sanpham" Type="Int32" />
+          <Property Name="ten_sanpham" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="giatien" Type="Int32" />
+          <Property Name="soluong" Type="Int32" />
+          <Property Name="ngaymua" Type="DateTime" Precision="0" />
+          <Property Name="ngaygiao" Type="DateTime" Precision="0" />
+          <Property Name="trangthai" Type="Int32" />
+          <NavigationProperty Name="Nguoidung" Relationship="ShopNongsanModel.fk_DonhangUser" FromRole="DonhangUser" ToRole="Nguoidung" />
+        </EntityType>
+        <Association Name="fk_DonhangUser">
+          <End Type="ShopNongsanModel.Nguoidung" Role="Nguoidung" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ShopNongsanModel.DonhangUser" Role="DonhangUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nguoidung">
+              <PropertyRef Name="id_nguoidung" />
+            </Principal>
+            <Dependent Role="DonhangUser">
+              <PropertyRef Name="id_nguoidung" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Nhantin">
+          <Key>
+            <PropertyRef Name="id_tinnhan" />
+          </Key>
+          <Property Name="id_tinnhan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_admin" Type="Int32" />
+          <Property Name="id_khachhang" Type="Int32" />
+          <Property Name="noidungnhan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="thoigiannhan" Type="DateTime" Precision="0" />
+          <Property Name="trangthai" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Magiamgia">
+          <Key>
+            <PropertyRef Name="id_magiamgia" />
+          </Key>
+          <Property Name="id_magiamgia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="magiamgia1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dongia" Type="Int32" />
+          <Property Name="tenmagiamgia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="soluong" Type="Int32" />
+          <Property Name="trangthai" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Add_magiamgia_donhang">
+          <Key>
+            <PropertyRef Name="id_mgg_donhang" />
+          </Key>
+          <Property Name="id_mgg_donhang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="madonhang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="giamgia" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ShopNongsanModelStoreContainer" CdmEntityContainer="ShopNongsanEntities">
+          <EntitySetMapping Name="DanhmucSanphams">
+            <EntityTypeMapping TypeName="ShopNongsanModel.DanhmucSanpham">
+              <MappingFragment StoreEntitySet="DanhmucSanpham">
+                <ScalarProperty Name="id_danhmuc" ColumnName="id_danhmuc" />
+                <ScalarProperty Name="tendanhmuc" ColumnName="tendanhmuc" />
+                <ScalarProperty Name="img_danhmuc" ColumnName="img_danhmuc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nguoidungs">
+            <EntityTypeMapping TypeName="ShopNongsanModel.Nguoidung">
+              <MappingFragment StoreEntitySet="Nguoidung">
+                <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
+                <ScalarProperty Name="ho" ColumnName="ho" />
+                <ScalarProperty Name="ten" ColumnName="ten" />
+                <ScalarProperty Name="anh_daidien" ColumnName="anh_daidien" />
+                <ScalarProperty Name="diachi" ColumnName="diachi" />
+                <ScalarProperty Name="sdt" ColumnName="sdt" />
+                <ScalarProperty Name="gmail" ColumnName="gmail" />
+                <ScalarProperty Name="matkhau" ColumnName="matkhau" />
+                <ScalarProperty Name="ngaydangky" ColumnName="ngaydangky" />
+                <ScalarProperty Name="quyen" ColumnName="quyen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sanphams">
+            <EntityTypeMapping TypeName="ShopNongsanModel.Sanpham">
+              <MappingFragment StoreEntitySet="Sanpham">
+                <ScalarProperty Name="id_sanpham" ColumnName="id_sanpham" />
+                <ScalarProperty Name="id_danhmuc" ColumnName="id_danhmuc" />
+                <ScalarProperty Name="tensanpham" ColumnName="tensanpham" />
+                <ScalarProperty Name="giatien" ColumnName="giatien" />
+                <ScalarProperty Name="img_sanpham" ColumnName="img_sanpham" />
+                <ScalarProperty Name="list_img" ColumnName="list_img" />
+                <ScalarProperty Name="mota" ColumnName="mota" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+                <ScalarProperty Name="soluotmua" ColumnName="soluotmua" />
+                <ScalarProperty Name="ngay_them" ColumnName="ngay_them" />
+                <ScalarProperty Name="trangthai" ColumnName="trangthai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GiahangUsers">
+            <EntityTypeMapping TypeName="ShopNongsanModel.GiahangUser">
+              <MappingFragment StoreEntitySet="GiahangUser">
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+                <ScalarProperty Name="giatien" ColumnName="giatien" />
+                <ScalarProperty Name="tensanpham" ColumnName="tensanpham" />
+                <ScalarProperty Name="img_sanpham" ColumnName="img_sanpham" />
+                <ScalarProperty Name="id_sanpham" ColumnName="id_sanpham" />
+                <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
+                <ScalarProperty Name="id_giohang" ColumnName="id_giohang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Danhgianguoidungs">
+            <EntityTypeMapping TypeName="ShopNongsanModel.Danhgianguoidung">
+              <MappingFragment StoreEntitySet="Danhgianguoidung">
+                <ScalarProperty Name="noidung" ColumnName="noidung" />
+                <ScalarProperty Name="sao_danhgia" ColumnName="sao_danhgia" />
+                <ScalarProperty Name="id_sanpham" ColumnName="id_sanpham" />
+                <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
+                <ScalarProperty Name="id_danhgia" ColumnName="id_danhgia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DonhangUsers">
+            <EntityTypeMapping TypeName="ShopNongsanModel.DonhangUser">
+              <MappingFragment StoreEntitySet="DonhangUser">
+                <ScalarProperty Name="trangthai" ColumnName="trangthai" />
+                <ScalarProperty Name="ngaygiao" ColumnName="ngaygiao" />
+                <ScalarProperty Name="ngaymua" ColumnName="ngaymua" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+                <ScalarProperty Name="giatien" ColumnName="giatien" />
+                <ScalarProperty Name="ten_sanpham" ColumnName="ten_sanpham" />
+                <ScalarProperty Name="id_sanpham" ColumnName="id_sanpham" />
+                <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
+                <ScalarProperty Name="madonhang" ColumnName="madonhang" />
+                <ScalarProperty Name="id_donhang" ColumnName="id_donhang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nhantins">
+            <EntityTypeMapping TypeName="ShopNongsanModel.Nhantin">
+              <MappingFragment StoreEntitySet="Nhantin">
+                <ScalarProperty Name="trangthai" ColumnName="trangthai" />
+                <ScalarProperty Name="thoigiannhan" ColumnName="thoigiannhan" />
+                <ScalarProperty Name="noidungnhan" ColumnName="noidungnhan" />
+                <ScalarProperty Name="id_khachhang" ColumnName="id_khachhang" />
+                <ScalarProperty Name="id_admin" ColumnName="id_admin" />
+                <ScalarProperty Name="id_tinnhan" ColumnName="id_tinnhan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Magiamgias">
+            <EntityTypeMapping TypeName="ShopNongsanModel.Magiamgia">
+              <MappingFragment StoreEntitySet="Magiamgia">
+                <ScalarProperty Name="trangthai" ColumnName="trangthai" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+                <ScalarProperty Name="tenmagiamgia" ColumnName="tenmagiamgia" />
+                <ScalarProperty Name="dongia" ColumnName="dongia" />
+                <ScalarProperty Name="magiamgia1" ColumnName="magiamgia" />
+                <ScalarProperty Name="id_magiamgia" ColumnName="id_magiamgia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Add_magiamgia_donhang">
+            <EntityTypeMapping TypeName="ShopNongsanModel.Add_magiamgia_donhang">
+              <MappingFragment StoreEntitySet="Add_magiamgia_donhang">
+                <ScalarProperty Name="giamgia" ColumnName="giamgia" />
+                <ScalarProperty Name="madonhang" ColumnName="madonhang" />
+                <ScalarProperty Name="id_mgg_donhang" ColumnName="id_mgg_donhang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

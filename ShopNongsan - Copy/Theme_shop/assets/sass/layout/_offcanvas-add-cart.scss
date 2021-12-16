@@ -1,0 +1,155 @@
+/*****************************
+37 - Layout - Addcart Offacnvas
+*****************************/
+
+// Header Checkout Popup Box
+.offcanvas-add-cart{
+    background: $color-white;
+    overflow-y: auto;
+
+    &__close{
+        color: $color-white;
+        background: $color-black-1;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        border-radius: 5px;
+        display: inline-block;
+        font-weight: 300;
+    }
+
+    &__top{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: $color-primary;
+        padding-bottom: 10px;
+        border-bottom: 1px solid $color-white-2;
+        text-transform: capitalize !important;
+
+        &-text{
+            font-size: 16px;
+            font-weight: 400;
+            margin-bottom: 0;
+            
+
+            & i{
+                color: $color-white;
+                background: $color-primary;
+                width: 30px;
+                height: 30px;
+                line-height: 30px;
+                text-align: center;
+                border-radius: 3px;
+                display: inline-block;
+                font-weight: 300;
+                margin-right: 10px;
+            }
+        }
+        
+    }
+
+    &__list {
+        display: flex;
+        font-size: 14px;
+        margin-bottom: 20px;
+        
+        &:last-child{
+            margin-bottom: 0;
+        }
+    }
+
+    &__img-box {
+        margin-right: 25px;
+        overflow: hidden;
+    }
+
+    &__img{
+        width: 100%;
+    }
+
+    &__link{
+        display: block;
+        width: 90%;
+        &:hover{color: $color-primary}
+    }
+
+    &__detail  {
+        span{ display: block;}
+    }
+
+    &__item-dismiss {
+        right: 0;
+        top: 0;
+        border: none;
+        width: 15px;
+        height: 15px;
+        line-height: 15px;
+        border-radius: 50%;
+        background: #333;
+        color: #fff;
+        text-align: center;
+    }
+
+    &__item-count {
+        left: 0;
+        top: 0;
+        color: #fff;
+        background: #0063d1;
+        width: 25px;
+        height: 25px;
+        line-height: 25px;
+        text-align: center;
+        border-radius: 50%;
+    }
+
+    &__price {
+        color: #0063d1;
+        font-weight: 600;
+        font-size: 16px;
+        margin: 5px 0;
+    }
+
+    &__info {
+        font-size: 12px;
+        color: #777;
+    }
+
+    &__checkout-list {
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    &__checkout-info {
+        padding-top: 25px;
+        border-top: 1px solid #777;
+        
+    }
+    
+    &__menu {
+        margin-bottom: 35px;
+    }
+    
+    &__checkout-left-info {
+        color: #777;
+    }
+    
+    &__checkout-right-info {
+        color: #0063d1;
+    }
+
+    &__btn-checkout{
+        margin-top: 50px;
+    }
+
+    &__checkout-box-bottom{
+        background: #fff;
+        position: sticky;
+        bottom: 0;
+        padding-bottom: 15px;
+    }
+}

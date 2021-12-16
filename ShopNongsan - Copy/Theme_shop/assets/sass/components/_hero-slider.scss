@@ -1,0 +1,139 @@
+/*****************************
+06 - Component - Hero Slider
+*****************************/
+.hero {
+	position: relative;
+	overflow: hidden;
+
+	// Hero Image
+	&-img{
+		@include bg-cover;
+		position: relative;
+		
+		// Hero Image Height
+		&--1{
+			height: 340px;
+			
+			@include breakpoint(medium){height: 380px;}
+			@include breakpoint(large){height: 440px;}
+			@include breakpoint(xlarge){height: 498px;}
+			
+		}
+
+		&--2{
+			height: 380px;
+			
+		}		
+		
+		//Hero Image - Content Animation
+		&.swiper-slide-active{
+			.hero__content{
+				.title:nth-child(1){
+					animation: animate-top .5s linear .2s backwards;
+				}
+				.title:nth-child(2){
+					animation: animate-left .5s linear 1s backwards;
+				}
+				.title:nth-child(3){
+					animation: animate-right .5s linear 2s backwards;
+				}
+
+				.btn{
+					animation: animate-zoom .5s linear 3s backwards;
+					&:hover{
+						color: $color-white;
+					}
+				}
+			}
+			
+		}
+
+		
+	}
+
+
+	
+	// Hero Image Content
+	&__content{
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 100%;
+	}
+	
+	// Hero Image Arrow Navigation
+	&__nav{
+		color: $color-white-2;
+		font-size: 28px;
+		visibility: hidden;
+		opacity: 0;
+		transition: all .3s;
+		
+
+		&--next{
+			right: calc(0% - 10px);
+			&::after{content: "";}
+		}
+
+		&--prev{
+			left: calc(0% - 10px);
+			&::after{content: "";}
+		}
+	}
+
+	&:hover &__nav{
+		visibility: hidden;
+		opacity: 0;
+		
+		@include breakpoint(large){
+			visibility: visible;
+			opacity: 1;
+		}
+		
+
+		&--next{
+			right: calc(0% + 10px)
+		}
+
+		&--prev{
+			left: calc(0% + 10px);
+		}
+	}
+	
+	// Hero Image Dot Navigation
+	&__dots{
+		width: 100%;
+		&.swiper-pagination{
+			text-align: center;
+			&-bullets{
+			bottom: 20px;
+		}
+		}
+		
+
+		&--2.swiper-pagination{
+			text-align: left !important;
+			margin-left: 25px;
+		}
+
+		
+
+		.swiper-pagination-bullet{
+	    	width: 12px !important;
+		    height: 12px !important;
+		    margin: 0 4px;
+		    outline: none;
+		    opacity: 1;
+		    background: $color-white-3;
+
+
+		    &-active{
+		    	background: $color-primary;
+		    }
+		}
+	}
+
+	
+	
+
+}

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<ShopNongsan.Models.DanhmucSanpham>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<p>
+    @Html.ActionLink("Thêm danh mục mới", "Create", null, new { @class = "btn btn-outline-success" })
+</p>
+<table class="table">
+    <tr class="thead-dark">
+        <th scope="col">
+         Tên danh mục
+        </th>
+        <th scope="col">
+            Ảnh danh mục
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tendanhmuc)
+        </td>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.img_danhmuc)*@
+            <img src="data:image/jpg;base64,@item.img_danhmuc" width="50" height="50" />
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id_danhmuc }, new { @class = "btn btn-outline-success" })
+            @Html.ActionLink("Details", "Details", new { id=item.id_danhmuc }, new { @class = "btn btn-outline-primary" })
+            @Html.ActionLink("Delete", "Delete", new { id=item.id_danhmuc }, new { @class = "btn btn-outline-danger" })
+        </td>
+    </tr>
+}
+
+</table>

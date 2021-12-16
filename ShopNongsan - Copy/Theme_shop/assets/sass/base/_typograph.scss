@@ -1,0 +1,129 @@
+/*****************************
+03 - Base - Typhography
+*****************************/
+
+/*...::: Title - Font Style :::...*/
+.title{
+    display: block;
+    line-height: 1;
+
+    //...::: Title - Font Size :::...
+    &--large{
+        font-size: 30px;
+
+        @include breakpoint(medium){
+            font-size: 40px
+        }
+
+        @include breakpoint(large){
+            font-size: 50px
+        }
+
+        @include breakpoint(xlarge){
+            font-size: 60px
+        }
+    }
+
+    &--normal{
+        font-size: 18px;
+
+        @include breakpoint(medium){
+            font-size: 22px
+        }
+
+        @include breakpoint(large){
+            font-size: 28px
+        }
+
+        @include breakpoint(xlarge){
+            font-size: 36px
+        }        
+    }
+    &--small{
+        font-size: 28px;       
+    }
+
+    &--description{
+        font-size: 18px;
+        margin-top: 20px;
+        margin-bottom: 36px;
+
+        @include breakpoint(medium){
+            margin-top: 30px;
+            margin-bottom: 46px;
+        }
+        @include breakpoint(large){
+            margin-top: 30px;
+            margin-bottom: 56px;
+        }
+        @include breakpoint(xlarge){
+            margin-top: 28px;
+            margin-bottom: 62px;
+        }
+        
+    }
+
+     //...::: Title - Font Weight :::...
+    &--thin{
+        font-weight: 300;
+    }
+
+    &--regular{
+        font-weight: 400;
+    }
+
+     //...::: Title - Font Color :::...
+     &--blue{
+         color: $color-primary;
+    }
+
+    &--white{
+        color: $color-white;
+    }
+
+}
+
+
+// Section Content
+.section-content{
+    &__title{
+        font-size: 20px;
+        line-height: 22px;
+        color: #242424;
+        font-weight: 500;
+        text-transform: capitalize;
+    }
+
+    &__desc{
+        margin-top: 20px;
+        color: #666666;
+        font-size: 14px;
+    }
+
+    &--border{
+        padding-bottom: 28px;
+        border-bottom:1px solid #ddd;
+
+        @include breakpoint(large){
+            padding-bottom: 38px;
+        } 
+    }
+}
+
+.block-quote{
+    margin-left: 80px;
+    color: $color-gray-2;
+    border-left: 2px solid $color-primary;
+    padding: 5px 15px;
+    margin: 30px 0 30px 80px;
+    text-align: justify;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.para__text{
+    margin: 20px 0 20px 0;
+    &:last-child{
+        margin: 20px 0 0 0;
+    }
+}

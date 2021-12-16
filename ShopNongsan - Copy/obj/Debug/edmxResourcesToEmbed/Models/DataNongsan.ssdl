@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ShopNongsanModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Binhluan">
+    <Key>
+      <PropertyRef Name="id_binhluan" />
+    </Key>
+    <Property Name="id_binhluan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_taikhoan" Type="varchar" MaxLength="50" />
+    <Property Name="danhgia" Type="int" />
+    <Property Name="cmt" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="DanhmucSanpham">
+    <Key>
+      <PropertyRef Name="id_danhmuc" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_danhmuc" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="tendanhmuc" Type="nvarchar" MaxLength="50" />
+    <Property Name="img_danhmuc" Type="text" />
+  </EntityType>
+  <EntityType Name="Giohang">
+    <Key>
+      <PropertyRef Name="id_giohang" />
+    </Key>
+    <Property Name="id_giohang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_taikhoan" Type="varchar" MaxLength="50" />
+    <Property Name="id_sanpham" Type="int" />
+    <Property Name="giatien" Type="int" />
+    <Property Name="soluong" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'ShopNongsan.dbo.Nguoidung' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Nguoidung">
+          <Property Name="id_taikhoan" Type="varchar" MaxLength="50" />
+          <Property Name="hoten" Type="nvarchar" MaxLength="100" />
+          <Property Name="diachi" Type="nvarchar" MaxLength="100" />
+          <Property Name="sdt" Type="varchar" MaxLength="15" />
+          <Property Name="gmail" Type="nvarchar" MaxLength="100" />
+          <Property Name="ngaydangky" Type="smalldatetime" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ShopNongsan.dbo.Sanpham' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Sanpham">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_danhmuc" Type="varchar" MaxLength="50" />
+    <Property Name="tensanpham" Type="nvarchar" MaxLength="50" />
+    <Property Name="giatien" Type="int" />
+    <Property Name="img_anh" Type="text" />
+    <Property Name="mota" Type="text" />
+    <Property Name="ngay_them" Type="smalldatetime" />
+    <Property Name="soluong" Type="int" />
+    <Property Name="soluotmua" Type="int" />
+    <Property Name="trangthai" Type="int" />
+  </EntityType>
+  <EntityType Name="Taikhoan">
+    <Key>
+      <PropertyRef Name="id_taikhoan" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="50" />
+    <Property Name="pass" Type="varchar" MaxLength="50" />
+    <Property Name="id_taikhoan" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="fk_Binhluan">
+    <End Role="Taikhoan" Type="Self.Taikhoan" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Binhluan" Type="Self.Binhluan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Taikhoan">
+        <PropertyRef Name="id_taikhoan" />
+      </Principal>
+      <Dependent Role="Binhluan">
+        <PropertyRef Name="id_taikhoan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Danhmucsp">
+    <End Role="DanhmucSanpham" Type="Self.DanhmucSanpham" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Sanpham" Type="Self.Sanpham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DanhmucSanpham">
+        <PropertyRef Name="id_danhmuc" />
+      </Principal>
+      <Dependent Role="Sanpham">
+        <PropertyRef Name="id_danhmuc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Giohang">
+    <End Role="Taikhoan" Type="Self.Taikhoan" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Giohang" Type="Self.Giohang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Taikhoan">
+        <PropertyRef Name="id_taikhoan" />
+      </Principal>
+      <Dependent Role="Giohang">
+        <PropertyRef Name="id_taikhoan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Errors Found During Generation:
+error 6004: The table 'ShopNongsan.dbo.Nguoidung' is referenced by a relationship, but cannot be found.
+        <Association Name="fk_Taikhoan" />-->
+  <EntityContainer Name="ShopNongsanModelStoreContainer">
+    <EntitySet Name="Binhluan" EntityType="Self.Binhluan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DanhmucSanpham" EntityType="Self.DanhmucSanpham" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Giohang" EntityType="Self.Giohang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Taikhoan" EntityType="Self.Taikhoan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sanpham" EntityType="Self.Sanpham" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Sanpham].[id] AS [id], 
+    [Sanpham].[id_danhmuc] AS [id_danhmuc], 
+    [Sanpham].[tensanpham] AS [tensanpham], 
+    [Sanpham].[giatien] AS [giatien], 
+    [Sanpham].[img_anh] AS [img_anh], 
+    [Sanpham].[mota] AS [mota], 
+    [Sanpham].[ngay_them] AS [ngay_them], 
+    [Sanpham].[soluong] AS [soluong], 
+    [Sanpham].[soluotmua] AS [soluotmua], 
+    [Sanpham].[trangthai] AS [trangthai]
+    FROM [dbo].[Sanpham] AS [Sanpham]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="fk_Binhluan" Association="Self.fk_Binhluan">
+      <End Role="Taikhoan" EntitySet="Taikhoan" />
+      <End Role="Binhluan" EntitySet="Binhluan" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Danhmucsp" Association="Self.fk_Danhmucsp">
+      <End Role="DanhmucSanpham" EntitySet="DanhmucSanpham" />
+      <End Role="Sanpham" EntitySet="Sanpham" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Giohang" Association="Self.fk_Giohang">
+      <End Role="Taikhoan" EntitySet="Taikhoan" />
+      <End Role="Giohang" EntitySet="Giohang" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

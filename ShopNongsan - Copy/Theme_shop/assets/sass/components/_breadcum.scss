@@ -1,0 +1,50 @@
+/*****************************
+13 - Component - Breadcrumb
+*****************************/
+.page-breadcrumb{
+    background: $color-tartiary;
+    padding: 35px 0;
+    @include breakpoint(large){
+        padding: 55px 0;
+    }
+    margin-bottom: 60px;
+    @include breakpoint(medium){
+        margin-bottom: 80px;
+    }
+    @include breakpoint(large){
+        margin-bottom: 100px;
+    }
+
+    &__menu{
+        font-size: 16px;
+        color: $color-black-1;
+    }
+
+    &__nav{
+        display: inline-block;
+        margin-right: 10px;
+        position: relative;
+
+        &::after{
+            content: ">";
+            padding-left: 10px;
+        }
+
+        &:last-child::after{
+            content: "";
+        }
+        a{
+            color: $color-primary;
+            text-decoration: none;
+            
+            &:hover{
+                color: $color-primary;
+            }
+        }
+
+        &.active{
+            color: $color-black-1;
+        }
+    }
+
+}

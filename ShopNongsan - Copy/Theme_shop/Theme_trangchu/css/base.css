@@ -1,0 +1,90 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Roboto', sans-serif;
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+}
+
+ :root {
+    --primary-color: #C92127;
+    --text-color: #262E31;
+    --white-color: #fff;
+    --text-opacity: #636363;
+    --header-height: 42px;
+    --nav-height: 62px;
+    --text-notActive: #888888;
+}
+
+.btn1 {
+    font-size: 16px;
+    width: 48px;
+    height: 50px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    cursor: pointer;
+    transition: all 0.2s linear;
+    text-decoration: none;
+}
+
+.btn:hover {
+    filter: brightness(85%);
+}
+
+.open {
+    display: block;
+}
+
+.openFlex {
+    display: flex;
+}
+
+.onClickCart {
+    background-color: #E74C3B;
+    border: 2px solid #E74C3B;
+}
+
+.row-nowrap {
+    flex-wrap: nowrap;
+}
+
+.header-bottom_cart.reponsive {
+    display: none;
+}
+
+@keyframes fadeinProduct {
+    from {
+        opacity: 0.3;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1239px) {
+    .wide .col {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    .wide .row {
+        margin-left: -16px;
+        margin-right: -16px;
+    }
+}
+
+@media (min-width: 1113px) {
+    .col {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    .row {
+        margin-left: -16px;
+        margin-right: -16px;
+    }
+}

@@ -1,0 +1,381 @@
+﻿@model IEnumerable<ShopNongsan.Models.Donhang>
+@{
+    ViewBag.Title = "index_distinct";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    string trangthai = "";
+    ShopNongsan.Models.ShopNongsanEntities db = new ShopNongsan.Models.ShopNongsanEntities();
+}
+<style>
+    #donhang_daChot  {
+        display: none;
+    }
+    #donhang_giaothatbai {
+        display: none;
+    }
+    #donhang_giaothanhcong {
+        display: none;
+    }
+</style>
+
+<div class="btn-group btn-group-toggle" data-toggle="buttons">
+    <label class="btn btn-secondary active">
+        <input type="radio" name="options" id="option1" autocomplete="off" disabled> Trạng thái
+    </label>
+    <label class="btn btn-secondary">
+        <input type="radio" name="options" id="btn-chuaChot" autocomplete="off" checked> Chờ chốt đơn
+    </label>
+    <label class="btn btn-secondary">
+        <input type="radio" name="options" id="btn-daChot" autocomplete="off"> Đang giao
+    </label>
+    <label class="btn btn-secondary">
+        <input type="radio" name="options" id="btn-giaothanhcong" autocomplete="off">Giao thành công
+    </label>
+    <label class="btn btn-secondary">
+        <input type="radio" name="options" id="btn-giaothatbai" autocomplete="off"> Giao thất bại
+    </label>
+</div>
+<!-- ĐƠn hàng chờ chốt-->
+<div id="donhang_chuaChot" style="width:100%">
+    <h2 style="font-size: 27px; color: #0400fb; margin: 0 40%;">Đơn hàng mới</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Mã đơn hàng</th>
+                <th scope="col">SẢN PHẨM</th>
+                <th scope="col">Ngày mua</th>
+                <th scope="col">Ngày giao</th>
+                <th scope="col">Giảm giá</th>
+                <th scope="col">Tổng tiền</th>
+                <th scope="col">Trạng thái</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var stt = 0;
+                //Hiển thị thông tin đơn hàng
+                foreach (var item in Model)
+                {
+                    string ngaymua = item.Thu_VN(item._ngaymua.DayOfWeek.ToString());
+                    string ngaygiao = item.Thu_VN(item._ngaygiao.DayOfWeek.ToString());
+                    var tongtien = item._thanhtien + 22000;
+                    var soluong = item._soluong - 1;
+                    if (item._trangthai == 0)
+                    {
+                        trangthai = "Đang chờ chốt đơn";
+                    }
+                    else
+                    {
+                        trangthai = "Đang giao";
+                    }
+                    stt++;
+                    int giamgia = 0;
+                    // Tìm mã giảm giá
+                    string madonhang = item._madonhang;
+                    var timma = db.Add_magiamgia_donhang.Where(s => s.madonhang == madonhang).FirstOrDefault();
+                    if (timma != null)
+                    {
+                        giamgia = (int)timma.giamgia;
+                    }
+                    else
+                    {
+                        giamgia = 0;
+                    }
+
+
+
+                    <tr style="border:1px solid">
+                        <td>@stt</td>
+                        <th scope="row">
+                            @Html.ActionLink(@item._madonhang, "Chitietdonhang_khach", new { id = item._madonhang })
+                        </th>
+                        @{
+                            if (soluong == 0)
+                            {
+                                <td>@item._tensp</td>
+                            }
+                            else
+                            {
+                                <td>@item._tensp<br /><p style="font-size: 14px; color: #ff1e07d9">(và @soluong sản phẩm khác)</p></td>
+                            }
+                        }
+                        <td>@ngaymua, @item._ngaymua.ToString("dd-MM-yyyy")</td>
+                        <td>@ngaygiao, @item._ngaygiao.ToString("dd-MM-yyyy")</td>
+                        <td>@giamgia.ToString("n0")</td>
+                        <td>@((tongtien-giamgia).ToString("n0")) đ</td>
+                        <td>
+                            @{
+                                if (item._trangthai == 0)
+                                {
+                                    @Html.ActionLink("Chốt đơn", "Chotdon", new { id = item._madonhang }, new { @class = "btn btn-outline-success" })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("Đã chốt đơn", "Edit", new { id = item._madonhang }, new { @class = "btn btn-success" })
+                                }
+                            }
+                        </td>
+                    </tr>
+
+                }
+
+            }
+
+        </tbody>
+    </table>
+</div>
+<!--ĐƠn hàng đang giao-->
+<div id="donhang_daChot" style="width:100%">
+    <h2 style="font-size: 27px; color: #0400fb; margin: 0 40%;">Đang giao</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Mã đơn hàng</th>
+                <th scope="col">Sản phẩm</th>
+                <th scope="col">Ngày mua</th>
+                <th scope="col">Ngày giao</th>
+                <th scope="col">Giảm giá</th>
+                <th scope="col">Tổng tiền</th>
+                <th scope="col">Trạng thái</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var stt1 = 0;
+                //Hiển thị thông tin đơn hàng
+                foreach (var item in ViewBag.dondachot)
+                {
+                    string ngaymua = item.Thu_VN(item._ngaymua.DayOfWeek.ToString());
+                    string ngaygiao = item.Thu_VN(item._ngaygiao.DayOfWeek.ToString());
+                    var tongtien = item._thanhtien + 22000;
+                    var soluong = item._soluong - 1;
+                    if (item._trangthai == 1)
+                    {
+                        trangthai = "Đang giao";
+                    }
+                    stt1++;
+                    int giamgia = 0;
+                    // Tìm mã giảm giá
+                    string madonhang = item._madonhang;
+                    var timma = db.Add_magiamgia_donhang.Where(s => s.madonhang == madonhang).FirstOrDefault();
+                    if (timma != null)
+                    {
+                        giamgia = (int)timma.giamgia;
+                    }
+                    else
+                    {
+                        giamgia = 0;
+                    }
+                        <tr style="border:1px solid">
+                            <td>@stt1</td>
+                            <th scope="row">
+                                @Html.ActionLink((string)item._madonhang, "Chitietdonhang_khach", new { id = item._madonhang })
+                            </th>
+                            @{
+                                if (soluong == 0)
+                                {
+                                    <td>@item._tensp</td>
+                                }
+                                else
+                                {
+                                    <td>@item._tensp<br /><p style="font-size: 14px; color: #ff1e07d9">(và @soluong sản phẩm khác)</p></td>
+                                }
+                            }
+                            <td>@ngaymua, @item._ngaymua.ToString("dd-MM-yyyy")</td>
+                            <td>@ngaygiao, @item._ngaygiao.ToString("dd-MM-yyyy")</td>
+                            <td>@giamgia.ToString("n0")</td>
+                            <td>@((tongtien-giamgia).ToString("n0")) đ</td>
+                            <td>
+
+
+                                <p class="btn btn-info">@trangthai</p>
+
+                            </td>
+                        </tr>
+
+                }
+
+            }
+
+        </tbody>
+    </table>
+</div>
+<!-- ĐƠn hàng giao thành công-->
+<div id="donhang_giaothanhcong" style="width:100%">
+    <h2 style="font-size: 27px; color: #0400fb; margin: 0 40%;">Giao thành công</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Mã đơn hàng</th>
+                <th scope="col">Sản phẩm</th>
+                <th scope="col">Ngày mua</th>
+                <th scope="col">Ngày giao</th>
+                <th scope="col">Giảm giá</th>
+                <th scope="col">Tổng tiền</th>
+                <th scope="col">Trạng thái</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var stt3 = 0;
+                //Hiển thị thông tin đơn hàng
+                foreach (var item in ViewBag.giaothangcong)
+                {
+                    string ngaymua = item.Thu_VN(item._ngaymua.DayOfWeek.ToString());
+                    string ngaygiao = item.Thu_VN(item._ngaygiao.DayOfWeek.ToString());
+                    var tongtien = item._thanhtien + 22000;
+                    var soluong = item._soluong - 1;
+                    if (item._trangthai == 4)
+                    {
+                        trangthai = "Giao thành công";
+                    }
+                    stt1++;
+                    int giamgia = 0;
+                    // Tìm mã giảm giá
+                    string madonhang = item._madonhang;
+                    var timma = db.Add_magiamgia_donhang.Where(s => s.madonhang == madonhang).FirstOrDefault();
+                    if (timma != null)
+                    {
+                        giamgia = (int)timma.giamgia;
+                    }
+                    else
+                    {
+                        giamgia = 0;
+                    }
+                        <tr style="border:1px solid">
+                            <td>@stt1</td>
+                            <th scope="row">
+                                @Html.ActionLink((string)item._madonhang, "Chitietdonhang_khach", new { id = item._madonhang })
+                            </th>
+                            @{
+                                if (soluong == 0)
+                                {
+                                    <td>@item._tensp</td>
+                                }
+                                else
+                                {
+                                    <td>@item._tensp<br /><p style="font-size: 14px; color: #ff1e07d9">(và @soluong sản phẩm khác)</p></td>
+                                }
+                            }
+                            <td>@ngaymua, @item._ngaymua.ToString("dd-MM-yyyy")</td>
+                            <td>@ngaygiao, @item._ngaygiao.ToString("dd-MM-yyyy")</td>
+                            <td>@giamgia.ToString("n0")</td>
+                            <td>@((tongtien-giamgia).ToString("n0")) đ</td>
+                            <td>
+                                <p class="btn btn-success">@trangthai</p>
+                            </td>
+                        </tr>
+
+                }
+
+            }
+
+        </tbody>
+    </table>
+</div>
+<!--Đơn hàng giao thất bại-->
+<div id="donhang_giaothatbai" style="width:100%">
+    <h2 style="font-size: 27px; color: #0400fb; margin: 0 40%;">Giao thất bại</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Mã đơn hàng</th>
+                <th scope="col">Sản phẩm</th>
+                <th scope="col">Ngày mua</th>
+                <th scope="col">Ngày giao</th>
+                <th scope="col">Giảm giá</th>
+                <th scope="col">Tổng tiền</th>
+                <th scope="col">Trạng thái</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var stt5 = 0;
+                //Hiển thị thông tin đơn hàng
+                foreach (var item in ViewBag.giaothatbai)
+                {
+                    string ngaymua = item.Thu_VN(item._ngaymua.DayOfWeek.ToString());
+                    string ngaygiao = item.Thu_VN(item._ngaygiao.DayOfWeek.ToString());
+                    var tongtien = item._thanhtien + 22000;
+                    var soluong = item._soluong - 1;
+                    if (item._trangthai == 3)
+                    {
+                        trangthai = "Giao thất bại";
+                    }
+                    stt1++;
+                    int giamgia = 0;
+                    // Tìm mã giảm giá
+                    string madonhang = item._madonhang;
+                    var timma = db.Add_magiamgia_donhang.Where(s => s.madonhang == madonhang).FirstOrDefault();
+                    if (timma != null)
+                    {
+                        giamgia = (int)timma.giamgia;
+                    }
+                    else
+                    {
+                        giamgia = 0;
+                    }
+                        <tr style="border:1px solid">
+                            <td>@stt1</td>
+                            <th scope="row">
+                                @Html.ActionLink((string)item._madonhang, "Chitietdonhang_khach", new { id = item._madonhang })
+                            </th>
+                            @{
+                                if (soluong == 0)
+                                {
+                                    <td>@item._tensp</td>
+                                }
+                                else
+                                {
+                                    <td>@item._tensp<br /><p style="font-size: 14px; color: #ff1e07d9">(và @soluong sản phẩm khác)</p></td>
+                                }
+                            }
+                            <td>@ngaymua, @item._ngaymua.ToString("dd-MM-yyyy")</td>
+                            <td>@ngaygiao, @item._ngaygiao.ToString("dd-MM-yyyy")</td>
+                            <td>@giamgia.ToString("n0")</td>
+                            <td>@((tongtien-giamgia).ToString("n0")) đ</td>
+                            <td>
+                                <p class="btn btn-danger">@trangthai</p>
+                            </td>
+                        </tr>
+
+                }
+
+            }
+
+        </tbody>
+    </table>
+</div>
+<script language="javascript">
+    // nếu chọn đơn hàng đã giao thì hẩn đang giao
+    document.getElementById("btn-daChot").onclick = function () {
+        document.getElementById("donhang_daChot").style.display = 'block';// hiện
+        document.getElementById("donhang_chuaChot").style.display = 'none';//ẩn
+        document.getElementById("donhang_giaothatbai").style.display = 'none';// ẩn
+        document.getElementById("donhang_giaothanhcong").style.display = 'none';// ẩn
+    };
+    // nếu chọn đang giao thì ẩn đã giao
+    document.getElementById("btn-chuaChot").onclick = function () {
+        document.getElementById("donhang_chuaChot").style.display = 'block';// hiện
+        document.getElementById("donhang_daChot").style.display = 'none';//ẩn
+        document.getElementById("donhang_giaothatbai").style.display = 'none';// ẩn
+        document.getElementById("donhang_giaothanhcong").style.display = 'none';// ẩn
+    };
+    //Conh giao hàng thành công -> ẩn 3 cái còn lại
+    document.getElementById("btn-giaothanhcong").onclick = function () {
+        document.getElementById("donhang_giaothanhcong").style.display = 'block';// hiện
+        document.getElementById("donhang_chuaChot").style.display = 'none';//ẩn
+        document.getElementById("donhang_giaothatbai").style.display = 'none';// ẩn
+        document.getElementById("donhang_daChot").style.display = 'none';// ẩn
+    };
+    // Chọn giao hàng thất bại-> ẩn 3 cái còn lại
+    document.getElementById("btn-giaothatbai").onclick = function () {
+        document.getElementById("donhang_giaothatbai").style.display = 'block';// hiện
+        document.getElementById("donhang_chuaChot").style.display = 'none';//ẩn
+        document.getElementById("donhang_giaothanhcong").style.display = 'none';// ẩn
+        document.getElementById("donhang_daChot").style.display = 'none';// ẩn
+    };
+</script>

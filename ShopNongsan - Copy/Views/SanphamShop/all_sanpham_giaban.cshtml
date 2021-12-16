@@ -1,0 +1,103 @@
+﻿@{
+    ViewBag.Title = "all_sanpham_danhmuc";
+    Layout = "~/Views/_LayoutShop.cshtml";
+}
+
+@model IEnumerable<ShopNongsan.Models.Sanpham>
+@using PagedList.Mvc;
+
+<style>
+    #product_sp1 {
+        display: none;
+    }
+
+    #product_sp2 {
+        display: none;
+    }
+</style>
+<div class="product-container">
+    <div class="grid wide">
+        <div class="product-title">
+            <h3> Hơn @ViewBag.all_sanpham kết quả cho @Session["name_danhmuc_sp"]</h3>
+        </div>
+
+        <div class="product-content">
+            <div class="row">
+                <div class="col l-2 m-2 c-12">
+                    <ul class="product-content_list">
+                        <li class="product-content_item">Giá bán @Session["id_all_sp"]</li>
+                        <li class="product-content_item"><a href="~/SanphamShop/all_sanpham_giaban/1">Từ 1.000-50.000đ</a></li>
+                        <li class="product-content_item"><a href="~/SanphamShop/all_sanpham_giaban/2">Từ 50.000-100.000đ</a></li>
+                        <li class="product-content_item"><a href="~/SanphamShop/all_sanpham_giaban/3">Lớn hơn 100.000đ</a></li>
+                    </ul>
+                </div>
+                <div class="col 1-1 m-10 c-12">
+                    <div id="product3" class="product-content_about product-propose_new active">
+                        <div class="row">
+                            @foreach (var item in ViewBag.all1)
+                            {
+                                <div class="col l-3 m-6 c-6">
+                                    <div class="product-propose_new-item">
+                                        <a href="/SanphamShop/Details/@item.id_sanpham">
+                                            <img  style="min-height:224.66px" class="product-propose_new-item_img" src="data:image/jpg;base64,@item.img_sanpham" alt="">
+                                        </a>
+                                        <img  style="min-height:224.66px" src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                        <p class="product-propose_new-item_info"> @item.tensanpham</p>
+                                        <h4 class="product-propose_new-item_price">@string.Format("{0:0,0}", item.giatien) đ</h4>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div id="product_sp1" class="product-content_about product-propose_new active">
+                        <div class="row">
+                            @foreach (var item in ViewBag.all2)
+                            {
+                                <div class="col l-3 m-6 c-6">
+                                    <div class="product-propose_new-item">
+                                        <a href="/SanphamShop/Details/@item.id_sanpham">
+                                            <img  style="min-height:224.66px" class="product-propose_new-item_img" src="data:image/jpg;base64,@item.img_sanpham" alt="">
+                                        </a>
+                                        <img  style="min-height:224.66px" src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                        <p class="product-propose_new-item_info"> @item.tensanpham</p>
+                                        <h4 class="product-propose_new-item_price">@string.Format("{0:0,0}", item.giatien) đ</h4>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div id="product_sp2" class="product-content_about product-propose_new active">
+                        <div class="row">
+                            @foreach (var item in ViewBag.all3)
+                            {
+                                <div class="col l-3 m-6 c-6">
+                                    <div class="product-propose_new-item">
+                                        <a href="/SanphamShop/Details/@item.id_sanpham">
+                                            <img  style="min-height:224.66px"  style="min-height:224.66px" class="product-propose_new-item_img" src="data:image/jpg;base64,@item.img_sanpham" alt="">
+                                        </a>
+                                        <img src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                        <p class="product-propose_new-item_info"> @item.tensanpham</p>
+                                        <h4 class="product-propose_new-item_price">@string.Format("{0:0,0}", item.giatien) đ</h4>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div style="margin:10px 50%"><input class="header-bottom_cart-icon header-bottom_cart-icon1" id="xemthem" type="submit" name="name" value="Xem thêm" /></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script language="javascript">
+    var i = 0;
+    document.getElementById("xemthem").onclick = function () {
+        i = i + 1;
+        const a = "product_sp" + i;
+        console.log(i);
+        document.getElementById(a).style.display = 'inherit ';
+    };
+
+</script>
+
+

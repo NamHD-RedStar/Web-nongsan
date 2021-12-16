@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_LayoutShop.cshtml";
+    string trangthai = "";
+    int stt = 0;
+}
+
+<div style="display:flex">
+    <div style="position:relative;left:0px"><a href="~/DonhangUser/Index" style="text-decoration:none"><input type="button" name="name" value="Toàn bộ đơn hàng" class="header-bottom_cart-icon header-bottom_cart-icon1" /></a></div>
+    <div style="position:relative;margin:0 auto"><h1>Chi tiết đơn hàng của bạn</h1></div>
+</div>
+<h3>Phí vận chuyển: 22,000 đ</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Sản phẩm của bạn</th>
+            <th scope="col">Số lượng</th>
+            <th scope="col">Giá</th>
+            <th scope="col">Tạm tính</th>
+            <th scope="col">Tổng tiền</th>
+            <th scope="col">Trạng thái</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            //Hiển thị thông tin đơn hàng
+            foreach (var item in ViewBag.donhangUsers)
+            {
+                stt++;
+                int tongtien = item.giatien * item.soluong;
+                if (@item.trangthai == 0)
+                {
+                    trangthai = "Đang chờ chốt đơn";
+                }
+                else
+                {
+                    trangthai = "Đang giao";
+                }
+                <a href="/SanphamShop/Details/@item.id_sanpham">
+                <tr class="th-hover">
+                    <th scope="row">@stt</th>
+                    <td><a href="/SanphamShop/Details/@item.id_sanpham">@item.ten_sanpham</a></td>
+                    <td>@item.soluong</td>
+                    <td>@item.giatien.ToString("n0") đ</td>
+                    <td>@tongtien.ToString("n0") đ</td>
+                    <td>@((tongtien).ToString("n0")) đ</td>
+                    <td>@trangthai</td>
+                </tr>
+                </a>
+            }
+        }
+
+    </tbody>
+</table>
+

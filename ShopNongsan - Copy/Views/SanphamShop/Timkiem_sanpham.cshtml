@@ -1,0 +1,116 @@
+﻿@*@model ShopNongsan.Models.Sanpham
+    @using PagedList;
+    @using PagedList.Mvc;*@
+
+@*@model PagedList.IPagedList<ShopNongsan.Models.Sanpham>
+    @using PagedList.Mvc;*@
+@{
+    ViewBag.Title = "Timkiem_sanpham";
+    Layout = "~/Views/_LayoutShop.cshtml";
+    //var nn = (IPagedList)ViewBag.Timkiem_sanpham;
+}
+<style>
+    #product_seach_1 {
+        display: none;
+    }
+
+    #product_seach_2 {
+        display: none;
+    }
+</style>
+<div class="product-container">
+    <div class="grid wide">
+        <div class="product-title">
+            <h3>Hơn @ViewBag.soluong_sp kết quả</h3>
+        </div>
+
+        <div class="product-content">
+            <div class="row">
+                <div class="col l-2 m-2 c-12">
+                    <ul class="product-content_list">
+                        <li class="product-content_item">Giá bán @Session["id_all_sp"]</li>
+                        <li class="product-content_item"><a href="~/SanphamShop/all_sanpham_giaban/1">Từ 1.000-50.000đ</a></li>
+                        <li class="product-content_item"><a href="~/SanphamShop/all_sanpham_giaban/2">Từ 50.000-100.000đ</a></li>
+                        <li class="product-content_item"><a href="~/SanphamShop/all_sanpham_giaban/3">Lớn hơn 100.000đ</a></li>
+                    </ul>
+                </div>
+                <div class="col l-6 m-10 c-12">
+                    <div id="product_seach_0" class="product-content_about product-propose_new active">
+                        <div class="row">
+                            @foreach (var item in ViewBag.seach_1)
+                            {
+                                <div class="col l-3 m-6 c-6">
+                                    <div class="product-propose_new-item">
+                                        <a href="/SanphamShop/Details/@item.id_sanpham">
+                                            <img  style="min-height:224.66px" class="product-propose_new-item_img" src="data:image/jpg;base64,@item.img_sanpham" alt="">
+                                        </a>
+                                        <img src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                        <p class="product-propose_new-item_info"> @item.tensanpham</p>
+                                        <h4 class="product-propose_new-item_price">@string.Format("{0:0,0}", item.giatien) đ</h4>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div id="product_seach_1" class="product-content_about product-propose_new active">
+                        <div class="row">
+                            @foreach (var item in ViewBag.seach_2)
+                            {
+                                <div class="col l-3 m-6 c-6">
+                                    <div class="product-propose_new-item">
+                                        <a href="/SanphamShop/Details/@item.id_sanpham">
+                                            <img  style="min-height:224.66px" class="product-propose_new-item_img" src="data:image/jpg;base64,@item.img_sanpham" alt="">
+                                        </a>
+                                        <img src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                        <p class="product-propose_new-item_info"> @item.tensanpham</p>
+                                        <h4 class="product-propose_new-item_price">@string.Format("{0:0,0}", item.giatien) đ</h4>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div id="product_seach_2" class="product-content_about product-propose_new active">
+                        <div class="row">
+                            @foreach (var item in ViewBag.seach_3)
+                            {
+                                <div class="col l-3 m-6 c-6">
+                                    <div class="product-propose_new-item">
+                                        <a href="/SanphamShop/Details/@item.id_sanpham">
+                                            <img  style="min-height:224.66px" class="product-propose_new-item_img" src="data:image/jpg;base64,@item.img_sanpham" alt="">
+                                        </a>
+                                        <img src="https://tokyolife.vn/media/wysiwyg/home/I-Online.svg" alt="" class="product-propose_new-item_logo">
+                                        <p class="product-propose_new-item_info"> @item.tensanpham</p>
+                                        <h4 class="product-propose_new-item_price">@string.Format("{0:0,0}", item.giatien) đ</h4>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div style="margin:10px 50%">
+                        <input class="header-bottom_cart-icon header-bottom_cart-icon1" id="xemthem_seach" type="submit" name="name" value="Xem thêm" />
+                    </div>
+                </div>
+                <div class="col l-4 m-0 c-0">
+                    <img class="product-content_baner-img" src="~/Images/img_slide/banner_thit.jpg" alt="tokyolife">
+                    <img class="product-content_baner-img" src="~/Images/img_slide/banner_thit2.jpg" alt="tokyolife">
+                </div>
+            </div>
+            @*<div style="display:block">
+                    Trang @(nn.PageCount < nn.PageNumber ? 0 : nn.PageNumber) / @nn.PageCount
+                    @Html.PagedListPager(nn, page => Url.Action("Timkiem_sanpham", new { page, timkiem = Session["timkiem"].ToString() }))
+                </div>*@
+        </div>
+    </div>
+</div>
+<br />
+<script language="javascript">
+    var i = 0;
+    document.getElementById("xemthem_seach").onclick = function () {
+        i = i + 1;
+        const a = "product_seach_" + i;
+        console.log(i);
+        document.getElementById(a).style.display = 'inherit ';
+    };
+</script>
+
+@*@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))*@

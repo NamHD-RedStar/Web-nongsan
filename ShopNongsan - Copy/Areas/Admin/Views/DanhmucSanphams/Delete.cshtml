@@ -1,0 +1,48 @@
+﻿@model ShopNongsan.Models.DanhmucSanpham
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    @*@Html.ActionLink("Quay lại", "Index")*@
+    <a href='@Url.Action("Index", "DanhmucSanphams")'>
+        <i class="fas fa-backward"> Quay lại</i>
+    </a>
+</div>
+<div class=" chia-khoi">
+    <h3>Bạn muốn xóa?</h3>
+    <div>
+        <h4>Danh mục sản phẩm</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+             Tên danh mục
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.tendanhmuc)
+            </dd>
+
+            <dt>
+               ẢNh danh mục
+            </dt>
+
+            <dd>
+                <img src="data:image/jpg;base64,@Html.DisplayFor(model => model.img_danhmuc)" class="anh" />
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+    </div>

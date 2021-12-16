@@ -1,0 +1,50 @@
+﻿@model ShopNongsan.Models.DanhmucSanpham
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div>
+    @*@Html.ActionLink("Quay lại", "Index")*@
+    <a href='@Url.Action("Index", "DanhmucSanphams")'>
+        <i class="fas fa-backward"> Quay lại</i>
+    </a>
+</div>
+
+
+<div class=" chia-khoi">
+    @using (Html.BeginForm("Edit", "Danhmucsanphams", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <h2>Chỉnh sửa danh mục sản phẩm</h2>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.id_danhmuc)
+
+            <div class="form-group">
+                Tên danh mục
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.tendanhmuc, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.tendanhmuc, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                Ảnh danh mục
+                <div class="col-md-10">
+                    @*@Html.EditorFor(model => model.img_danhmuc, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.img_danhmuc, "", new { @class = "text-danger" })*@
+                    <img src="data:image/jpg;base64,@Html.DisplayFor(model => model.img_danhmuc)"  class="anh" />
+                    <input type="file" name="img" id="img" value="" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-primary btn-lg btn-block" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

@@ -1,0 +1,134 @@
+/*****************************
+17 - Component - Gallery
+*****************************/
+.product-gallery-box{
+
+    &__vertical{
+        display: flex;
+        align-items: center;
+    }
+    &__tab-left{
+        flex-direction: row-reverse;
+    }
+
+    & .swiper-slide{
+        height: 100% !important;
+    }
+
+    
+ }
+
+
+.gallery{
+    &--right{width: 80%};
+    &--left{width: 20%};
+}
+
+.product-image{
+   &--large .img-fluid{
+    max-width: 100% !important
+   }
+   &--gallery .img-responsive {
+    margin: 10px;
+    }
+}
+/*set a border on the images to prevent shifting*/
+ #gallery-zoom img{border:2px solid $color-gray-1;}
+ 
+ /*Change the colour*/
+ .zoom-active img{border:2px solid $color-primary !important;}
+
+
+.modal-product-image--thumb,
+.product-image--thumb{
+    img{
+        cursor: pointer;
+        border: 1px solid $color-gray-1;
+    }
+    .swiper-slide-thumb-active{
+       img{
+             border: 1px solid $color-primary;
+       }
+    }
+}
+
+.gallery__nav {
+    text-align: center;
+    top: 50%;
+    color: $color-primary;
+    font-size: 30px;
+    outline: none;
+
+    &--next{
+        right: 0px !important;
+    }
+    &--prev{
+        left: 0px !important;
+    }
+}
+
+
+.text-reference{
+    font-size: 14px;
+    color: $color-gray;
+}
+
+.product-var  {
+    border-top: 1px solid $color-gray-1;
+    border-bottom: 1px solid $color-gray-1;
+    &__item{margin-bottom: 30px;}
+    
+    &__text{
+        display: block;
+        margin-bottom: 9px;
+        font-weight: 500;
+    }
+}
+
+
+// Peoduct Details Social Link
+.product-social {
+    display: flex;
+    align-items: center;
+    span {
+        color: $color-gray;
+        margin-right: 20px;
+        display: inline-block;
+        font-size: 16px;
+    }
+
+    &-link{
+
+        li {
+            display: inline-block;
+            margin-right: 10px;
+            &:last-child {
+                margin-right: 0;
+            }
+
+            &:nth-child(1) a:hover{background:$color-facebook}
+            &:nth-child(2) a:hover{background:$color-twitter}
+            &:nth-child(3) a:hover{background:$color-gplus}
+            &:nth-child(4) a:hover{background:$color-youtube}
+        }
+
+        a {
+            color: $color-gray;
+            width: 40px;
+            height: 40px;
+            display: block;
+            border: 1px solid $color-gray;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            transition: all .3s ease;
+
+            &:hover{
+                color: $color-white;
+                border: 1px solid transparent;
+            }
+           
+        }
+        
+    }
+}

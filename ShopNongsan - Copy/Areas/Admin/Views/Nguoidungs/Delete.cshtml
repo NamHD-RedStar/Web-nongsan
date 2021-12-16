@@ -1,0 +1,69 @@
+﻿@model ShopNongsan.Models.Nguoidung
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div>
+    @*@Html.ActionLink("Quay lại", "Index")*@
+    <a href='@Url.Action("Index", "Nguoidungs")'>
+        <i class="fas fa-backward"> Quay lại</i>
+    </a>
+</div>
+    <h2 class="tieu-de">Chi tiết người dùng</h2>
+
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col" class="tieu-de">Nội dung</th>
+                    <th scope="col" class="tieu-de">Chi tiết</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Họ</th>
+                    <td>    @Html.DisplayFor(model => model.ho)</td>
+
+                </tr>
+                <tr>
+                    <th scope="row">Tên</th>
+                    <td>     @Html.DisplayFor(model => model.ten)</td>
+
+                </tr>
+                <tr>
+                    <th scope="row">Ảnh đại diện</th>
+                    <td>     <img src="data:image/jpg;base64,@Html.DisplayFor(model => model.anh_daidien)" width="50" height="50" /></td>
+
+                </tr>
+                <tr>
+                    <th scope="row">Địa chỉ</th>
+                    <td>    @Html.DisplayFor(model => model.diachi)</td>
+
+                </tr>
+                <tr>
+                    <th scope="row">SĐT</th>
+                    <td>  @Html.DisplayFor(model => model.sdt)</td>
+
+                </tr>
+                <tr>
+                    <th scope="row">Gmail</th>
+                    <td>     @Html.DisplayFor(model => model.gmail)</td>
+
+                </tr>
+                <tr>
+                    <th scope="row">Ngày đăng ký</th>
+                    <td>    @Html.DisplayFor(model => model.ngaydangky)</td>
+
+                </tr>
+
+            </tbody>
+        </table>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Xóa" class="btn btn-danger" />
+        @*@Html.ActionLink("Quay lại", "Index",new { @class = "btn btn-outline-danger" })*@
+    </div>
+}

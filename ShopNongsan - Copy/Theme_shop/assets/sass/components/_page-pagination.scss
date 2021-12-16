@@ -1,0 +1,49 @@
+/*****************************
+15 - Component - Pagination
+*****************************/
+.page-pagination{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 20px;
+    border: 1px solid $color-gray-1;
+    border-radius: 3px;
+    font-size: 14px;
+    flex-direction: column;
+
+    margin-top: 60px;
+
+    @include breakpoint(medium){
+        margin-top: 80px;
+        flex-direction: row;
+        align-items: center;
+    }
+    @include breakpoint(large){
+        margin-top: 100px;
+    }
+
+    &__list{
+        margin-top: 20px;
+        @include breakpoint(medium){
+            margin-top: 0;
+        }
+    }
+
+    &__item{
+        display: inline-block;
+        margin-right: 5px;
+        
+        &:last-child{
+            margin-right: 0;
+        }
+    }
+
+    &__link{
+        font-weight: 500;
+        &.active{
+            background: $color-primary;
+            color: $color-white;
+        }
+        
+    }
+}

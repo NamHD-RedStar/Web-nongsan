@@ -1,0 +1,89 @@
+/*****************************
+04 - Base - Animation
+*****************************/
+
+@keyframes animate-top{
+
+	0%{
+		opacity: 0;
+		transform: translateY(-50px);
+	}
+	100%{
+		opacity: 1;
+		transform: translateY(0px);
+	}
+
+}
+@keyframes animate-left{
+
+	0%{
+		opacity: 0;
+		transform: translateX(-50px);
+	}
+	100%{
+		opacity: 1;
+		transform: translateX(0px);
+	}
+
+}
+@keyframes animate-right{
+
+	0%{
+		opacity: 0;
+		transform: translateX(50px);
+	}
+	100%{
+		opacity: 1;
+		transform: translateX(0px);
+	}
+
+}
+
+@keyframes animate-zoom{
+
+	0%{
+		opacity: 0;
+		transform: scale(.3);
+	}
+	100%{
+		opacity: 1;
+		transform: scale(1);
+	}
+
+}
+@keyframes animate-zoom-blink{
+
+	0%{
+		transform: scale(1.1);
+	}
+	25%{
+		transform: scale(.9);
+	}
+    
+    50%{
+		transform: scale(1.1);
+	}
+    
+    75%{
+		transform: scale(.9);
+	}
+    
+    
+	100%{
+		transform: scale(1.1);
+	}
+
+}
+
+@keyframes slideInDown {
+    from {
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+        visibility: visible;
+    }
+
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}

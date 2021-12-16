@@ -1,0 +1,182 @@
+@media (max-width:1024px) {
+    .header-bottom {
+        flex-direction: column;
+        min-height: 100px;
+        align-items: center;
+    }
+    .header-bottom_logo {
+        margin: 0;
+    }
+    .header-bottom_search {
+        width: 100%;
+    }
+    .header-bottom_cart.pc {
+        display: none;
+    }
+
+    .header-bottom_cart.reponsive {
+        display: flex;
+        margin-left: 8px;
+        position: relative;
+    }
+
+
+    .product-propose_btn {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@media (min-width: 740px) and (max-width: 1023px) {
+    .header-bottom_menu-icon {
+        font-size: 18.5px;
+    }
+    .baner-product_img:last-child {
+        padding-top: 12px;
+    }
+}
+
+@media (max-width:739px) {
+    .header {
+        margin: 0 12px;
+    }
+    .header-info {
+        height: unset;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        margin-top: 8px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #C8C8C8;
+    }
+    .header-info_about-content {
+        border: none;
+        margin-top: 12px;
+        text-align: center;
+    }
+    .header-baner {
+        display: none;
+    }
+    .header-bottom {
+        margin: 20px 0;
+    }
+    .nav-list {
+        display: none;
+    }
+    .header-bottom_cart-info {
+        display: none;
+    }
+    .header-bottom_cart1.reponsive::before {
+        content: "0";
+        position: absolute;
+        z-index: 1;
+        top: -6px;
+        right: -5px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        line-height: 20px;
+        text-align: center;
+        font-size: 12px;
+        background-color: #fff;
+        box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+    }
+    .header-bottom_cart-icon {
+        margin-right: unset;
+    }
+    .header-bottom_menu {
+        display: block;
+    }
+    .header-bottom_menu-icon {
+        background-color: #EEF1F5;
+        border-top: 2px solid var(--primary-color);
+        border-bottom: 2px solid var(--primary-color);
+        border-left: 2px solid var(--primary-color);
+        padding: 8.5px 12px;
+        font-size: 16px;
+    }
+    .header-bottom_menu-list {
+        position: fixed;
+        z-index: 11;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.2);
+        transform: translateX(-100%);
+        transition: all ease-in 0.1s;
+    }
+    .nav-list_responsive {
+        position: absolute;
+        z-index: 12;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 30%;
+        background-color: #fff;
+    }
+    .nav-list_responsive-icon {
+        position: absolute;
+        top: 0;
+        right: 0;
+        color: var(--text-opacity);
+        padding: 14px;
+    }
+    .nav-list_responsive-icon:hover {
+        opacity: 0.7;
+    }
+    .nav-itemRespponsive {
+        display: block;
+        margin: 0px 16px;
+        list-style: none;
+        padding: 18px 0;
+        border-bottom: 1px solid #DDDDDD;
+        font-size: 14px;
+        color: var(--text-color);
+    }
+    .nav-itemRespponsive:nth-child(2) {
+        margin-top: 24px;
+    }
+    .nav-itemRespponsive:last-child {
+        border-bottom: none;
+    }
+    .nav-itemRespponsive:hover {
+        color: var(--primary-color)
+    }
+    .content {
+        margin: 0 12px;
+    }
+    .baner-product {
+        margin-top: 30px;
+    }
+    .baner-product_img:last-child {
+        padding-top: 6px;
+    }
+    .product-propose_title-name {
+        text-align: center;
+    }
+    .product-change-arrow {
+        display: none;
+    }
+    .footer-top_sub {
+        padding: 36px 12px 48px;
+    }
+    .footer-center {
+        padding: 0 12px 40px
+    }
+    .footer-center_down {
+        justify-content: center;
+    }
+    .footer-center_down-connect {
+        width: 50%;
+    }
+    .footer-bottom_about {
+        flex-direction: column;
+        align-items: center;
+    }
+    .footer-bottom_about p {
+        margin: 16px 0;
+    }
+    .fixed-form {
+        max-height: 68vh;
+    }
+}
